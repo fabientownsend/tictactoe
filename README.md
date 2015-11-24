@@ -1,3 +1,4 @@
+![Build travis](https://api.travis.ci.org/fabientownsend/tictactoe.svg)
 #Unbeatable Tic-Tac-Toe
 
 > **Tic-tac-toe** (also known as **Noughts ans Crosses** or **Xs and Os**)
@@ -5,7 +6,7 @@
 > the spaces in a 3x3 grid. The player who succeds in placing three of their
 > marks in a horizontal, vertical, or diagonal row wins the game.
 
-![Image of Tic Tac Toe](https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Tic-tac-toe-game-1.svg/719px-Tic-tac-toe-game-1.svg.png)
+![Image of Tic Tac Toe](https://en.wikipedia.org/wiki/File:Tic-tac-toe-game-1.svg)
 
 [Source: wikipedia](https://en.wikipedia.org/wiki/Tic-tac-toe)
 
@@ -18,7 +19,7 @@ The player have also the choice of which player goes first
 
 Todo:
 - [x] initialise the markdown
-- [ ] initialise travis ci
+- [x] initialise travis ci
 - [ ] player v. player
 - [ ] chose who start possibility
 - [ ] deterministic Algorithm
