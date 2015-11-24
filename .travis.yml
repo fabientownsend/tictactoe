@@ -2,4 +2,4 @@ sudo: false
 language: python
 python: 2.7
 install: "pip install enum34"
-script: make test
+script: python initialisationTravisTest.py
