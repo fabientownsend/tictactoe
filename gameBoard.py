@@ -18,5 +18,5 @@ class GameBoard():
 
 class SpotNotEmpty(Exception):
     def __init__(self):
-        self.msg = 'The sport must be free'
+        self.msg = 'The spot must be free'
 
