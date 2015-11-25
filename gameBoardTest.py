@@ -5,8 +5,14 @@ class TestGameBoard(unittest.TestCase):
     def setUp(self):
         self.gameBoard = GameBoard()
 
-    def testNewBoardTest(self):
-        response = self.gameBoard.newBoard()
+    def testCreateBoardTest(self):
+        response = self.gameBoard.createBoard()
+        expected = list("-"*9)
+        self.assertEqual(response, expected)
+
+    def testGetBoard_whenNewObject(self):
+        self.gameBoard = GameBoard()
+        response = self.gameBoard.getBoard()
         expected = list("-"*9)
         self.assertEqual(response, expected)
 
