@@ -77,13 +77,13 @@ class TestGameBoard(unittest.TestCase):
         self.gameBoard.setMark(6)
         self.assertEqual(self.gameBoard.checkColumns(), True)
 
-    def testCheckColumns_whenColumnsOneWin(self):
+    def testCheckColumns_whenColumnsTwoWin(self):
         self.gameBoard.setMark(1)
         self.gameBoard.setMark(4)
         self.gameBoard.setMark(7)
         self.assertEqual(self.gameBoard.checkColumns(), True)
 
-    def testCheckColumns_whenColumnsOneWin(self):
+    def testCheckColumns_whenColumnsThreeWin(self):
         self.gameBoard.setMark(2)
         self.gameBoard.setMark(5)
         self.gameBoard.setMark(8)
@@ -93,13 +93,13 @@ class TestGameBoard(unittest.TestCase):
         self.gameBoard.resetBoard()
         self.assertEqual(self.gameBoard.checkColumns(), False)
 
-    def testCheckDiagonals_whenColumnsOneWin(self):
+    def testCheckDiagonals_whenDialOneWin(self):
         self.gameBoard.setMark(0)
         self.gameBoard.setMark(4)
         self.gameBoard.setMark(8)
         self.assertEqual(self.gameBoard.checkDiagonals(), True)
 
-    def testCheckDiagonals_whenColumnsOneWin(self):
+    def testCheckDiagonals_whenDialTwoWin(self):
         self.gameBoard.setMark(2)
         self.gameBoard.setMark(4)
         self.gameBoard.setMark(6)
@@ -108,6 +108,54 @@ class TestGameBoard(unittest.TestCase):
     def testCheckDiagonals_whenEmpty(self):
         self.gameBoard.resetBoard()
         self.assertEqual(self.gameBoard.checkDiagonals(), False)
+
+    def testWin_whenLineOneWin(self):
+        self.gameBoard.setMark(0)
+        self.gameBoard.setMark(1)
+        self.gameBoard.setMark(2)
+        self.assertEqual(self.gameBoard.win(), True)
+
+    def testWin_whenLineTwoWin(self):
+        self.gameBoard.setMark(3)
+        self.gameBoard.setMark(4)
+        self.gameBoard.setMark(5)
+        self.assertEqual(self.gameBoard.win(), True)
+
+    def testWin_whenLineThreeWin(self):
+        self.gameBoard.setMark(6)
+        self.gameBoard.setMark(7)
+        self.gameBoard.setMark(8)
+        self.assertEqual(self.gameBoard.win(), True)
+
+    def testWin_whenColumnsOneWin(self):
+        self.gameBoard.setMark(0)
+        self.gameBoard.setMark(3)
+        self.gameBoard.setMark(6)
+        self.assertEqual(self.gameBoard.win(), True)
+
+    def testWin_whenColumnsTwoWin(self):
+        self.gameBoard.setMark(1)
+        self.gameBoard.setMark(4)
+        self.gameBoard.setMark(7)
+        self.assertEqual(self.gameBoard.win(), True)
+
+    def testWin_whenColumnsThreeWin(self):
+        self.gameBoard.setMark(2)
+        self.gameBoard.setMark(5)
+        self.gameBoard.setMark(8)
+        self.assertEqual(self.gameBoard.win(), True)
+
+    def testWin_whenDialOneWin(self):
+        self.gameBoard.setMark(0)
+        self.gameBoard.setMark(4)
+        self.gameBoard.setMark(8)
+        self.assertEqual(self.gameBoard.win(), True)
+
+    def testWin_whenDialTwoWin(self):
+        self.gameBoard.setMark(2)
+        self.gameBoard.setMark(4)
+        self.gameBoard.setMark(6)
+        self.assertEqual(self.gameBoard.win(), True)
 
 if __name__ == '__main__':
     unittest.main()
