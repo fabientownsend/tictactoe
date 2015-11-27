@@ -7,28 +7,31 @@ class TestGameBoard(unittest.TestCase):
     def setUp(self):
         self.gameBoard = GameBoard()
 
+    def getEmptyBoard(self):
+        return list('-'*9)
+
     def testCreateBoardTest(self):
         response = self.gameBoard.createBoard()
-        expected = list('-'*9)
+        expected = self.getEmptyBoard()
         self.assertEqual(response, expected)
 
     def testResetBoard_whenBoardEmpty(self):
         self.gameBoard.setMark(5)
         self.gameBoard.resetBoard()
         response = self.gameBoard.getBoard()
-        expected = list('-'*9)
+        expected = self.getEmptyBoard()
         self.assertEqual(response, expected)
 
     def testResetBoard_whenBoardNotEmpty(self):
         self.gameBoard.resetBoard()
         response = self.gameBoard.getBoard()
-        expected = list('-'*9)
+        expected = self.getEmptyBoard()
         self.assertEqual(response, expected)
 
     def testGetBoard_whenNewObject(self):
         self.gameBoard = GameBoard()
         response = self.gameBoard.getBoard()
-        expected = list('-'*9)
+        expected = self.getEmptyBoard()
         self.assertEqual(response, expected)
 
     def testSetMark_whenSpotIsEmpty(self):
