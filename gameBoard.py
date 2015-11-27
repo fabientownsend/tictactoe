@@ -19,6 +19,14 @@ class GameBoard():
         else:
             self.board[position] = self.currentMark
 
+    def win(self):
+        if (self.checkLines() or
+            self.checkColumns() or
+            self.checkDiagonals()):
+            return True
+        else:
+            False
+
     def checkLines(self):
         if (self.board[0] == self.currentMark and
               self.board[1] == self.currentMark and
