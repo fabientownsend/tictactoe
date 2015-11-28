@@ -6,13 +6,13 @@ class TestHuman(unittest.TestCase):
     def setUp(self):
         self.player = Human()
 
-    def testSetMark_whenMarkIsX(self):
+    def testSetMark_whenMarkIsCrossself(self):
         self.player.setMark(Marks.cross)
         self.assertEqual(self.player.mark, Marks.cross)
 
-    def testSetMark_whenMarkIsO(self):
-        self.player.setMark(Marks.round)
-        self.assertEqual(self.player.mark, Marks.round)
+    def testSetMark_whenMarkIsNought(self):
+        self.player.setMark(Marks.nought)
+        self.assertEqual(self.player.mark, Marks.nought)
 
 if __name__ == '__main__':
     unittest.main()
