@@ -1,72 +1,82 @@
+from marksEnum import Marks
+
 class GameBoard():
     def __init__(self):
         self.board = self.createBoard()
-        self.currentMark = 'x'
 
     def resetBoard(self):
         self.board = self.createBoard()
 
     def createBoard(self):
-        NB_SPOTS = 9
-        return list('-'*NB_SPOTS)
+        return [
+            Marks.empty, Marks.empty, Marks.empty,
+            Marks.empty, Marks.empty, Marks.empty,
+            Marks.empty, Marks.empty, Marks.empty
+        ]
 
     def getBoard(self):
         return self.board
 
-    def setMark(self, position):
-        if self.board[position] != '-':
+    def setMark(self, position, mark):
+        if self.board[position] != Marks.empty:
             raise SpotNotEmpty
         else:
-            self.board[position] = self.currentMark
+            self.board[position] = mark
 
-    def win(self):
-        if (self.checkLines() or
-            self.checkColumns() or
-            self.checkDiagonals()):
+    def isFree(self, position):
+        if self.board[position] != Marks.empty:
+            return False
+        else:
+            return True
+
+    def win(self, mark):
+        if (self.checkLines(mark) or
+            self.checkColumns(mark) or
+            self.checkDiagonals(mark)):
             return True
         else:
             False
 
-    def checkLines(self):
-        if (self.board[0] == self.currentMark and
-              self.board[1] == self.currentMark and
-              self.board[2] == self.currentMark):
+    def checkLines(self, mark):
+        if (self.board[0] == mark and
+              self.board[1] == mark and
+              self.board[2] == mark):
             return True
-        if (self.board[3] == self.currentMark and
-              self.board[4] == self.currentMark and
-              self.board[5] == self.currentMark):
+        if (self.board[3] == mark and
+              self.board[4] == mark and
+              self.board[5] == mark):
             return True
-        if (self.board[6] == self.currentMark and
-              self.board[7] == self.currentMark and
-              self.board[8] == self.currentMark):
-            return True
-        else:
-            return False
-
-    def checkColumns(self):
-        if (self.board[0] == self.currentMark and
-              self.board[3] == self.currentMark and
-              self.board[6] == self.currentMark):
-            return True
-        if (self.board[1] == self.currentMark and
-              self.board[4] == self.currentMark and
-              self.board[7] == self.currentMark):
-            return True
-        if (self.board[2] == self.currentMark and
-              self.board[5] == self.currentMark and
-              self.board[8] == self.currentMark):
+        if (self.board[6] == mark and
+              self.board[7] == mark and
+              self.board[8] == mark):
             return True
         else:
             return False
 
-    def checkDiagonals(self):
-        if (self.board[0] == self.currentMark and
-              self.board[4] == self.currentMark and
-              self.board[8] == self.currentMark):
+    def checkColumns(self, mark):
+        if (self.board[0] == mark and
+              self.board[3] == mark and
+              self.board[6] == mark):
             return True
-        if (self.board[2] == self.currentMark and
-              self.board[4] == self.currentMark and
-              self.board[6] == self.currentMark):
+        if (self.board[1] == mark and
+              self.board[4] == mark and
+              self.board[7] == mark):
+            return True
+        if (self.board[2] == mark and
+              self.board[5] == mark and
+              self.board[8] == mark):
+            return True
+        else:
+            return False
+
+    def checkDiagonals(self, mark):
+        if (self.board[0] == mark and
+              self.board[4] == mark and
+              self.board[8] == mark):
+            return True
+        if (self.board[2] == mark and
+              self.board[4] == mark and
+              self.board[6] == mark):
             return True
         else:
             return False
@@ -74,4 +84,3 @@ class GameBoard():
 class SpotNotEmpty(Exception):
     def __init__(self):
         self.msg = 'The spot must be free'
-
