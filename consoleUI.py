@@ -1,9 +1,9 @@
 class ConsoleUI():
     def displayBoard(self, board):
         print("\n")
-        print " %s | %s | %s " %(board[0], board[1], board[2])
+        print " %s | %s | %s " %(board[0].value, board[1].value, board[2].value)
         print("-----------")
-        print " %s | %s | %s " %(board[3], board[4], board[5])
+        print " %s | %s | %s " %(board[3].value, board[4].value, board[5].value)
         print("-----------")
-        print " %s | %s | %s " %(board[6], board[7], board[8])
+        print " %s | %s | %s " %(board[6].value, board[7].value, board[8].value)
         print("\n")
