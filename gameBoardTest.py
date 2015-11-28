@@ -15,6 +15,17 @@ class TestGameBoard(unittest.TestCase):
         expected = self.getEmptyBoard()
         self.assertEqual(response, expected)
 
+    def testIsFree_whenSpotFree(self):
+        self.gameBoard.resetBoard()
+        response = self.gameBoard.isFree(5)
+        self.assertEqual(response, True)
+
+    def testIsFree_whenSpotNotFree(self):
+        self.gameBoard.resetBoard()
+        self.gameBoard.setMark(5)
+        response = self.gameBoard.isFree(5)
+        self.assertEqual(response, False)
+
     def testResetBoard_whenBoardEmpty(self):
         self.gameBoard.setMark(5)
         self.gameBoard.resetBoard()
