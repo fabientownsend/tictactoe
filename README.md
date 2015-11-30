@@ -20,8 +20,8 @@ The player have also the choice of which player goes first
 Todo:
 - [x] initialise the markdown
 - [x] initialise travis ci
-- [ ] player v. player
+- [x] player v. player
 - [ ] chose who start possibility
-- [ ] deterministic Algorithm
+- [ ] Minimax algorithm
 - [ ] player v. computer
 - [ ] computer v. computer
