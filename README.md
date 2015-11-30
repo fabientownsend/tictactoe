@@ -1,4 +1,5 @@
 [![Build Status](https://api.travis-ci.org/fabientownsend/tictactoe.svg?branch=master)](https://travis-ci.org/fabientownsend/tictactoe) 
+[![codecov.io](https://codecov.io/github/fabientownsend/tictactoe/coverage.svg?branch=master)](https://codecov.io/github/fabientownsend/tictactoe?branch=master)
 #Unbeatable Tic-Tac-Toe
 
 > **Tic-tac-toe** (also known as **Noughts ans Crosses** or **Xs and Os**)
