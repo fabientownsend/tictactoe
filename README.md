@@ -17,6 +17,12 @@ The game allow three type of party:
 
 The player have also the choice of which player goes first
 
+After some research it seems there are three algrorithms
+who can be interesting to predicated the best move:
+- Minimax
+- Negamax
+- Negascrout
+
 Todo:
 - [x] initialise the markdown
 - [x] initialise travis ci
