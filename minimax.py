@@ -8,23 +8,6 @@ class Minimax():
                 return False
         return True
 
-    def bestMove(self, mark, board):
-        bestMove = 0
-        for i in board:
-            self.boardCopy = copy(board)
-            self.setMark(i, Marks.cross)
-            if self.win(mark, self.boardCopy):
-                bestMove = i
-
-        return bestMove
-
-    def setMark(self, position, mark):
-        print self.boardCopy[position]
-        if self.boardCopy[position] != Marks.empty:
-            raise SpotNotEmpty
-        else:
-            self.boardCopy[position] = mark
-
     def win(self, mark, board):
         if (
             (board[0] == mark and board[1] == mark and board[2] == mark) or
