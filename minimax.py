@@ -6,6 +6,7 @@ class Minimax():
         for i in board:
             if i == Marks.empty:
                 return False
+
         return True
 
     def win(self, mark, board):
@@ -23,11 +24,40 @@ class Minimax():
         else:
             return False
 
+    def isFree(self, board, i):
+        return board[i] == Marks.empty
+
+    def setMark(self, board, mark, i):
+        board[i] = mark
+        return board
+
     def minimax(self, mark, board):
-        print board
-        if mark == Marks.cross and self.win(mark, board):
+        if self.win(Marks.cross, board):
             return 1
-        elif mark == Marks.nought and self.win(mark, board):
+        elif self.win(Marks.nought, board):
             return -1
         elif self.checkTie(board):
             return 0
+
+        if mark == Marks.cross:
+            bestValue = -100
+
+            for i in range(len(board)):
+                if self.isFree(board, i):
+                    boardCopy = copy(board)
+                    boardCopy = self.setMark(boardCopy, mark, i)
+                    val = self.minimax(Marks.nought, boardCopy)
+                    bestValue = max(val, bestValue)
+
+            return bestValue
+        else:
+            bestValue = 100
+
+            for i in range(len(board)):
+                if self.isFree(board, i):
+                    boardCopy = copy(board)
+                    boardCopy = self.setMark(boardCopy, mark, i)
+                    val = self.minimax(Marks.cross, boardCopy)
+                    bestValue = min(val, bestValue)
+
+            return bestValue
