@@ -2,7 +2,7 @@ import unittest
 from minimax import Minimax
 from marksEnum import Marks
 
-class TestGameBoard(unittest.TestCase):
+class MinimaxTest(unittest.TestCase):
     def setUp(self):
         self.minimax = Minimax()
 
