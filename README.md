@@ -29,6 +29,6 @@ Todo:
 - [x] initialise travis ci
 - [x] player v. player
 - [ ] chose who start possibility
-- [ ] Minimax algorithm
+- [x] Minimax algorithm
 - [ ] player v. computer
 - [ ] computer v. computer
