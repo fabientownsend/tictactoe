@@ -1,7 +1,8 @@
+from computer import Computer
+from consoleUI import ConsoleUI
+from gameBoard import GameBoard
 from human import Human
 from marksEnum import Marks
-from gameBoard import GameBoard
-from consoleUI import ConsoleUI
 
 def switchPlayer():
     if currentPlayer == player1:
@@ -11,8 +12,8 @@ def switchPlayer():
 
 console = ConsoleUI()
 board = GameBoard()
-player1 = Human()
 player2 = Human()
+player1 = Computer()
 player1.setMark(Marks.cross)
 player2.setMark(Marks.nought)
 
@@ -20,7 +21,11 @@ currentPlayer = player1
 gameOver = False
 
 while not gameOver:
-    position = input('Which position: ')
+    if isinstance(currentPlayer, Human):
+        position = input('Which position: ')
+    else:
+        position = currentPlayer.bestMove(board.getBoard())
+
     if board.isFree(position):
         board.setMark(position, currentPlayer.mark)
         console.displayBoard(board.getBoard())
