@@ -30,5 +30,5 @@ Todo:
 - [x] player v. player
 - [ ] chose who start possibility
 - [x] Minimax algorithm
-- [ ] player v. computer
+- [x] player v. computer
 - [ ] computer v. computer
