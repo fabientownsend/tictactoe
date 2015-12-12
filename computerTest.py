@@ -10,6 +10,14 @@ class ComputerTest(unittest.TestCase):
     def testInitialisation(self):
         self.assertEqual(self.computer.idPlayer, 1)
 
+    def testSwtich_whenMarkIsCross(self):
+        response = self.computer.switch(Marks.cross)
+        self.assertEqual(response, Marks.nought)
+
+    def testSwtich_whenMarkIsNought(self):
+        response = self.computer.switch(Marks.nought)
+        self.assertEqual(response, Marks.cross)
+
     def testMinimax_whenMaximizingPlayerWin(self):
         maximizingPlayer = Marks.cross
         board  = [
