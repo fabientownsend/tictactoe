@@ -28,7 +28,10 @@ Todo:
 - [x] initialise the markdown
 - [x] initialise travis ci
 - [x] player v. player
-- [ ] chose who start possibility
+- [x] chose who start possibility
 - [x] Minimax algorithm
 - [x] player v. computer
-- [ ] computer v. computer
+- [x] computer v. computer
+- [ ] refactoring
+- [ ] improve the status game
+- [ ] complete the wiki
