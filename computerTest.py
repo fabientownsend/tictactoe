@@ -4,27 +4,10 @@ from marksEnum import Marks
 
 class ComputerTest(unittest.TestCase):
     def setUp(self):
-        self.computer = Computer()
+        self.computer = Computer(1)
 
-    """
-    def testBestMove(self):
-        board  = [
-            Marks.empty, Marks.cross, Marks.cross,
-            Marks.empty, Marks.empty, Marks.empty,
-            Marks.empty, Marks.empty, Marks.empty
-        ]
-        response = self.computer.bestMove(board)
-        self.assertEqual(response, 0)
-"""
-
-    def testBestMove2(self):
-        board  = [
-            Marks.nought, Marks.nought, Marks.empty,
-            Marks.cross, Marks.empty, Marks.cross,
-            Marks.empty, Marks.empty, Marks.empty
-        ]
-        response = self.computer.bestMove(board)
-        self.assertEqual(response, 4)
+    def testInitialisation(self):
+        self.assertEqual(self.computer.idPlayer, 1)
 
 if __name__ == '__main__':
     unittest.main()
