@@ -69,75 +69,9 @@ class TestGameBoard(unittest.TestCase):
         with self.assertRaises(IndexError):
             self.gameBoard.setMark(10, Marks.cross)
 
-    def testCheckLines_whenLineOneWin(self):
-        self.gameBoard.setMark(0, Marks.cross)
-        self.gameBoard.setMark(1, Marks.cross)
-        self.gameBoard.setMark(2, Marks.cross)
-        response = self.gameBoard.checkLines(Marks.cross)
-        self.assertEqual(response, True)
-
-    def testCheckLines_whenLineTwoWin(self):
-        self.gameBoard.setMark(3, Marks.cross)
-        self.gameBoard.setMark(4, Marks.cross)
-        self.gameBoard.setMark(5, Marks.cross)
-        response = self.gameBoard.checkLines(Marks.cross)
-        self.assertEqual(response, True)
-
-    def testCheckLines_whenLineThreeWin(self):
-        self.gameBoard.setMark(6, Marks.cross)
-        self.gameBoard.setMark(7, Marks.cross)
-        self.gameBoard.setMark(8, Marks.cross)
-        response = self.gameBoard.checkLines(Marks.cross)
-        self.assertEqual(response, True)
-
-    def testCheckLines_whenEmpty(self):
+    def testWin_whenEmpty(self):
         self.gameBoard.resetBoard()
-        response = self.gameBoard.checkLines(Marks.cross)
-        self.assertEqual(response, False)
-
-    def testCheckColumns_whenColumnsOneWin(self):
-        self.gameBoard.setMark(0, Marks.cross)
-        self.gameBoard.setMark(3, Marks.cross)
-        self.gameBoard.setMark(6, Marks.cross)
-        response = self.gameBoard.checkColumns(Marks.cross)
-        self.assertEqual(response, True)
-
-    def testCheckColumns_whenColumnsTwoWin(self):
-        self.gameBoard.setMark(1, Marks.cross)
-        self.gameBoard.setMark(4, Marks.cross)
-        self.gameBoard.setMark(7, Marks.cross)
-        response = self.gameBoard.checkColumns(Marks.cross)
-        self.assertEqual(response, True)
-
-    def testCheckColumns_whenColumnsThreeWin(self):
-        self.gameBoard.setMark(2, Marks.cross)
-        self.gameBoard.setMark(5, Marks.cross)
-        self.gameBoard.setMark(8, Marks.cross)
-        response = self.gameBoard.checkColumns(Marks.cross)
-        self.assertEqual(response, True)
-
-    def testCheckColumns_whenEmpty(self):
-        self.gameBoard.resetBoard()
-        response = self.gameBoard.checkColumns(Marks.cross)
-        self.assertEqual(response, False)
-
-    def testCheckDiagonals_whenDialOneWin(self):
-        self.gameBoard.setMark(0, Marks.cross)
-        self.gameBoard.setMark(4, Marks.cross)
-        self.gameBoard.setMark(8, Marks.cross)
-        response = self.gameBoard.checkDiagonals(Marks.cross)
-        self.assertEqual(response, True)
-
-    def testCheckDiagonals_whenDialTwoWin(self):
-        self.gameBoard.setMark(2, Marks.cross)
-        self.gameBoard.setMark(4, Marks.cross)
-        self.gameBoard.setMark(6, Marks.cross)
-        response = self.gameBoard.checkDiagonals(Marks.cross)
-        self.assertEqual(response, True)
-
-    def testCheckDiagonals_whenEmpty(self):
-        self.gameBoard.resetBoard()
-        response = self.gameBoard.checkDiagonals(Marks.cross)
+        response = self.gameBoard.win(Marks.cross)
         self.assertEqual(response, False)
 
     def testWin_whenLineOneWin(self):

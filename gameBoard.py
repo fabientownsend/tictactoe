@@ -30,53 +30,16 @@ class GameBoard():
             return True
 
     def win(self, mark):
-        if (self.checkLines(mark) or
-            self.checkColumns(mark) or
-            self.checkDiagonals(mark)):
-            return True
-        else:
-            False
-
-    def checkLines(self, mark):
-        if (self.board[0] == mark and
-              self.board[1] == mark and
-              self.board[2] == mark):
-            return True
-        if (self.board[3] == mark and
-              self.board[4] == mark and
-              self.board[5] == mark):
-            return True
-        if (self.board[6] == mark and
-              self.board[7] == mark and
-              self.board[8] == mark):
-            return True
-        else:
-            return False
-
-    def checkColumns(self, mark):
-        if (self.board[0] == mark and
-              self.board[3] == mark and
-              self.board[6] == mark):
-            return True
-        if (self.board[1] == mark and
-              self.board[4] == mark and
-              self.board[7] == mark):
-            return True
-        if (self.board[2] == mark and
-              self.board[5] == mark and
-              self.board[8] == mark):
-            return True
-        else:
-            return False
-
-    def checkDiagonals(self, mark):
-        if (self.board[0] == mark and
-              self.board[4] == mark and
-              self.board[8] == mark):
-            return True
-        if (self.board[2] == mark and
-              self.board[4] == mark and
-              self.board[6] == mark):
+        if (
+            (self.board[0] == mark and self.board[1] == mark and self.board[2] == mark) or
+            (self.board[3] == mark and self.board[4] == mark and self.board[5] == mark) or
+            (self.board[6] == mark and self.board[7] == mark and self.board[8] == mark) or
+            (self.board[0] == mark and self.board[3] == mark and self.board[6] == mark) or
+            (self.board[1] == mark and self.board[4] == mark and self.board[7] == mark) or
+            (self.board[2] == mark and self.board[5] == mark and self.board[8] == mark) or
+            (self.board[0] == mark and self.board[4] == mark and self.board[8] == mark) or
+            (self.board[2] == mark and self.board[4] == mark and self.board[6] == mark)
+            ):
             return True
         else:
             return False
