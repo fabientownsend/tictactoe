@@ -8,12 +8,8 @@ class Computer():
         self.idPlayer = idPlayer
         self.gamePolicy = GamePolicy()
 
-    def isEmpty(self, board):
-        for i in board:
-            if i != Marks.empty:
-                return False
-
-        return True
+    def setMark(self, mark):
+        self.mark = mark
 
     def switch(self, mark):
         if mark == Marks.cross:
@@ -22,7 +18,7 @@ class Computer():
             return Marks.cross
 
     def bestMove(self, board):
-        if self.isEmpty(board):
+        if self.gamePolicy.isEmpty(board):
             startMoves = [0, 2, 4, 6, 8]
             return random.choice(startMoves)
 
