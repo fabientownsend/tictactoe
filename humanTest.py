@@ -4,7 +4,10 @@ from human import Human
 
 class TestHuman(unittest.TestCase):
     def setUp(self):
-        self.player = Human()
+        self.player = Human(1)
+
+    def testInitialisation(self):
+        self.assertEqual(self.player.idPlayer, 1)
 
     def testSetMark_whenMarkIsCrossself(self):
         self.player.setMark(Marks.cross)
