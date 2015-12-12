@@ -1,4 +1,5 @@
 from computer import Computer
+from gamePolicy import GamePolicy
 from consoleUI import ConsoleUI
 from gameBoard import GameBoard
 from human import Human
@@ -11,18 +12,41 @@ def switchPlayer():
         return player1
 
 console = ConsoleUI()
+gamePolicy = GamePolicy()
+
+console.displayGameType()
+typeGame = console.typeGameSelected()
+
+if typeGame == 1:
+    player1 = Human(1)
+    player2 = Human(2)
+elif typeGame == 2:
+    player1 = Computer(1)
+    player2 = Human(2)
+elif typeGame == 3:
+    player1 = Computer(1)
+    player2 = Computer(2)
+
+console.displayWhichStart()
+firstPlayer = console.firstPlayerSelected()
+
+if firstPlayer == 1:
+    currentPlayer = player1
+elif firstPlayer == 2:
+    currentPlayer = player2
+
 board = GameBoard()
-player2 = Human()
-player1 = Computer()
 player1.setMark(Marks.cross)
 player2.setMark(Marks.nought)
 
-currentPlayer = player1
 gameOver = False
+winner = None
 
 while not gameOver:
+    console.displayPlayerTurn(currentPlayer.idPlayer)
+
     if isinstance(currentPlayer, Human):
-        position = input('Which position: ')
+        position = console.getPlayerPosition()
     else:
         position = currentPlayer.bestMove(board.getBoard())
 
@@ -30,5 +54,11 @@ while not gameOver:
         board.setMark(position, currentPlayer.mark)
         console.displayBoard(board.getBoard())
 
-        gameOver = board.win(currentPlayer.mark)
+        if (gamePolicy.win(currentPlayer.mark, board.getBoard()) or
+            gamePolicy.checkTie(board.getBoard())):
+            gameOver = True
+            winner = currentPlayer.idPlayer
+
         currentPlayer = switchPlayer()
+
+console.displayWinner(winner)
