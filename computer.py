@@ -8,16 +8,6 @@ class Computer():
         self.idPlayer = idPlayer
         self.gamePolicy = GamePolicy()
 
-    def isFree(self, board, i):
-        return board[i] == Marks.empty
-
-    def setMarkBoard(self, board, mark, i):
-        board[i] = mark
-        return board
-
-    def setMark(self, mark):
-        self.mark = mark
-
     def isEmpty(self, board):
         for i in board:
             if i != Marks.empty:
@@ -40,9 +30,9 @@ class Computer():
         bestValue = -100
 
         for i in range(len(board)):
-            if self.isFree(board, i):
+            if self.gamePolicy.isFree(board, i):
                 boardCopy = copy(board)
-                boardCopy = self.setMarkBoard(boardCopy, self.mark, i)
+                boardCopy[i] = self.mark
                 value = self.minimax(self.switch(self.mark), boardCopy)
 
                 if value > bestValue:
