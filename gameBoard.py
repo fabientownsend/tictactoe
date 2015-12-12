@@ -7,6 +7,13 @@ class GameBoard():
     def resetBoard(self):
         self.board = self.createBoard()
 
+    def checkTie(self):
+        for i in self.board:
+            if i == Marks.empty:
+                return False
+
+        return True
+
     def createBoard(self):
         return [
             Marks.empty, Marks.empty, Marks.empty,

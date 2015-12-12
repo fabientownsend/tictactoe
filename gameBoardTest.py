@@ -130,5 +130,25 @@ class TestGameBoard(unittest.TestCase):
         response = self.gameBoard.win(Marks.cross)
         self.assertEqual(response, True)
 
+    def testCheckTie_whenItIsTie(self):
+        board  = [
+            Marks.cross, Marks.cross, Marks.cross,
+            Marks.cross, Marks.cross, Marks.cross,
+            Marks.cross, Marks.cross, Marks.cross
+        ]
+        self.gameBoard.board = board
+        response = self.gameBoard.checkTie()
+        self.assertEqual(response, True)
+
+    def testCheckTie_whenItIsNotTie(self):
+        board  = [
+            Marks.empty, Marks.cross, Marks.cross,
+            Marks.cross, Marks.cross, Marks.cross,
+            Marks.cross, Marks.cross, Marks.empty
+        ]
+        self.gameBoard.board = board
+        response = self.gameBoard.checkTie()
+        self.assertEqual(response, False)
+
 if __name__ == '__main__':
     unittest.main()
