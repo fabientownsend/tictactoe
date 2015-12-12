@@ -8,6 +8,13 @@ class GamePolicy():
 
         return True
 
+    def isEmpty(self, board):
+        for i in board:
+            if i != Marks.empty:
+                return False
+
+        return True
+
     def win(self, mark, board):
         if (
             (board[0] == mark and board[1] == mark and board[2] == mark) or
