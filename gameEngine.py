@@ -1,7 +1,7 @@
 from computer import Computer
-from gamePolicy import GamePolicy
 from consoleUI import ConsoleUI
 from gameBoard import GameBoard
+from gamePolicy import GamePolicy
 from human import Human
 from marksEnum import Marks
 
@@ -50,7 +50,7 @@ while not gameOver:
     else:
         position = currentPlayer.bestMove(board.getBoard())
 
-    if board.isFree(position):
+    if gamePolicy.isFree(board.getBoard(), position):
         board.setMark(position, currentPlayer.mark)
         console.displayBoard(board.getBoard())
 
