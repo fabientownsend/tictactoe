@@ -4,61 +4,92 @@ from gameBoard import GameBoard
 from gamePolicy import GamePolicy
 from human import Human
 from marksEnum import Marks
+from enum import Enum
 
-def switchPlayer():
-    if currentPlayer == player1:
-        return player2
-    else:
-        return player1
+class GameType(Enum):
+    humanVsHuman = 1
+    humanVsComputer = 2
+    computerVsComputer = 3
 
-console = ConsoleUI()
-gamePolicy = GamePolicy()
+class GameEngine():
+    def __init__(self):
+        self.console = ConsoleUI()
+        self.board = GameBoard()
+        self.gameOver = False
+        self.gamePolicy = GamePolicy()
+        self.winner = None
+        self.currentPlayer = None
 
-console.displayGameType()
-typeGame = console.typeGameSelected()
+    def typeGame(self):
+        self.console.displayGameType()
+        typeGame = self.console.typeGameSelected()
+        self.createPlayers(typeGame)
 
-if typeGame == 1:
-    player1 = Human(1)
-    player2 = Human(2)
-elif typeGame == 2:
-    player1 = Computer(1)
-    player2 = Human(2)
-elif typeGame == 3:
-    player1 = Computer(1)
-    player2 = Computer(2)
+    def createPlayers(self, typeGame):
+        if typeGame == GameType.humanVsHuman.value:
+            self.player1 = Human(1)
+            self.player2 = Human(2)
+        elif typeGame == GameType.humanVsComputer.value:
+            self.player1 = Human(1)
+            self.player2 = Computer(2)
+        elif typeGame == GameType.computerVsComputer.value:
+            self.player1 = Computer(1)
+            self.player2 = Computer(2)
+        else:
+            raise GameTypeNotExist
 
-console.displayWhichStart()
-firstPlayer = console.firstPlayerSelected()
+    def defineFirstPlayer(self):
+        self.console.displayWhichStart()
+        firstPlayer = self.console.firstPlayerSelected()
+        self.setFirstPlayer(firstPlayer)
+        self.player1.setMark(Marks.cross)
+        self.player2.setMark(Marks.nought)
 
-if firstPlayer == 1:
-    currentPlayer = player1
-elif firstPlayer == 2:
-    currentPlayer = player2
+    def setFirstPlayer(self, firstPlayer):
+        if firstPlayer == 1:
+            self.currentPlayer = self.player1
+        elif firstPlayer == 2:
+            self.currentPlayer = self.player2
 
-board = GameBoard()
-player1.setMark(Marks.cross)
-player2.setMark(Marks.nought)
+    def play(self):
+        while not self.gameOver:
+            board = self.board.getBoard()
+            self.console.displayPlayerTurn(self.currentPlayer.idPlayer)
+            position = self.getNextMove(board)
+            self.board.setMark(position, self.currentPlayer.mark)
+            self.console.displayBoard(board)
 
-gameOver = False
-winner = None
+            if self.isGameOver(board):
+                self.win()
+            else:
+                self.switchCurrentPlayer()
 
-while not gameOver:
-    console.displayPlayerTurn(currentPlayer.idPlayer)
+    def isGameOver(self, board):
+        return (self.gamePolicy.win(self.currentPlayer.mark, board) or
+                self.gamePolicy.checkTie(board))
 
-    if isinstance(currentPlayer, Human):
-        position = console.getPlayerPosition()
-    else:
-        position = currentPlayer.bestMove(board.getBoard())
+    def win(self):
+        self.gameOver = True
+        self.winner = self.currentPlayer
 
-    if gamePolicy.isFree(board.getBoard(), position):
-        board.setMark(position, currentPlayer.mark)
-        console.displayBoard(board.getBoard())
+    def getNextMove(self, board):
+        if isinstance(self.currentPlayer, Human):
+            position = self.console.getPlayerPosition()
 
-        if (gamePolicy.win(currentPlayer.mark, board.getBoard()) or
-            gamePolicy.checkTie(board.getBoard())):
-            gameOver = True
-            winner = currentPlayer.idPlayer
+            while not self.gamePolicy.isFree(board, position):
+                self.console.displayFreeSport()
+                position = self.console.getPlayerPosition()
 
-        currentPlayer = switchPlayer()
+            return position
+        else:
+            return self.currentPlayer.bestMove(board)
 
-console.displayWinner(winner)
+    def switchCurrentPlayer(self):
+        if self.currentPlayer == self.player1:
+            self.currentPlayer = self.player2
+        else:
+            self.currentPlayer = self.player1
+
+class GameTypeNotExist(Exception):
+    def __init__(self):
+        self.msg = 'This type of game do not exist'

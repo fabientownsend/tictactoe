@@ -6,6 +6,9 @@ class ConsoleUI():
         2 - Human v. Computer
         3 - Computer v. Computer''')
 
+    def displayFreeSport(self):
+        print('it must be a free spot')
+
     def typeGameSelected(self):
         typeGame = input('Select your type of game: ')
         return typeGame
