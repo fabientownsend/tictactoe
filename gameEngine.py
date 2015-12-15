@@ -11,6 +11,10 @@ class GameType(Enum):
     humanVsComputer = 2
     computerVsComputer = 3
 
+class PlayersEnum(Enum):
+    player1 = 1
+    player2 = 2
+
 class GameEngine():
     def __init__(self):
         self.console = ConsoleUI()
@@ -44,9 +48,9 @@ class GameEngine():
         self.setFirstPlayer(firstPlayer)
 
     def setFirstPlayer(self, firstPlayer):
-        if firstPlayer == 1:
+        if firstPlayer == PlayersEnum.player1:
             self.currentPlayer = self.player1
-        elif firstPlayer == 2:
+        elif firstPlayer == PlayersEnum.player2:
             self.currentPlayer = self.player2
 
     def play(self):
