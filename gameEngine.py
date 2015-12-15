@@ -27,14 +27,14 @@ class GameEngine():
 
     def createPlayers(self, typeGame):
         if typeGame == GameType.humanVsHuman.value:
-            self.player1 = Human(1)
-            self.player2 = Human(2)
+            self.player1 = Human(Marks.cross)
+            self.player2 = Human(Marks.nought)
         elif typeGame == GameType.humanVsComputer.value:
-            self.player1 = Human(1)
-            self.player2 = Computer(2)
+            self.player1 = Human(Marks.cross)
+            self.player2 = Computer(Marks.nought)
         elif typeGame == GameType.computerVsComputer.value:
-            self.player1 = Computer(1)
-            self.player2 = Computer(2)
+            self.player1 = Computer(Marks.cross)
+            self.player2 = Computer(Marks.nought)
         else:
             raise GameTypeNotExist
 
@@ -42,8 +42,6 @@ class GameEngine():
         self.console.displayWhichStart()
         firstPlayer = self.console.firstPlayerSelected()
         self.setFirstPlayer(firstPlayer)
-        self.player1.setMark(Marks.cross)
-        self.player2.setMark(Marks.nought)
 
     def setFirstPlayer(self, firstPlayer):
         if firstPlayer == 1:
@@ -54,7 +52,7 @@ class GameEngine():
     def play(self):
         while not self.gameOver:
             board = self.board.getBoard()
-            self.console.displayPlayerTurn(self.currentPlayer.idPlayer)
+            self.console.displayPlayerTurn(self.currentPlayer.mark)
             position = self.getNextMove(board)
             self.board.setMark(position, self.currentPlayer.mark)
             self.console.displayBoard(board)

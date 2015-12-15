@@ -1,6 +1,3 @@
 class Human():
-    def __init__(self, idPlayer):
-        self.idPlayer = idPlayer
-
-    def setMark(self, mark):
+    def __init__(self, mark):
         self.mark = mark

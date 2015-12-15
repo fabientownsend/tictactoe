@@ -4,12 +4,9 @@ from marksEnum import Marks
 import random
 
 class Computer():
-    def __init__(self, idPlayer):
-        self.idPlayer = idPlayer
-        self.gamePolicy = GamePolicy()
-
-    def setMark(self, mark):
+    def __init__(self, mark):
         self.mark = mark
+        self.gamePolicy = GamePolicy()
 
     def switch(self, mark):
         if mark == Marks.cross:
