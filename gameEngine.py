@@ -48,9 +48,9 @@ class GameEngine():
         self.setFirstPlayer(firstPlayer)
 
     def setFirstPlayer(self, firstPlayer):
-        if firstPlayer == PlayersEnum.player1:
+        if firstPlayer == PlayersEnum.player1.value:
             self.currentPlayer = self.player1
-        elif firstPlayer == PlayersEnum.player2:
+        elif firstPlayer == PlayersEnum.player2.value:
             self.currentPlayer = self.player2
 
     def play(self):
