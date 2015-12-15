@@ -31,12 +31,12 @@ class GameEngineTest(unittest.TestCase):
 
     def testSetFirstPlayer_whenFirstPlayerIsPlayer1(self):
         self.gameEngine.createPlayers(1)
-        self.gameEngine.setFirstPlayer(PlayersEnum.player1)
+        self.gameEngine.setFirstPlayer(1)
         self.assertEqual(self.gameEngine.currentPlayer, self.gameEngine.player1)
 
     def testSetFirstPlayer_whenFirstPlayerIsPlayer2(self):
         self.gameEngine.createPlayers(2)
-        self.gameEngine.setFirstPlayer(PlayersEnum.player2)
+        self.gameEngine.setFirstPlayer(2)
         self.assertEqual(self.gameEngine.currentPlayer, self.gameEngine.player2)
 
     def testSwitchPlayer_whenCurrentPlayerWasPlayer1(self):
