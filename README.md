@@ -2,27 +2,53 @@
 [![codecov.io](https://codecov.io/github/fabientownsend/tictactoe/coverage.svg?branch=master)](https://codecov.io/github/fabientownsend/tictactoe?branch=master)
 #Unbeatable Tic-Tac-Toe
 
-> **Tic-tac-toe** (also known as **Noughts ans Crosses** or **Xs and Os**)
-> is a paper-and-pencil game for two players, X and O, who take turns making
-> the spaces in a 3x3 grid. The player who succeds in placing three of their
-> marks in a horizontal, vertical, or diagonal row wins the game.
+## First in first you need to have python 2.7 to be installed
+[python 2.7.11](https://www.python.org/downloads/release/python-2711/)
 
-![Image of Tic Tac Toe](https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Tic-tac-toe-game-1.svg/719px-Tic-tac-toe-game-1.svg.png)
+You also need pip:
 
-[Source: wikipedia](https://en.wikipedia.org/wiki/Tic-tac-toe)
+### On Mac
+```bash
+$ sudo easy_install pip
+```
 
-The game allow three type of party:
-- Player v. Player
-- Player v. Computer
-- Computer v. Computer
+### On Debian and Ubuntu
+```bash
+$ sudo apt-get install python-pip
+```
 
-The player have also the choice of which player goes first
+### On Windows
+You have to add the pip.exe which is install into you python/scripts folder to your environment variable
 
-After some research it seems there are three algrorithms
-who can be interesting to predicated the best move:
-- Minimax
-- Negamax
-- Negascrout
+## Installation & Launch
+
+```bash
+$ git clone https://github.com/fabientownsend/tictactoe
+$ pip install enum34
+$ cd tictactoe
+$ python main.py
+```
+
+## Usage
+
+```bash
+$ python main.py # launch the game
+$ 1 # Human v. Human game
+$ 1 # Player1 will start
+$ 4 # you will put your mark at the position 4
+```
+
+```bash
+$ python main.py
+$ 2 # Human v. Computer game
+$ 2 # Player2 (the computer) will start, you can't beat him
+```
+
+```bash
+$ python main.py
+$ 2 # Computer v. Computer game
+$ 2 # player2 will start
+```
 
 Todo:
 - [x] initialise the markdown
@@ -34,4 +60,6 @@ Todo:
 - [x] computer v. computer
 - [ ] refactoring
 - [ ] improve the status game
+- [x] improve readme for users
 - [ ] complete the wiki
+- [ ] add logs
