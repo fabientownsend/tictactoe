@@ -34,9 +34,9 @@ $ python main.py
 
 ## Usage
 
-1 - First menu you can choose the game mode between 1, 2 and 3
-2 - You have to pick up which player start between 1 and 2
-3 - You can put a mark on the board between 0 and 8
+1. First menu you can choose the game mode between 1, 2 and 3
+2. You have to pick up which player start between 1 and 2
+3. You can put a mark on the board between 0 and 8
 
 ## Exemple 1
 ```bash
