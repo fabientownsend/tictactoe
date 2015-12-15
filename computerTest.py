@@ -4,11 +4,15 @@ from marksEnum import Marks
 
 class ComputerTest(unittest.TestCase):
     def setUp(self):
-        self.computer = Computer(1)
-        self.computer.mark = Marks.cross
+        self.computer = Computer(Marks.cross)
 
-    def testInitialisation(self):
-        self.assertEqual(self.computer.idPlayer, 1)
+    def testSetMark_whenMarkIsCrossself(self):
+        self.computer = Computer(Marks.cross)
+        self.assertEqual(self.computer.mark, Marks.cross)
+
+    def testSetMark_whenMarkIsNought(self):
+        self.computer = Computer(Marks.nought)
+        self.assertEqual(self.computer.mark, Marks.nought)
 
     def testSwtich_whenMarkIsCross(self):
         response = self.computer.switch(Marks.cross)
@@ -72,6 +76,39 @@ class ComputerTest(unittest.TestCase):
 
         response = self.computer.minimax(maximizingPlayer, board)
         self.assertEqual(response, -1)
+
+    def testBestMove_whenItCanWin(self):
+        maximizingPlayer = Marks.cross
+        board  = [
+            Marks.cross, Marks.cross, Marks.empty,
+            Marks.empty, Marks.empty, Marks.empty,
+            Marks.empty, Marks.empty, Marks.empty
+        ]
+
+        response = self.computer.bestMove(board)
+        self.assertEqual(response, 2)
+
+    def testBestMove_whenItShouldBlockTheAdversaire(self):
+        maximizingPlayer = Marks.cross
+        board  = [
+            Marks.nought, Marks.nought, Marks.empty,
+            Marks.empty, Marks.empty, Marks.empty,
+            Marks.empty, Marks.empty, Marks.empty
+        ]
+
+        response = self.computer.bestMove(board)
+        self.assertEqual(response, 2)
+
+    def testBestMove_whenCanHaveAnUltimateWin(self):
+        maximizingPlayer = Marks.cross
+        board  = [
+            Marks.cross, Marks.nought, Marks.empty,
+            Marks.cross, Marks.empty, Marks.empty,
+            Marks.nought, Marks.empty, Marks.empty
+        ]
+
+        response = self.computer.bestMove(board)
+        self.assertEqual(response, 4)
 
 if __name__ == '__main__':
     unittest.main()
