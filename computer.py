@@ -8,12 +8,6 @@ class Computer():
         self.mark = mark
         self.gamePolicy = GamePolicy()
 
-    def switch(self, mark):
-        if mark == Marks.cross:
-            return Marks.nought
-        else:
-            return Marks.cross
-
     def bestMove(self, board):
         if self.gamePolicy.isEmpty(board):
             startMoves = [0, 2, 4, 6, 8]
@@ -33,12 +27,6 @@ class Computer():
                     bestValue = value
 
         return bestMove
-
-    def switch(self, mark):
-        if mark == Marks.cross:
-            return Marks.nought
-        else:
-            return Marks.cross
 
     def minimax(self, mark, board):
         if self.gamePolicy.win(self.mark, board):
@@ -70,3 +58,9 @@ class Computer():
                     bestValue = min(val, bestValue)
 
             return bestValue
+
+    def switch(self, mark):
+        if mark == Marks.cross:
+            return Marks.nought
+        else:
+            return Marks.cross
