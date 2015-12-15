@@ -32,7 +32,3 @@ class GamePolicy():
 
     def isFree(self, board, i):
         return board[i] == Marks.empty
-
-    def setMark(self, board, mark, i):
-        board[i] = mark
-        return board
