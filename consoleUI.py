@@ -1,33 +1,35 @@
 class ConsoleUI():
     def displayGameType(self):
-        print('''
-        Type of game:
-        1 - Human v. Human
-        2 - Human v. Computer
-        3 - Computer v. Computer''')
+        print(
+            "Type of game:\n\n"
+            "1 - Human v. Human\n"
+            "2 - Human v. Computer\n"
+            "3 - Computer v. Computer\n"
+        )
 
     def displayFreeSport(self):
-        print('it must be a free spot')
+        print("it must be a free spot")
 
     def typeGameSelected(self):
-        typeGame = input('Select your type of game: ')
+        typeGame = input("Select your type of game: ")
         return typeGame
 
     def displayWhichStart(self):
-        print('''
-        Which player start:
-        1 - Player 1
-        2 - Player 2''')
+        print(
+            "Which player start:\n\n"
+            "1 - Player 1\n"
+            "2 - Player 2\n"
+        )
 
     def firstPlayerSelected(self):
-        firstPlayer = input('Which player should start?')
+        firstPlayer = input("Which player should start?")
         return firstPlayer
 
     def displayPlayerTurn(self, idPlayer):
-        print('Player ' + str(idPlayer) + ' select your position:')
+        print("Player " + str(idPlayer) + " select your position:")
 
     def getPlayerPosition(self):
-        position = input('Which position: ')
+        position = input("Which position: ")
         return position
 
     def displayBoard(self, board):
@@ -40,4 +42,4 @@ class ConsoleUI():
         print("\n")
 
     def displayWinner(self, winner):
-        print('Player ' + str(winner) + ' won the party')
+        print("Player " + str(winner) + " won the party")
