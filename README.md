@@ -38,7 +38,7 @@ $ python main.py
 2. You have to pick up which player start between 1 and 2
 3. You can put a mark on the board between 0 and 8
 
-## Exemple 1
+## Example 1
 ```bash
 $ python main.py # launch the game
 $ 1 # Human v. Human game
@@ -46,14 +46,14 @@ $ 1 # Player1 will start
 $ 4 # You will put your mark at the position 4
 ```
 
-## Exemple 2
+## Example 2
 ```bash
 $ python main.py
 $ 2 # Human v. Computer game
 $ 2 # Player2 (the computer) will start, you can't beat him
 ```
 
-## Exemple 3
+## Example 3
 ```bash
 $ python main.py
 $ 2 # Computer v. Computer game
