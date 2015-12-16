@@ -1,6 +1,7 @@
 from consoleUI import ConsoleUI
 from gamePolicy import GamePolicy
 
+
 class Player():
     def __init__(self, mark):
         self.console = ConsoleUI()
