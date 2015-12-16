@@ -23,6 +23,7 @@ class GameEngine():
         self.console = ConsoleUI()
         self.board = GameBoard()
         self.gameOver = False
+        self.tie = False
         self.gamePolicy = GamePolicy()
         self.winner = None
         self.currentPlayer = None
@@ -79,17 +80,29 @@ class GameEngine():
             self.console.displayBoard(board)
 
             if self.isGameOver(board):
-                self.win()
+                self.displayResult()
             else:
                 self.switchCurrentPlayer()
 
     def isGameOver(self, board):
-        return (self.gamePolicy.win(self.currentPlayer.mark, board) or
-                self.gamePolicy.checkTie(board))
+        if self.gamePolicy.checkTie(board):
+            self.tie = True
+            self.gameOver = True
 
-    def win(self):
-        self.gameOver = True
-        self.winner = self.currentPlayer
+            return True
+        elif self.gamePolicy.win(self.currentPlayer.mark, board):
+            self.winner = self.currentPlayer
+            self.gameOver = True
+
+            return True
+        else:
+            False
+
+    def displayResult(self):
+        if self.tie:
+            self.console.displayTie()
+        else:
+            self.console.displayWinner(self.winner.mark.value)
 
     def switchCurrentPlayer(self):
         if self.currentPlayer == self.player1:

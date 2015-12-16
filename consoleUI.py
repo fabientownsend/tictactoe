@@ -43,3 +43,6 @@ class ConsoleUI():
 
     def displayWinner(self, winner):
         print("Player " + str(winner) + " won the party")
+
+    def displayTie(self):
+        print("It's a tie, no one won!")

@@ -50,12 +50,5 @@ class GameEngineTest(unittest.TestCase):
     def testWin_whenItsNotWin(self):
         self.assertFalse(self.gameEngine.gameOver)
 
-    def testWin_whenItsWin(self):
-        self.gameEngine.createPlayers(2)
-        self.gameEngine.currentPlayer = self.gameEngine.player1
-        self.gameEngine.win()
-        self.assertTrue(self.gameEngine.gameOver)
-        self.assertEqual(self.gameEngine.winner, self.gameEngine.player1)
-
 if __name__ == '__main__':
     unittest.main()
