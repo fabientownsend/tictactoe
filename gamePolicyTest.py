@@ -1,6 +1,8 @@
 import unittest
-from marksEnum import Marks
+
 from gamePolicy import GamePolicy
+from marksEnum import Marks
+
 
 class GamePolicyTest(unittest.TestCase):
     def setUp(self):

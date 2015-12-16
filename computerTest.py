@@ -1,6 +1,8 @@
 import unittest
+
 from computer import Computer
 from marksEnum import Marks
+
 
 class ComputerTest(unittest.TestCase):
     def setUp(self):

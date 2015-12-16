@@ -1,5 +1,6 @@
 from marksEnum import Marks
 
+
 class GameBoard():
     def __init__(self):
         self.board = self.createBoard()
@@ -22,6 +23,7 @@ class GameBoard():
             raise SpotNotEmpty
         else:
             self.board[position] = mark
+
 
 class SpotNotEmpty(Exception):
     def __init__(self):

@@ -1,5 +1,3 @@
-from consoleUI import ConsoleUI
-from gamePolicy import GamePolicy
 from player import Player
 
 class Human(Player):

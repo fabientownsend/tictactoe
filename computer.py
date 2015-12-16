@@ -1,8 +1,9 @@
 from copy import copy
-from gamePolicy import GamePolicy
+import random
+
 from marksEnum import Marks
 from player import Player
-import random
+
 
 class Computer(Player):
     def getMove(self, board):

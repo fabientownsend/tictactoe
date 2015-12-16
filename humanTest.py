@@ -1,6 +1,8 @@
 import unittest
-from marksEnum import Marks
+
 from human import Human
+from marksEnum import Marks
+
 
 class TestHuman(unittest.TestCase):
     def testSetMark_whenMarkIsCrossself(self):

@@ -4,6 +4,7 @@ from gameBoard import GameBoard
 from gameBoard import SpotNotEmpty
 from marksEnum import Marks
 
+
 class TestGameBoard(unittest.TestCase):
     def setUp(self):
         self.gameBoard = GameBoard()

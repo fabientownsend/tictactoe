@@ -1,5 +1,6 @@
 from marksEnum import Marks
 
+
 class GamePolicy():
     def checkTie(self, board):
         for i in board:
