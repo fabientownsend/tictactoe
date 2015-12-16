@@ -77,7 +77,7 @@ class ComputerTest(unittest.TestCase):
         response = self.computer.minimax(maximizingPlayer, board)
         self.assertEqual(response, -1)
 
-    def testBestMove_whenItCanWin(self):
+    def testGetMove_whenItCanWin(self):
         maximizingPlayer = Marks.cross
         board  = [
             Marks.cross, Marks.cross, Marks.empty,
@@ -85,10 +85,10 @@ class ComputerTest(unittest.TestCase):
             Marks.empty, Marks.empty, Marks.empty
         ]
 
-        response = self.computer.bestMove(board)
+        response = self.computer.getMove(board)
         self.assertEqual(response, 2)
 
-    def testBestMove_whenItShouldBlockTheAdversaire(self):
+    def testGotMove_whenItShouldBlockTheAdversaire(self):
         maximizingPlayer = Marks.cross
         board  = [
             Marks.nought, Marks.nought, Marks.empty,
@@ -96,10 +96,10 @@ class ComputerTest(unittest.TestCase):
             Marks.empty, Marks.empty, Marks.empty
         ]
 
-        response = self.computer.bestMove(board)
+        response = self.computer.getMove(board)
         self.assertEqual(response, 2)
 
-    def testBestMove_whenCanHaveAnUltimateWin(self):
+    def testGetMove_whenCanHaveAnUltimateWin(self):
         maximizingPlayer = Marks.cross
         board  = [
             Marks.cross, Marks.nought, Marks.empty,
@@ -107,7 +107,7 @@ class ComputerTest(unittest.TestCase):
             Marks.nought, Marks.empty, Marks.empty
         ]
 
-        response = self.computer.bestMove(board)
+        response = self.computer.getMove(board)
         self.assertEqual(response, 4)
 
 if __name__ == '__main__':

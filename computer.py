@@ -1,14 +1,11 @@
 from copy import copy
 from gamePolicy import GamePolicy
 from marksEnum import Marks
+from player import Player
 import random
 
-class Computer():
-    def __init__(self, mark):
-        self.mark = mark
-        self.gamePolicy = GamePolicy()
-
-    def bestMove(self, board):
+class Computer(Player):
+    def getMove(self, board):
         if self.gamePolicy.isEmpty(board):
             startMoves = [0, 2, 4, 6, 8]
             return random.choice(startMoves)

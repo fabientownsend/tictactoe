@@ -57,7 +57,7 @@ class GameEngine():
         while not self.gameOver:
             board = self.board.getBoard()
             self.console.displayPlayerTurn(self.currentPlayer.mark)
-            position = self.getNextMove(board)
+            position = self.currentPlayer.getMove(board)
             self.board.setMark(position, self.currentPlayer.mark)
             self.console.displayBoard(board)
 
@@ -73,18 +73,6 @@ class GameEngine():
     def win(self):
         self.gameOver = True
         self.winner = self.currentPlayer
-
-    def getNextMove(self, board):
-        if isinstance(self.currentPlayer, Human):
-            position = self.console.getPlayerPosition()
-
-            while not self.gamePolicy.isFree(board, position):
-                self.console.displayFreeSport()
-                position = self.console.getPlayerPosition()
-
-            return position
-        else:
-            return self.currentPlayer.bestMove(board)
 
     def switchCurrentPlayer(self):
         if self.currentPlayer == self.player1:
