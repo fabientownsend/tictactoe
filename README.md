@@ -3,12 +3,12 @@
 
 #Unbeatable Tic-Tac-Toe
 
-[Documentation](https://github.com/fabientownsend/tictactoe/wiki)
+Here you can find [documentation](https://github.com/fabientownsend/tictactoe/wiki) that I wrote about the project, I tried to cover subject like architecture and algorithm.
 
 ## First in first you need to have `python 2.7` to be installed
 [python 2.7.11](https://www.python.org/downloads/release/python-2711/)
 
-You also need `pip`:
+You also need to install `pip` the Python's package manager:
 
 ### On Mac
 ```bash
@@ -59,17 +59,3 @@ $ python main.py
 $ 2 # Computer v. Computer game
 $ 2 # Player2 will start
 ```
-
-Todo:
-- [x] initialise the markdown
-- [x] initialise travis ci
-- [x] player v. player
-- [x] chose who start possibility
-- [x] Minimax algorithm
-- [x] player v. computer
-- [x] computer v. computer
-- [ ] refactoring
-- [ ] improve the status game
-- [x] improve readme for users
-- [ ] complete the wiki
-- [ ] add logs
