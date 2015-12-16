@@ -1,19 +1,22 @@
+from enum import Enum
+
 from computer import Computer
 from consoleUI import ConsoleUI
 from gameBoard import GameBoard
 from gamePolicy import GamePolicy
 from human import Human
 from marksEnum import Marks
-from enum import Enum
 
 class GameType(Enum):
     humanVsHuman = 1
     humanVsComputer = 2
     computerVsComputer = 3
 
+
 class PlayersEnum(Enum):
     player1 = 1
     player2 = 2
+
 
 class GameEngine():
     def __init__(self):
@@ -26,8 +29,15 @@ class GameEngine():
 
     def typeGame(self):
         self.console.displayGameType()
-        typeGame = self.console.typeGameSelected()
+        typeGame = self.getTypeGameSelected()
         self.createPlayers(typeGame)
+
+    def getTypeGameSelected(self):
+        while True:
+            typeGame = self.console.typeGameSelected()
+            if typeGame > 0 and typeGame < 4:
+                return typeGame
+                break
 
     def createPlayers(self, typeGame):
         if typeGame == GameType.humanVsHuman.value:
@@ -39,13 +49,18 @@ class GameEngine():
         elif typeGame == GameType.computerVsComputer.value:
             self.player1 = Computer(Marks.cross)
             self.player2 = Computer(Marks.nought)
-        else:
-            raise GameTypeNotExist
 
     def defineFirstPlayer(self):
         self.console.displayWhichStart()
         firstPlayer = self.console.firstPlayerSelected()
         self.setFirstPlayer(firstPlayer)
+
+    def getFirstPlayerSlected(self):
+        while True:
+            firstPlayer = self.console.firstPlayerSelected()
+            if firstPlayer > 0 and firstPlayer < 3:
+                return firstPlayer
+                break
 
     def setFirstPlayer(self, firstPlayer):
         if firstPlayer == PlayersEnum.player1.value:
@@ -56,9 +71,11 @@ class GameEngine():
     def play(self):
         while not self.gameOver:
             board = self.board.getBoard()
-            self.console.displayPlayerTurn(self.currentPlayer.mark)
+            mark = self.currentPlayer.mark
+
+            self.console.displayPlayerTurn(mark.value)
             position = self.currentPlayer.getMove(board)
-            self.board.setMark(position, self.currentPlayer.mark)
+            self.board.setMark(position, mark)
             self.console.displayBoard(board)
 
             if self.isGameOver(board):
@@ -79,7 +96,3 @@ class GameEngine():
             self.currentPlayer = self.player2
         else:
             self.currentPlayer = self.player1
-
-class GameTypeNotExist(Exception):
-    def __init__(self):
-        self.msg = 'This type of game do not exist'

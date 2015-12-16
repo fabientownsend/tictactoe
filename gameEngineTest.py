@@ -1,10 +1,10 @@
+import unittest
+
+from computer import Computer
 from gameEngine import GameEngine
 from gameEngine import PlayersEnum
-from gameEngine import GameTypeNotExist
-from gameEngine import GameTypeNotExist
-from computer import Computer
 from human import Human
-import unittest
+
 
 class GameEngineTest(unittest.TestCase):
     def setUp(self):
@@ -24,10 +24,6 @@ class GameEngineTest(unittest.TestCase):
         self.gameEngine.createPlayers(3)
         self.assertTrue(isinstance(self.gameEngine.player1, Computer))
         self.assertTrue(isinstance(self.gameEngine.player2, Computer))
-
-    def testCreatePlayer_whenTypePartyDoNotExist(self):
-        with self.assertRaises(GameTypeNotExist):
-            self.gameEngine.createPlayers(4)
 
     def testSetFirstPlayer_whenFirstPlayerIsPlayer1(self):
         self.gameEngine.createPlayers(1)
