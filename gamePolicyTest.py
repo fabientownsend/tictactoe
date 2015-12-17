@@ -8,16 +8,16 @@ class GamePolicyTest(unittest.TestCase):
     def setUp(self):
         self.gamePolicy = GamePolicy()
 
-    def testCheckTie_whenItsTie(self):
+    def testCheckTie_whenItsAWin(self):
         maximizingPlayer = Marks.cross
         board  = [
             Marks.cross, Marks.cross, Marks.cross,
-            Marks.cross, Marks.cross, Marks.cross,
-            Marks.cross, Marks.cross, Marks.cross
+            Marks.nought, Marks.nought, Marks.cross,
+            Marks.nought, Marks.cross, Marks.nought
         ]
 
         response = self.gamePolicy.checkTie(board)
-        self.assertEqual(response, True)
+        self.assertEqual(response, False)
 
     def testIsEmpty_whenItsEmpty(self):
         board  = [

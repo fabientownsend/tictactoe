@@ -1,3 +1,6 @@
+import sys
+
+
 class ConsoleUI():
     def displayGameType(self):
         print(
@@ -7,11 +10,20 @@ class ConsoleUI():
             "3 - Computer v. Computer\n"
         )
 
-    def displayFreeSport(self):
+    def spotNotFree(self):
         print("it must be a free spot")
 
+    def displayCorrectRangeBoard(self):
+        print("position between 0 and 8")
+
     def typeGameSelected(self):
-        typeGame = input("Select your type of game: ")
+        try:
+            typeGame = input("Select your type of game: ")
+        except KeyboardInterrupt:
+            sys.exit()
+        except:
+            raise InputNotInt
+
         return typeGame
 
     def displayWhichStart(self):
@@ -22,14 +34,26 @@ class ConsoleUI():
         )
 
     def firstPlayerSelected(self):
-        firstPlayer = input("Which player should start?")
+        try:
+            firstPlayer = input("Which player should start?")
+        except KeyboardInterrupt:
+            sys.exit()
+        except:
+            raise InputNotInt
+
         return firstPlayer
 
     def displayPlayerTurn(self, idPlayer):
         print("Player " + str(idPlayer) + " select your position:")
 
     def getPlayerPosition(self):
-        position = input("Which position: ")
+        try:
+            position = input("Which position: ")
+        except KeyboardInterrupt:
+            sys.exit()
+        except:
+            raise InputNotInt
+
         return position
 
     def displayBoard(self, board):
@@ -46,3 +70,10 @@ class ConsoleUI():
 
     def displayTie(self):
         print("It's a tie, no one won!")
+
+    def expectedNumber(self):
+        print("A number is expected")
+
+class InputNotInt(Exception):
+    def __init__(self):
+        self.msg = "Input from console must be only int"
