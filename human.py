@@ -1,6 +1,7 @@
 import logging
 
 from player import Player
+from consoleUI import InputNotInt
 
 
 class Human(Player):
