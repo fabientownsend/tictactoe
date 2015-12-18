@@ -2,10 +2,8 @@ from enum import Enum
 import logging
 
 from computer import Computer
-from consoleUI import ConsoleUI
 from consoleUI import InputNotInt
 from gameBoard import GameBoard
-from gamePolicy import GamePolicy
 from human import Human
 from marksEnum import Marks
 
@@ -21,11 +19,11 @@ class PlayersEnum(Enum):
     player2 = 2
 
 
-class GameEngine():
-    def __init__(self):
-        self.console = ConsoleUI()
+class GameEngine:
+    def __init__(self, console, gamePolicy):
+        self.console = console
         self.board = GameBoard()
-        self.gamePolicy = GamePolicy()
+        self.gamePolicy = gamePolicy
         logging.basicConfig(filename="tictactoe.log", level=logging.DEBUG)
 
         self.gameOver = False

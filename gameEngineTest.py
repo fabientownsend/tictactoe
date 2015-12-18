@@ -1,6 +1,8 @@
 import unittest
 
 from computer import Computer
+from fakeConsoleUI import FakeConsoleUI
+from fakeGamePolicy import FakeGamePolicy
 from gameEngine import GameEngine
 from gameEngine import PlayersEnum
 from human import Human
@@ -8,7 +10,9 @@ from human import Human
 
 class GameEngineTest(unittest.TestCase):
     def setUp(self):
-        self.gameEngine = GameEngine()
+        self.fakeConsole = FakeConsoleUI()
+        self.fakeGamePolicy = FakeGamePolicy()
+        self.gameEngine = GameEngine(self.fakeConsole, self.fakeGamePolicy)
 
     def testCreatePlayer_whenTwoHuman(self):
         self.gameEngine.createPlayers(1)
@@ -48,6 +52,50 @@ class GameEngineTest(unittest.TestCase):
         self.assertEqual(self.gameEngine.currentPlayer, self.gameEngine.player1)
 
     def testWin_whenItsNotWin(self):
+        self.assertFalse(self.gameEngine.gameOver)
+
+    def testGetTypeGameSelected_whenSelect2(self):
+        response = self.gameEngine.getTypeGameSelected()
+        self.assertEqual(response, 2)
+
+    def testGetFirstPlayersSelected_whenFirstPlayerPlayer1(self):
+        response = self.gameEngine.getFirstPlayerSlected()
+        self.assertEqual(response, 1)
+
+    def testIsGameOver_whenAPlayerWin(self):
+        fakeBoard = None
+        self.gameEngine.createPlayers(2)
+        self.gameEngine.setFirstPlayer(2)
+        self.fakeGamePolicy.responseWin = True
+        self.fakeGamePolicy.responseCheckTie = False
+
+        response = self.gameEngine.isGameOver(fakeBoard)
+        self.assertTrue(response)
+        self.assertTrue(self.gameEngine.gameOver)
+        self.assertFalse(self.gameEngine.tie)
+
+    def testIsGameOver_whenItsATie(self):
+        fakeBoard = None
+        self.gameEngine.createPlayers(2)
+        self.gameEngine.setFirstPlayer(2)
+        self.fakeGamePolicy.responseWin = False
+        self.fakeGamePolicy.responseCheckTie = True
+
+        response = self.gameEngine.isGameOver(fakeBoard)
+        self.assertTrue(response)
+        self.assertTrue(self.gameEngine.tie)
+        self.assertTrue(self.gameEngine.gameOver)
+
+    def testIsGameOver_whenItsNotGameOverNeitherTie(self):
+        fakeBoard = None
+        self.gameEngine.createPlayers(2)
+        self.gameEngine.setFirstPlayer(2)
+        self.fakeGamePolicy.responseWin = False
+        self.fakeGamePolicy.responseCheckTie = False
+
+        response = self.gameEngine.isGameOver(fakeBoard)
+        self.assertFalse(response)
+        self.assertFalse(self.gameEngine.tie)
         self.assertFalse(self.gameEngine.gameOver)
 
 if __name__ == '__main__':
