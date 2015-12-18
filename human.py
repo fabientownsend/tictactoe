@@ -7,7 +7,7 @@ from consoleUI import InputNotInt
 class Human(Player):
     def __init__(self, mark, console):
         Player.__init__(self, mark)
-        logging.basicConfig(filename='exemple.log', level=logging.DEBUG)
+        logging.basicConfig(filename="tictactoe.log", level=logging.DEBUG)
         self.console = console
 
     def getMove(self, board):

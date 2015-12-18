@@ -26,7 +26,7 @@ class GameEngine():
         self.console = ConsoleUI()
         self.board = GameBoard()
         self.gamePolicy = GamePolicy()
-        logging.basicConfig(filename='exemple.log', level=logging.DEBUG)
+        logging.basicConfig(filename="tictactoe.log", level=logging.DEBUG)
 
         self.gameOver = False
         self.tie = False
