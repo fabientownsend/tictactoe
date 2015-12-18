@@ -9,6 +9,7 @@ from gamePolicy import GamePolicy
 from human import Human
 from marksEnum import Marks
 
+
 class GameType(Enum):
     humanVsHuman = 1
     humanVsComputer = 2
@@ -52,10 +53,10 @@ class GameEngine():
 
     def createPlayers(self, typeGame):
         if typeGame == GameType.humanVsHuman.value:
-            self.player1 = Human(Marks.cross)
-            self.player2 = Human(Marks.nought)
+            self.player1 = Human(Marks.cross, self.console)
+            self.player2 = Human(Marks.nought, self.console)
         elif typeGame == GameType.humanVsComputer.value:
-            self.player1 = Human(Marks.cross)
+            self.player1 = Human(Marks.cross, self.console)
             self.player2 = Computer(Marks.nought)
         elif typeGame == GameType.computerVsComputer.value:
             self.player1 = Computer(Marks.cross)

@@ -1,8 +1,14 @@
 import logging
-from consoleUI import InputNotInt
+
 from player import Player
 
+
 class Human(Player):
+    def __init__(self, mark, console):
+        Player.__init__(self, mark)
+        logging.basicConfig(filename='exemple.log', level=logging.DEBUG)
+        self.console = console
+
     def getMove(self, board):
         while True:
             try:
