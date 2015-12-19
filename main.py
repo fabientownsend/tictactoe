@@ -6,6 +6,6 @@ console = ConsoleUI()
 gamePolicy = GamePolicy()
 gameEngine = GameEngine(console, gamePolicy)
 
-gameEngine.typeGame()
+gameEngine.createTypeGame()
 gameEngine.defineFirstPlayer()
 gameEngine.play()

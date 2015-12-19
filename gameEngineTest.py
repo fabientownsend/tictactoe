@@ -15,38 +15,38 @@ class GameEngineTest(unittest.TestCase):
         self.gameEngine = GameEngine(self.fakeConsole, self.fakeGamePolicy)
 
     def testCreatePlayer_whenTwoHuman(self):
-        self.gameEngine.createPlayers(1)
+        self.gameEngine.createPlayersTypeGame(1)
         self.assertTrue(isinstance(self.gameEngine.player1, Human))
         self.assertTrue(isinstance(self.gameEngine.player2, Human))
 
     def testCreatePlayer_whenHumanAndComputer(self):
-        self.gameEngine.createPlayers(2)
+        self.gameEngine.createPlayersTypeGame(2)
         self.assertTrue(isinstance(self.gameEngine.player1, Human))
         self.assertTrue(isinstance(self.gameEngine.player2, Computer))
 
     def testCreatePlayer_whenTwoComputer(self):
-        self.gameEngine.createPlayers(3)
+        self.gameEngine.createPlayersTypeGame(3)
         self.assertTrue(isinstance(self.gameEngine.player1, Computer))
         self.assertTrue(isinstance(self.gameEngine.player2, Computer))
 
     def testSetFirstPlayer_whenFirstPlayerIsPlayer1(self):
-        self.gameEngine.createPlayers(1)
+        self.gameEngine.createPlayersTypeGame(1)
         self.gameEngine.setFirstPlayer(1)
         self.assertEqual(self.gameEngine.currentPlayer, self.gameEngine.player1)
 
     def testSetFirstPlayer_whenFirstPlayerIsPlayer2(self):
-        self.gameEngine.createPlayers(2)
+        self.gameEngine.createPlayersTypeGame(2)
         self.gameEngine.setFirstPlayer(2)
         self.assertEqual(self.gameEngine.currentPlayer, self.gameEngine.player2)
 
     def testSwitchPlayer_whenCurrentPlayerWasPlayer1(self):
-        self.gameEngine.createPlayers(2)
+        self.gameEngine.createPlayersTypeGame(2)
         self.gameEngine.currentPlayer = self.gameEngine.player1
         self.gameEngine.switchCurrentPlayer()
         self.assertEqual(self.gameEngine.currentPlayer, self.gameEngine.player2)
 
     def testSwitchPlayer_whenCurrentPlayerWasPlayer2(self):
-        self.gameEngine.createPlayers(2)
+        self.gameEngine.createPlayersTypeGame(2)
         self.gameEngine.currentPlayer = self.gameEngine.player2
         self.gameEngine.switchCurrentPlayer()
         self.assertEqual(self.gameEngine.currentPlayer, self.gameEngine.player1)
@@ -64,7 +64,7 @@ class GameEngineTest(unittest.TestCase):
 
     def testIsGameOver_whenAPlayerWin(self):
         fakeBoard = None
-        self.gameEngine.createPlayers(2)
+        self.gameEngine.createPlayersTypeGame(2)
         self.gameEngine.setFirstPlayer(2)
         self.fakeGamePolicy.responseWin = True
         self.fakeGamePolicy.responseCheckTie = False
@@ -76,7 +76,7 @@ class GameEngineTest(unittest.TestCase):
 
     def testIsGameOver_whenItsATie(self):
         fakeBoard = None
-        self.gameEngine.createPlayers(2)
+        self.gameEngine.createPlayersTypeGame(2)
         self.gameEngine.setFirstPlayer(2)
         self.fakeGamePolicy.responseWin = False
         self.fakeGamePolicy.responseCheckTie = True
@@ -88,7 +88,7 @@ class GameEngineTest(unittest.TestCase):
 
     def testIsGameOver_whenItsNotGameOverNeitherTie(self):
         fakeBoard = None
-        self.gameEngine.createPlayers(2)
+        self.gameEngine.createPlayersTypeGame(2)
         self.gameEngine.setFirstPlayer(2)
         self.fakeGamePolicy.responseWin = False
         self.fakeGamePolicy.responseCheckTie = False

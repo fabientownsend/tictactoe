@@ -10,22 +10,23 @@ class TestHuman(unittest.TestCase):
         self.fakeConsoleUI = FakeConsoleUI()
 
     def testSetMark_whenMarkIsCrossself(self):
-        self.player = Human(Marks.cross, self.fakeConsoleUI)
-        self.assertEqual(self.player.mark, Marks.cross)
+        self.human = Human(Marks.cross, self.fakeConsoleUI)
+        self.assertEqual(self.human.mark, Marks.cross)
 
     def testSetMark_whenMarkIsNought(self):
-        self.player = Human(Marks.nought, self.fakeConsoleUI)
-        self.assertEqual(self.player.mark, Marks.nought)
+        self.human = Human(Marks.nought, self.fakeConsoleUI)
+        self.assertEqual(self.human.mark, Marks.nought)
 
     def testGetMove_whenCorrectValue(self):
         self.fakeConsoleUI.move = 4
-        self.player = Human(Marks.nought, self.fakeConsoleUI)
+        self.human = Human(Marks.nought, self.fakeConsoleUI)
         board = [
             Marks.empty, Marks.empty, Marks.empty,
             Marks.empty, Marks.empty, Marks.empty,
             Marks.empty, Marks.empty, Marks.empty
         ]
-        result = self.player.getMove(board)
+
+        result = self.human.getMove(board)
         self.assertEqual(result, 4)
 
 if __name__ == '__main__':

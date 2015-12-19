@@ -3,7 +3,11 @@ from marksEnum import Marks
 
 class GamePolicy():
     def checkTie(self, board):
-        if self.allMarksEmpty(board) and not self.win(Marks.nought, board) and not self.win(Marks.cross, board):
+        if (
+            self.allMarksEmpty(board) and not
+            self.win(Marks.nought, board) and not
+            self.win(Marks.cross, board)
+            ):
             return True
         else:
             return False

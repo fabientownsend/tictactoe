@@ -8,7 +8,7 @@ class ComputerTest(unittest.TestCase):
     def setUp(self):
         self.computer = Computer(Marks.cross)
 
-    def testSetMark_whenMarkIsCrossself(self):
+    def testSetMark_whenMarkIsCrossse(self):
         self.computer = Computer(Marks.cross)
         self.assertEqual(self.computer.mark, Marks.cross)
 
@@ -16,11 +16,11 @@ class ComputerTest(unittest.TestCase):
         self.computer = Computer(Marks.nought)
         self.assertEqual(self.computer.mark, Marks.nought)
 
-    def testSwtich_whenMarkIsCross(self):
+    def testSwtich_whenMarkWasCross(self):
         response = self.computer.switch(Marks.cross)
         self.assertEqual(response, Marks.nought)
 
-    def testSwtich_whenMarkIsNought(self):
+    def testSwtich_whenMarkWasNought(self):
         response = self.computer.switch(Marks.nought)
         self.assertEqual(response, Marks.cross)
 
@@ -46,7 +46,7 @@ class ComputerTest(unittest.TestCase):
         response = self.computer.minimax(maximizingPlayer, board)
         self.assertEqual(response, -1)
 
-    def testMinimax_whenItsDraw(self):
+    def testMinimax_whenItsTie(self):
         maximizingPlayer = Marks.cross
         board  = [
             Marks.nought, Marks.cross, Marks.nought,
@@ -57,7 +57,7 @@ class ComputerTest(unittest.TestCase):
         response = self.computer.minimax(maximizingPlayer, board)
         self.assertEqual(response, 0)
 
-    def testMinimax_whenMaximizingUltimateWhin(self):
+    def testMinimax_whenMaximizingPlayerUltimateWhin(self):
         maximizingPlayer = Marks.nought
         board  = [
             Marks.empty, Marks.cross, Marks.nought,
@@ -68,7 +68,7 @@ class ComputerTest(unittest.TestCase):
         response = self.computer.minimax(maximizingPlayer, board)
         self.assertEqual(response, 1)
 
-    def testMinimax_whenMinimizingUltimateWhin(self):
+    def testMinimax_whenMinimizingPlayerUltimateWhin(self):
         maximizingPlayer = Marks.cross
         board  = [
             Marks.empty, Marks.nought, Marks.cross,
@@ -90,7 +90,7 @@ class ComputerTest(unittest.TestCase):
         response = self.computer.getMove(board)
         self.assertEqual(response, 2)
 
-    def testGotMove_whenItShouldBlockTheAdversaire(self):
+    def testGetMove_whenItShouldBlockTheAdversaire(self):
         maximizingPlayer = Marks.cross
         board  = [
             Marks.nought, Marks.nought, Marks.empty,

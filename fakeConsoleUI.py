@@ -1,9 +1,9 @@
 class FakeConsoleUI:
-    def getPlayerPosition(self):
+    def getPlayerMove(self):
         return 4
 
     def typeGameSelected(self):
         return 2
 
-    def firstPlayerSelected(self):
+    def getFirstPlayer(self):
         return 1

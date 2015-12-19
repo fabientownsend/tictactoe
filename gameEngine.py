@@ -22,8 +22,8 @@ class PlayersEnum(Enum):
 class GameEngine:
     def __init__(self, console, gamePolicy):
         self.console = console
-        self.board = GameBoard()
         self.gamePolicy = gamePolicy
+        self.board = GameBoard()
         logging.basicConfig(filename="tictactoe.log", level=logging.DEBUG)
 
         self.gameOver = False
@@ -31,10 +31,10 @@ class GameEngine:
         self.winner = None
         self.currentPlayer = None
 
-    def typeGame(self):
-        self.console.displayGameType()
+    def createTypeGame(self):
+        self.console.displayTypeGame()
         typeGame = self.getTypeGameSelected()
-        self.createPlayers(typeGame)
+        self.createPlayersTypeGame(typeGame)
 
     def getTypeGameSelected(self):
         while True:
@@ -49,7 +49,7 @@ class GameEngine:
 
         return typeGame
 
-    def createPlayers(self, typeGame):
+    def createPlayersTypeGame(self, typeGame):
         if typeGame == GameType.humanVsHuman.value:
             self.player1 = Human(Marks.cross, self.console)
             self.player2 = Human(Marks.nought, self.console)
@@ -62,27 +62,27 @@ class GameEngine:
 
     def defineFirstPlayer(self):
         self.console.displayWhichStart()
-        firstPlayer = self.console.firstPlayerSelected()
-        self.setFirstPlayer(firstPlayer)
+        firstPlayerSelected = self.getFirstPlayerSlected()
+        self.setFirstPlayer(firstPlayerSelected)
 
     def getFirstPlayerSlected(self):
         while True:
             try:
-                firstPlayer = self.console.firstPlayerSelected()
+                firstPlayerSelected = self.console.getFirstPlayer()
 
-                if firstPlayer > 0 and firstPlayer < 3:
+                if firstPlayerSelected > 0 and firstPlayerSelected < 3:
                     break
-            except InputNotInt:
+            except InputNotInt, (arg):
                 self.console.expectedNumber()
                 logging.debug(arg.msg)
 
-        return firstPlayer
+        return firstPlayerSelected
 
 
-    def setFirstPlayer(self, firstPlayer):
-        if firstPlayer == PlayersEnum.player1.value:
+    def setFirstPlayer(self, firstPlayerSelected):
+        if firstPlayerSelected == PlayersEnum.player1.value:
             self.currentPlayer = self.player1
-        elif firstPlayer == PlayersEnum.player2.value:
+        elif firstPlayerSelected == PlayersEnum.player2.value:
             self.currentPlayer = self.player2
 
     def play(self):

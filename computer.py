@@ -8,8 +8,8 @@ from player import Player
 class Computer(Player):
     def getMove(self, board):
         if self.gamePolicy.isEmpty(board):
-            startMoves = [0, 2, 4, 6, 8]
-            return random.choice(startMoves)
+            bestStartMoves = [0, 2, 4, 6, 8]
+            return random.choice(bestStartMoves)
 
         bestMove = 0
         bestValue = -100

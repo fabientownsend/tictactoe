@@ -2,7 +2,7 @@ import sys
 
 
 class ConsoleUI():
-    def displayGameType(self):
+    def displayTypeGame(self):
         print(
             "Type of game:\n\n"
             "1 - Human v. Human\n"
@@ -33,9 +33,9 @@ class ConsoleUI():
             "2 - Player 2\n"
         )
 
-    def firstPlayerSelected(self):
+    def getFirstPlayer(self):
         try:
-            firstPlayer = input("Which player should start?")
+            firstPlayer = input("Which player should start? ")
         except KeyboardInterrupt:
             sys.exit()
         except:
@@ -44,9 +44,9 @@ class ConsoleUI():
         return firstPlayer
 
     def displayPlayerTurn(self, idPlayer):
-        print("Player " + str(idPlayer) + " select your position:")
+        print("Player " + str(idPlayer) + " turn")
 
-    def getPlayerPosition(self):
+    def getPlayerMove(self):
         try:
             position = input("Which position: ")
         except KeyboardInterrupt:
