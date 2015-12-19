@@ -5,9 +5,6 @@ class GameBoard():
     def __init__(self):
         self.board = self.createBoard()
 
-    def resetBoard(self):
-        self.board = self.createBoard()
-
     def createBoard(self):
         return [
             Marks.empty, Marks.empty, Marks.empty,
@@ -23,7 +20,6 @@ class GameBoard():
             raise SpotNotEmpty
         else:
             self.board[position] = mark
-
 
 class SpotNotEmpty(Exception):
     def __init__(self):

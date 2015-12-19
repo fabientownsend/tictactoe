@@ -21,20 +21,7 @@ class TestGameBoard(unittest.TestCase):
         expected = self.getEmptyBoard()
         self.assertEqual(response, expected)
 
-    def testResetBoard_whenBoardEmpty(self):
-        self.gameBoard.setMark(5, Marks.cross)
-        self.gameBoard.resetBoard()
-        response = self.gameBoard.getBoard()
-        expected = self.getEmptyBoard()
-        self.assertEqual(response, expected)
-
-    def testResetBoard_whenBoardNotEmpty(self):
-        self.gameBoard.resetBoard()
-        response = self.gameBoard.getBoard()
-        expected = self.getEmptyBoard()
-        self.assertEqual(response, expected)
-
-    def testGetBoard_whenNewObject(self):
+    def testGetBoard_whenNewBoardCreated(self):
         self.gameBoard = GameBoard()
         response = self.gameBoard.getBoard()
         expected = self.getEmptyBoard()
