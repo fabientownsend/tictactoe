@@ -8,17 +8,6 @@ class GamePolicyTest(unittest.TestCase):
     def setUp(self):
         self.gamePolicy = GamePolicy()
 
-    def testCheckTie_whenItsAWin(self):
-        maximizingPlayer = Marks.cross
-        board  = [
-            Marks.cross, Marks.cross, Marks.cross,
-            Marks.nought, Marks.nought, Marks.cross,
-            Marks.nought, Marks.cross, Marks.nought
-        ]
-
-        response = self.gamePolicy.checkTie(board)
-        self.assertEqual(response, False)
-
     def testIsEmpty_whenItsEmpty(self):
         board  = [
             Marks.empty, Marks.empty, Marks.empty,
@@ -27,7 +16,7 @@ class GamePolicyTest(unittest.TestCase):
         ]
 
         response = self.gamePolicy.isEmpty(board)
-        self.assertEqual(response, True)
+        self.assertTrue(response)
 
     def testIsEmpty_whenItsNotEmpty(self):
         board  = [
@@ -37,9 +26,20 @@ class GamePolicyTest(unittest.TestCase):
         ]
 
         response = self.gamePolicy.isEmpty(board)
-        self.assertEqual(response, False)
+        self.assertFalse(response)
 
-    def testCheckTie_whenItsNotTie(self):
+    def testCheckTie_whenItsTie(self):
+        maximizingPlayer = Marks.cross
+        board  = [
+            Marks.cross, Marks.nought, Marks.cross,
+            Marks.nought, Marks.nought, Marks.cross,
+            Marks.nought, Marks.cross, Marks.nought
+        ]
+
+        response = self.gamePolicy.checkTie(board)
+        self.assertTrue(response)
+
+    def testCheckTie_whenItsNotTieButWin(self):
         maximizingPlayer = Marks.cross
         board  = [
             Marks.cross, Marks.cross, Marks.cross,
@@ -48,7 +48,7 @@ class GamePolicyTest(unittest.TestCase):
         ]
 
         response = self.gamePolicy.checkTie(board)
-        self.assertEqual(response, False)
+        self.assertFalse(response)
 
     def testWin_whenLineOneWin(self):
         board  = [
@@ -57,7 +57,7 @@ class GamePolicyTest(unittest.TestCase):
             Marks.empty, Marks.empty, Marks.empty
         ]
         response = self.gamePolicy.win(Marks.cross, board)
-        self.assertEqual(response, True)
+        self.assertTrue(response)
 
     def testWin_whenLineTwoWin(self):
         board  = [
@@ -66,7 +66,7 @@ class GamePolicyTest(unittest.TestCase):
             Marks.empty, Marks.empty, Marks.empty
         ]
         response = self.gamePolicy.win(Marks.cross, board)
-        self.assertEqual(response, True)
+        self.assertTrue(response)
 
     def testWin_whenLineThreeWin(self):
         board  = [
@@ -75,7 +75,7 @@ class GamePolicyTest(unittest.TestCase):
             Marks.cross, Marks.cross, Marks.cross,
         ]
         response = self.gamePolicy.win(Marks.cross, board)
-        self.assertEqual(response, True)
+        self.assertTrue(response)
 
     def testWin_whenColumnsOneWin(self):
         board  = [
@@ -84,7 +84,7 @@ class GamePolicyTest(unittest.TestCase):
             Marks.cross, Marks.empty, Marks.empty,
         ]
         response = self.gamePolicy.win(Marks.cross, board)
-        self.assertEqual(response, True)
+        self.assertTrue(response)
 
     def testWin_whenColumnsTwoWin(self):
         board  = [
@@ -93,7 +93,7 @@ class GamePolicyTest(unittest.TestCase):
             Marks.empty, Marks.cross, Marks.empty,
         ]
         response = self.gamePolicy.win(Marks.cross, board)
-        self.assertEqual(response, True)
+        self.assertTrue(response)
 
     def testWin_whenColumnsThreeWin(self):
         board  = [
@@ -102,7 +102,7 @@ class GamePolicyTest(unittest.TestCase):
             Marks.empty, Marks.empty, Marks.cross,
         ]
         response = self.gamePolicy.win(Marks.cross, board)
-        self.assertEqual(response, True)
+        self.assertTrue(response)
 
     def testWin_whenDialOneWin(self):
         board  = [
@@ -111,7 +111,7 @@ class GamePolicyTest(unittest.TestCase):
             Marks.empty, Marks.empty, Marks.cross,
         ]
         response = self.gamePolicy.win(Marks.cross, board)
-        self.assertEqual(response, True)
+        self.assertTrue(response)
 
     def testWin_whenDialTwoWin(self):
         board  = [
@@ -120,7 +120,25 @@ class GamePolicyTest(unittest.TestCase):
             Marks.cross, Marks.empty, Marks.empty,
         ]
         response = self.gamePolicy.win(Marks.cross, board)
-        self.assertEqual(response, True)
+        self.assertTrue(response)
+
+    def testIsFree_whenItsFree(self):
+        board  = [
+            Marks.empty, Marks.empty, Marks.empty,
+            Marks.empty, Marks.empty, Marks.empty,
+            Marks.empty, Marks.empty, Marks.empty,
+        ]
+        response = self.gamePolicy.isFree(board, 0)
+        self.assertTrue(response)
+
+    def testIsFree_whenItsNotFree(self):
+        board  = [
+            Marks.cross, Marks.empty, Marks.empty,
+            Marks.empty, Marks.empty, Marks.empty,
+            Marks.empty, Marks.empty, Marks.empty,
+        ]
+        response = self.gamePolicy.isFree(board, 0)
+        self.assertFalse(response)
 
 if __name__ == '__main__':
     unittest.main()
