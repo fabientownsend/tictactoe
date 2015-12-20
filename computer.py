@@ -16,9 +16,9 @@ class Computer(Player):
 
         for i in range(len(board)):
             if self.gamePolicy.isFree(board, i):
-                boardCopy = copy(board)
-                boardCopy[i] = self.mark
-                value = self.minimax(self.switch(self.mark), boardCopy)
+                board[i] = self.mark
+                value = self.minimax(self.switch(self.mark), board)
+                board[i] = Marks.empty
 
                 if value > bestValue:
                     bestMove = i
@@ -39,9 +39,9 @@ class Computer(Player):
 
             for i in range(len(board)):
                 if self.gamePolicy.isFree(board, i):
-                    boardCopy = copy(board)
-                    boardCopy[i] = mark
-                    val = self.minimax(self.switch(mark), boardCopy)
+                    board[i] = mark
+                    val = self.minimax(self.switch(mark), board)
+                    board[i] = Marks.empty
                     bestValue = max(val, bestValue)
 
             return bestValue
@@ -50,9 +50,9 @@ class Computer(Player):
 
             for i in range(len(board)):
                 if self.gamePolicy.isFree(board, i):
-                    boardCopy = copy(board)
-                    boardCopy[i] = mark
-                    val = self.minimax(self.switch(mark), boardCopy)
+                    board[i] = mark
+                    val = self.minimax(self.switch(mark), board)
+                    board[i] = Marks.empty
                     bestValue = min(val, bestValue)
 
             return bestValue
