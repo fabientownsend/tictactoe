@@ -32,6 +32,11 @@ $ cd tictactoe
 $ python main.py
 ```
 
+## Test the application
+```bash
+$ python -m unittest discover --pattern=*Test.py
+```
+
 ## Usage
 
 1. First menu you can choose the game mode between 1, 2 and 3
