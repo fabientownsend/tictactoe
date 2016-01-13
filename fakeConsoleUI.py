@@ -25,3 +25,9 @@ class FakeConsoleUI:
     def displayWinner(self, value):
         self.passedIntoDisplayWinner = True
         return None
+
+    def displayCorrectRangeBoard(self):
+        return None
+
+    def spotNotFree(self):
+        return None
