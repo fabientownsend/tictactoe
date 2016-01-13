@@ -13,6 +13,7 @@ class GameEngineTest(unittest.TestCase):
         self.fakeConsole = FakeConsoleUI()
         self.fakeGamePolicy = FakeGamePolicy()
         self.gameEngine = GameEngine(self.fakeConsole, self.fakeGamePolicy)
+        self.gameEngine.createTypeGame()
 
     def testCreatePlayer_whenTwoHuman(self):
         self.gameEngine.createPlayersTypeGame(1)
@@ -99,12 +100,10 @@ class GameEngineTest(unittest.TestCase):
         self.assertFalse(self.gameEngine.gameOver)
 
     def testCreateTypeGame_whenCreateGameHumanVsComputer(self):
-        self.gameEngine.createTypeGame()
         self.assertTrue(isinstance(self.gameEngine.player1, Human))
         self.assertTrue(isinstance(self.gameEngine.player2, Computer))
 
     def testDefineFirstPlayer(self):
-        self.gameEngine.createTypeGame()
         self.gameEngine.defineFirstPlayer()
         self.assertEqual(self.gameEngine.currentPlayer, self.gameEngine.player1)
 
@@ -114,7 +113,6 @@ class GameEngineTest(unittest.TestCase):
         self.assertTrue(self.fakeConsole.passedIntoDisplayTie)
 
     def testDisplayResult_wheItsATie(self):
-        self.gameEngine.createTypeGame()
         self.gameEngine.tie = False
         self.gameEngine.winner = self.gameEngine.player1
         self.gameEngine.displayResult()
