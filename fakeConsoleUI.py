@@ -1,4 +1,8 @@
 class FakeConsoleUI:
+    def __init__(self):
+        self.passedIntoDisplayTie = False
+        self.passedIntoDisplayWinner = False
+
     def getPlayerMove(self):
         return 4
 
@@ -7,3 +11,17 @@ class FakeConsoleUI:
 
     def getFirstPlayer(self):
         return 1
+
+    def displayTypeGame(self):
+        return None
+
+    def displayWhichStart(self):
+        return None
+
+    def displayTie(self):
+        self.passedIntoDisplayTie = True
+        return None
+
+    def displayWinner(self, value):
+        self.passedIntoDisplayWinner = True
+        return None

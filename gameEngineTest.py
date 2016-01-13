@@ -98,5 +98,27 @@ class GameEngineTest(unittest.TestCase):
         self.assertFalse(self.gameEngine.tie)
         self.assertFalse(self.gameEngine.gameOver)
 
+    def testCreateTypeGame_whenCreateGameHumanVsComputer(self):
+        self.gameEngine.createTypeGame()
+        self.assertTrue(isinstance(self.gameEngine.player1, Human))
+        self.assertTrue(isinstance(self.gameEngine.player2, Computer))
+
+    def testDefineFirstPlayer(self):
+        self.gameEngine.createTypeGame()
+        self.gameEngine.defineFirstPlayer()
+        self.assertEqual(self.gameEngine.currentPlayer, self.gameEngine.player1)
+
+    def testDisplayResult_wheItsATie(self):
+        self.gameEngine.tie = True
+        self.gameEngine.displayResult()
+        self.assertTrue(self.fakeConsole.passedIntoDisplayTie)
+
+    def testDisplayResult_wheItsATie(self):
+        self.gameEngine.createTypeGame()
+        self.gameEngine.tie = False
+        self.gameEngine.winner = self.gameEngine.player1
+        self.gameEngine.displayResult()
+        self.assertTrue(self.fakeConsole.passedIntoDisplayWinner)
+
 if __name__ == '__main__':
     unittest.main()
