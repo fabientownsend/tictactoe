@@ -107,12 +107,12 @@ class GameEngineTest(unittest.TestCase):
         self.gameEngine.defineFirstPlayer()
         self.assertEqual(self.gameEngine.currentPlayer, self.gameEngine.player1)
 
-    def testDisplayResult_wheItsATie(self):
+    def testDisplayResult_whenItsATie(self):
         self.gameEngine.tie = True
         self.gameEngine.displayResult()
         self.assertTrue(self.fakeConsole.passedIntoDisplayTie)
 
-    def testDisplayResult_wheItsATie(self):
+    def testDisplayResult_whenAPlayerWin(self):
         self.gameEngine.tie = False
         self.gameEngine.winner = self.gameEngine.player1
         self.gameEngine.displayResult()
