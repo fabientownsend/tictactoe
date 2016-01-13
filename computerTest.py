@@ -112,5 +112,15 @@ class ComputerTest(unittest.TestCase):
         response = self.computer.getMove(board)
         self.assertEqual(response, 4)
 
+    def testGetMove_whenBoardEmpty(self):
+        emptyBoard  = [
+            Marks.empty, Marks.empty, Marks.empty,
+            Marks.empty, Marks.empty, Marks.empty,
+            Marks.empty, Marks.empty, Marks.empty
+        ]
+
+        randomBestOpeningPosition = self.computer.getMove(emptyBoard)
+        self.assertTrue(randomBestOpeningPosition in (0, 2, 4, 6, 8))
+
 if __name__ == '__main__':
     unittest.main()
