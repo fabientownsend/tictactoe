@@ -3,6 +3,7 @@ import unittest
 from computer import Computer
 from fakeConsoleUI import FakeConsoleUI
 from fakeGamePolicy import FakeGamePolicy
+from gameBoard import GameBoard
 from gameEngine import GameEngine
 from gameEngine import PlayersEnum
 from human import Human
@@ -12,7 +13,8 @@ class GameEngineTest(unittest.TestCase):
     def setUp(self):
         self.fakeConsole = FakeConsoleUI()
         self.fakeGamePolicy = FakeGamePolicy()
-        self.gameEngine = GameEngine(self.fakeConsole, self.fakeGamePolicy)
+        self.board = GameBoard()
+        self.gameEngine = GameEngine(self.fakeConsole, self.fakeGamePolicy, self.board)
         self.gameEngine.createTypeGame()
 
     def testCreatePlayer_whenTwoHuman(self):

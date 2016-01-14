@@ -20,10 +20,10 @@ class PlayersEnum(Enum):
 
 
 class GameEngine:
-    def __init__(self, console, gamePolicy):
+    def __init__(self, console, gamePolicy, board):
         self.console = console
         self.gamePolicy = gamePolicy
-        self.board = GameBoard()
+        self.board = board
         logging.basicConfig(filename="tictactoe.log", level=logging.DEBUG)
 
         self.gameOver = False
