@@ -18,13 +18,14 @@ class ConsoleUI():
 
     def typeGameSelected(self):
         try:
-            typeGame = input("Select your type of game: ")
+            self.typeGame = input("Select your type of game: ")
         except KeyboardInterrupt:
             sys.exit()
         except:
-            raise InputNotInt
+            self.expectedNumber()
+            self.typeGameSelected()
 
-        return typeGame
+        return self.typeGame
 
     def displayWhichStart(self):
         print(
@@ -35,13 +36,14 @@ class ConsoleUI():
 
     def getFirstPlayer(self):
         try:
-            firstPlayer = input("Which player should start? ")
+            self.firstPlayer = input("Which player should start? ")
         except KeyboardInterrupt:
             sys.exit()
         except:
-            raise InputNotInt
+            self.expectedNumber()
+            self.getFirstPlayer()
 
-        return firstPlayer
+        return self.firstPlayer
 
     def displayPlayerTurn(self, idPlayer):
         print("Player " + str(idPlayer) + " turn")

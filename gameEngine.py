@@ -1,5 +1,4 @@
 from enum import Enum
-import logging
 
 from computer import Computer
 from consoleUI import InputNotInt
@@ -24,7 +23,6 @@ class GameEngine:
         self.console = console
         self.gamePolicy = gamePolicy
         self.board = board
-        logging.basicConfig(filename="tictactoe.log", level=logging.DEBUG)
 
         self.gameOver = False
         self.tie = False
@@ -38,14 +36,10 @@ class GameEngine:
 
     def getTypeGameSelected(self):
         while True:
-            try:
-                typeGame = self.console.typeGameSelected()
+            typeGame = self.console.typeGameSelected()
 
-                if typeGame > 0 and typeGame < 4:
-                    break
-            except InputNotInt, (arg):
-                self.console.expectedNumber()
-                logging.debug(arg.msg)
+            if typeGame > 0 and typeGame < 4:
+                break
 
         return typeGame
 
@@ -67,14 +61,10 @@ class GameEngine:
 
     def getFirstPlayerSlected(self):
         while True:
-            try:
-                firstPlayerSelected = self.console.getFirstPlayer()
+            firstPlayerSelected = self.console.getFirstPlayer()
 
-                if firstPlayerSelected > 0 and firstPlayerSelected < 3:
-                    break
-            except InputNotInt, (arg):
-                self.console.expectedNumber()
-                logging.debug(arg.msg)
+            if firstPlayerSelected > 0 and firstPlayerSelected < 3:
+                break
 
         return firstPlayerSelected
 
