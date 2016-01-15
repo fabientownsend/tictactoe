@@ -54,7 +54,8 @@ class ConsoleUI():
         except KeyboardInterrupt:
             sys.exit()
         except:
-            raise InputNotInt
+            self.expectedNumber()
+            self.getPlayerMove()
 
         return position
 
