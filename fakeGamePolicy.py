@@ -3,9 +3,6 @@ class FakeGamePolicy:
         self.responseWin = False
         self.responseCheckTie = False
 
-    def isFree(self, board, i):
-        return True
-
     def win(self, mark, board):
         return self.responseWin
 
