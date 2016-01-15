@@ -1,10 +1,12 @@
 from consoleUI import ConsoleUI
+from gameBoard import GameBoard
 from gameEngine import GameEngine
 from gamePolicy import GamePolicy
 
 console = ConsoleUI()
 gamePolicy = GamePolicy()
-gameEngine = GameEngine(console, gamePolicy)
+board = GameBoard()
+gameEngine = GameEngine(console, gamePolicy, board)
 
 gameEngine.createTypeGame()
 gameEngine.defineFirstPlayer()
