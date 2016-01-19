@@ -31,12 +31,6 @@ class TestGameBoard(unittest.TestCase):
         markSetOnBoard = self.gameBoard.getMark(0)
         self.assertEqual(mark, markSetOnBoard)
 
-    def testSetMark_whenSpotNotFree(self):
-        mark = Marks.cross
-        self.gameBoard.setMark(0, Marks.cross)
-        with self.assertRaises(SpotNotEmpty):
-            self.gameBoard.setMark(0, Marks.cross)
-
     def testSetMark_whenOutOfBoard(self):
         mark = Marks.cross
         with self.assertRaises(IndexError):

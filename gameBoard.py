@@ -12,11 +12,7 @@ class GameBoard():
     def setMark(self, position, mark):
         row =  position/self.boardSize
         column = position - row*self.boardSize
-
-        if self.board[row][column] != Marks.empty:
-            raise SpotNotEmpty
-        else:
-            self.board[row][column] = mark
+        self.board[row][column] = mark
 
     def getMark(self, position):
         row =  position/self.boardSize

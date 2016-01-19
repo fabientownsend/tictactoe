@@ -1,12 +1,16 @@
 import unittest
 
 from computer import Computer
+from gameBoard import GameBoard
 from marksEnum import Marks
 
 
 class ComputerTest(unittest.TestCase):
     def setUp(self):
         self.computer = Computer(Marks.cross)
+
+    def getEmptyBoard(self, boardSize):
+        return [[Marks.empty]*boardSize for n in range(boardSize)]
 
     def testSetMark_whenMarkIsCrossse(self):
         self.computer = Computer(Marks.cross)
@@ -26,101 +30,119 @@ class ComputerTest(unittest.TestCase):
 
     def testMinimax_whenMaximizingPlayerWin(self):
         maximizingPlayer = Marks.cross
-        board  = [
-            Marks.cross, Marks.cross, Marks.cross,
-            Marks.empty, Marks.empty, Marks.empty,
-            Marks.empty, Marks.empty, Marks.empty
-        ]
+        self.gameBoard = GameBoard(3)
+        self.gameBoard.board[0][0] = Marks.cross
+        self.gameBoard.board[0][1] = Marks.cross
+        self.gameBoard.board[0][2] = Marks.cross
 
-        response = self.computer.minimax(maximizingPlayer, board)
+        response = self.computer.minimax(maximizingPlayer, self.gameBoard)
         self.assertEqual(response, 1)
 
     def testMinimax_whenMinimizinglayerWin(self):
         maximizingPlayer = Marks.cross
-        board  = [
-            Marks.nought, Marks.nought, Marks.nought,
-            Marks.empty, Marks.empty, Marks.empty,
-            Marks.empty, Marks.empty, Marks.empty
-        ]
+        self.gameBoard = GameBoard(3)
+        self.gameBoard.board[0][0] = Marks.nought
+        self.gameBoard.board[0][1] = Marks.nought
+        self.gameBoard.board[0][2] = Marks.nought
 
-        response = self.computer.minimax(maximizingPlayer, board)
+        response = self.computer.minimax(maximizingPlayer, self.gameBoard)
         self.assertEqual(response, -1)
 
     def testMinimax_whenItsTie(self):
         maximizingPlayer = Marks.cross
-        board  = [
-            Marks.nought, Marks.cross, Marks.nought,
-            Marks.nought, Marks.cross, Marks.cross,
-            Marks.cross, Marks.nought, Marks.cross
-        ]
+        self.gameBoard = GameBoard(3)
+        self.gameBoard.board[0][0] = Marks.nought
+        self.gameBoard.board[0][1] = Marks.cross
+        self.gameBoard.board[0][2] = Marks.nought
+        self.gameBoard.board[1][0] = Marks.nought
+        self.gameBoard.board[1][1] = Marks.cross
+        self.gameBoard.board[1][2] = Marks.cross
+        self.gameBoard.board[2][0] = Marks.cross
+        self.gameBoard.board[2][1] = Marks.nought
+        self.gameBoard.board[2][2] = Marks.cross
 
-        response = self.computer.minimax(maximizingPlayer, board)
+        response = self.computer.minimax(maximizingPlayer, self.gameBoard)
         self.assertEqual(response, 0)
 
     def testMinimax_whenMaximizingPlayerUltimateWhin(self):
         maximizingPlayer = Marks.nought
-        board  = [
-            Marks.empty, Marks.cross, Marks.nought,
-            Marks.empty, Marks.cross, Marks.cross,
-            Marks.nought, Marks.nought, Marks.cross
-        ]
+        self.gameBoard = GameBoard(3)
+        self.gameBoard.board[0][0] = Marks.empty
+        self.gameBoard.board[0][1] = Marks.cross
+        self.gameBoard.board[0][2] = Marks.nought
+        self.gameBoard.board[1][0] = Marks.empty
+        self.gameBoard.board[1][1] = Marks.cross
+        self.gameBoard.board[1][2] = Marks.cross
+        self.gameBoard.board[2][0] = Marks.nought
+        self.gameBoard.board[2][1] = Marks.nought
+        self.gameBoard.board[2][2] = Marks.cross
 
-        response = self.computer.minimax(maximizingPlayer, board)
+        response = self.computer.minimax(maximizingPlayer, self.gameBoard)
         self.assertEqual(response, 1)
 
     def testMinimax_whenMinimizingPlayerUltimateWhin(self):
         maximizingPlayer = Marks.cross
-        board  = [
-            Marks.empty, Marks.nought, Marks.cross,
-            Marks.empty, Marks.nought, Marks.nought,
-            Marks.cross, Marks.cross, Marks.nought
-        ]
+        self.gameBoard = GameBoard(3)
+        self.gameBoard.board[0][0] = Marks.empty
+        self.gameBoard.board[0][1] = Marks.nought
+        self.gameBoard.board[0][2] = Marks.cross
+        self.gameBoard.board[1][0] = Marks.empty
+        self.gameBoard.board[1][1] = Marks.nought
+        self.gameBoard.board[1][2] = Marks.nought
+        self.gameBoard.board[2][0] = Marks.cross
+        self.gameBoard.board[2][1] = Marks.cross
+        self.gameBoard.board[2][2] = Marks.nought
 
-        response = self.computer.minimax(maximizingPlayer, board)
+        response = self.computer.minimax(maximizingPlayer, self.gameBoard)
         self.assertEqual(response, -1)
 
     def testGetMove_whenItCanWin(self):
         maximizingPlayer = Marks.cross
-        board  = [
-            Marks.cross, Marks.cross, Marks.empty,
-            Marks.empty, Marks.empty, Marks.empty,
-            Marks.empty, Marks.empty, Marks.empty
-        ]
+        self.gameBoard = GameBoard(3)
+        self.gameBoard.board[0][0] = Marks.cross
+        self.gameBoard.board[0][1] = Marks.cross
+        self.gameBoard.board[0][2] = Marks.empty
+        self.gameBoard.board[1][0] = Marks.empty
+        self.gameBoard.board[1][1] = Marks.empty
+        self.gameBoard.board[1][2] = Marks.empty
+        self.gameBoard.board[2][0] = Marks.empty
+        self.gameBoard.board[2][1] = Marks.empty
+        self.gameBoard.board[2][2] = Marks.nought
 
-        response = self.computer.getMove(board)
+        response = self.computer.getMove(self.gameBoard)
         self.assertEqual(response, 2)
 
     def testGetMove_whenItShouldBlockTheAdversaire(self):
         maximizingPlayer = Marks.cross
-        board  = [
-            Marks.nought, Marks.nought, Marks.empty,
-            Marks.empty, Marks.empty, Marks.empty,
-            Marks.empty, Marks.empty, Marks.empty
-        ]
+        self.gameBoard = GameBoard(3)
+        self.gameBoard.board[0][0] = Marks.nought
+        self.gameBoard.board[0][1] = Marks.nought
+        self.gameBoard.board[0][2] = Marks.empty
+        self.gameBoard.board[1][0] = Marks.empty
+        self.gameBoard.board[1][1] = Marks.empty
+        self.gameBoard.board[1][2] = Marks.empty
+        self.gameBoard.board[2][0] = Marks.empty
+        self.gameBoard.board[2][1] = Marks.empty
+        self.gameBoard.board[2][2] = Marks.nought
 
-        response = self.computer.getMove(board)
+        response = self.computer.getMove(self.gameBoard)
         self.assertEqual(response, 2)
 
     def testGetMove_whenCanHaveAnUltimateWin(self):
         maximizingPlayer = Marks.cross
-        board  = [
-            Marks.cross, Marks.nought, Marks.empty,
-            Marks.cross, Marks.empty, Marks.empty,
-            Marks.nought, Marks.empty, Marks.empty
-        ]
+        self.gameBoard = GameBoard(3)
+        self.gameBoard.board[0][0] = Marks.cross
+        self.gameBoard.board[0][1] = Marks.nought
+        self.gameBoard.board[0][2] = Marks.empty
+        self.gameBoard.board[1][0] = Marks.cross
+        self.gameBoard.board[1][1] = Marks.empty
+        self.gameBoard.board[1][2] = Marks.empty
+        self.gameBoard.board[2][0] = Marks.nought
+        self.gameBoard.board[2][1] = Marks.empty
+        self.gameBoard.board[2][2] = Marks.empty
 
-        response = self.computer.getMove(board)
+        response = self.computer.getMove(self.gameBoard)
         self.assertEqual(response, 4)
-
-    def testGetMove_whenBoardEmpty(self):
-        emptyBoard  = [
-            Marks.empty, Marks.empty, Marks.empty,
-            Marks.empty, Marks.empty, Marks.empty,
-            Marks.empty, Marks.empty, Marks.empty
-        ]
-
-        randomBestOpeningPosition = self.computer.getMove(emptyBoard)
-        self.assertTrue(randomBestOpeningPosition in (0, 2, 4, 6, 8))
 
 if __name__ == '__main__':
     unittest.main()

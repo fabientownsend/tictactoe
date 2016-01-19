@@ -7,18 +7,15 @@ from player import Player
 
 class Computer(Player):
     def getMove(self, board):
-        if self.gamePolicy.isEmpty(board):
-            bestStartMoves = [0, 2, 4, 6, 8]
-            return random.choice(bestStartMoves)
-
         bestMove = 0
         bestValue = -100
 
-        for i in range(len(board)):
-            if self.gamePolicy.isFree(board, i):
-                board[i] = self.mark
+        total = len(board.board) * len(board.board)
+        for i in range(total):
+            if board.isEmpty(i):
+                board.setMark(i, self.mark)
                 value = self.minimax(self.switch(self.mark), board)
-                board[i] = Marks.empty
+                board.setMark(i, Marks.empty)
 
                 if value > bestValue:
                     bestMove = i
@@ -27,32 +24,34 @@ class Computer(Player):
         return bestMove
 
     def minimax(self, mark, board):
-        if self.gamePolicy.win(self.mark, board):
+        if self.gamePolicy.win(board.board, self.mark):
             return 1
-        elif self.gamePolicy.win(self.switch(self.mark), board):
+        elif self.gamePolicy.win(board.board, self.switch(self.mark)):
             return -1
-        elif self.gamePolicy.checkTie(board):
+        elif self.gamePolicy.checkTie(board.board):
             return 0
 
         if mark == self.mark:
             bestValue = -100
 
-            for i in range(len(board)):
-                if self.gamePolicy.isFree(board, i):
-                    board[i] = mark
+            total = len(board.board) * len(board.board)
+            for i in range(total):
+                if board.isEmpty(i):
+                    board.setMark(i, mark)
                     val = self.minimax(self.switch(mark), board)
-                    board[i] = Marks.empty
+                    board.setMark(i, Marks.empty)
                     bestValue = max(val, bestValue)
 
             return bestValue
         else:
             bestValue = 100
 
-            for i in range(len(board)):
-                if self.gamePolicy.isFree(board, i):
-                    board[i] = mark
+            total = len(board.board) * len(board.board)
+            for i in range(total):
+                if board.isEmpty(i):
+                    board.setMark(i, mark)
                     val = self.minimax(self.switch(mark), board)
-                    board[i] = Marks.empty
+                    board.setMark(i, Marks.empty)
                     bestValue = min(val, bestValue)
 
             return bestValue
