@@ -132,6 +132,22 @@ class GamePolicyTest(unittest.TestCase):
         response = self.gamePolicy.checkTie(board)
         self.assertTrue(response)
 
+    def testCheckTie_whenItsNotTieYet(self):
+        boardSize = 3
+        board = self.getEmptyBoard(boardSize)
+        board[0][0] = Marks.cross
+        board[0][1] = Marks.nought
+        board[0][2] = Marks.cross
+        board[1][0] = Marks.empty
+        board[1][1] = Marks.nought
+        board[1][2] = Marks.cross
+        board[2][0] = Marks.nought
+        board[2][1] = Marks.cross
+        board[2][2] = Marks.nought
+
+        response = self.gamePolicy.checkTie(board)
+        self.assertTrue(response)
+
     def testCheckTie_whenItsNotTieButWin(self):
         boardSize = 3
         board = self.getEmptyBoard(boardSize)
@@ -139,7 +155,7 @@ class GamePolicyTest(unittest.TestCase):
         board[0][1] = Marks.cross
         board[0][2] = Marks.cross
         board[1][0] = Marks.cross
-        board[1][1] = Marks.empty
+        board[1][1] = Marks.cross
         board[1][2] = Marks.cross
         board[2][0] = Marks.cross
         board[2][1] = Marks.cross

@@ -27,7 +27,6 @@ class TestGameBoard(unittest.TestCase):
 
     def testSetMark_whenSpotIsEmpty(self):
         mark = Marks.cross
-
         self.gameBoard.setMark(0, mark)
         markSetOnBoard = self.gameBoard.getMark(0)
         self.assertEqual(mark, markSetOnBoard)
@@ -42,6 +41,12 @@ class TestGameBoard(unittest.TestCase):
         mark = Marks.cross
         with self.assertRaises(IndexError):
             self.gameBoard.setMark(10, Marks.cross)
+
+    def testIsEmpty_whenSpotIsEmpty(self):
+        mark = Marks.cross
+        position = 0
+        self.gameBoard.setMark(position, mark)
+        self.assertFalse(self.gameBoard.isEmpty(position))
 
 if __name__ == '__main__':
     unittest.main()

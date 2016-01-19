@@ -9,9 +9,6 @@ class GameBoard():
     def createBoard(self):
         return [[Marks.empty]*self.boardSize for n in range(self.boardSize)]
 
-    def getBoard(self):
-        return self.board
-
     def setMark(self, position, mark):
         row =  position/self.boardSize
         column = position - row*self.boardSize
@@ -25,6 +22,9 @@ class GameBoard():
         row =  position/self.boardSize
         column = position - row*self.boardSize
         return self.board[row][column]
+
+    def isEmpty(self, position):
+        return self.getMark(position) == Marks.empty
 
 class SpotNotEmpty(Exception):
     def __init__(self):
