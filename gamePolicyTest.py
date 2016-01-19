@@ -11,14 +11,14 @@ class GamePolicyTest(unittest.TestCase):
     def getEmptyBoard(self, boardSize):
         return [[Marks.empty]*boardSize for n in range(boardSize)]
 
-    def testIsEmpty_whenItsEmpty(self):
+    def testIsFull_whenItsEmpty(self):
         emptyBoard = self.getEmptyBoard(3)
-        self.assertTrue(self.gamePolicy.isEmpty(emptyBoard))
+        self.assertFalse(self.gamePolicy.isFull(emptyBoard))
 
-    def testIsEmpty_whenItsNotEmpty(self):
+    def testIsFull_whenItsNotEmpty(self):
         board = self.getEmptyBoard(3)
         board[0][0] = Marks.cross
-        self.assertFalse(self.gamePolicy.isEmpty(board))
+        self.assertFalse(self.gamePolicy.isFull(board))
 
     def testWin_whenLineOneWin(self):
         boardSize = 3
@@ -146,7 +146,7 @@ class GamePolicyTest(unittest.TestCase):
         board[2][2] = Marks.nought
 
         response = self.gamePolicy.checkTie(board)
-        self.assertTrue(response)
+        self.assertFalse(response)
 
     def testCheckTie_whenItsNotTieButWin(self):
         boardSize = 3
@@ -163,7 +163,6 @@ class GamePolicyTest(unittest.TestCase):
 
         response = self.gamePolicy.checkTie(board)
         self.assertFalse(response)
-
 
 if __name__ == '__main__':
     unittest.main()

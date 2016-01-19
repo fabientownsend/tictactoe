@@ -4,7 +4,7 @@ from marksEnum import Marks
 class GamePolicy():
     def checkTie(self, board):
         if (
-            not self.isEmpty(board) and not
+            self.isFull(board) and not
             self.win(board, Marks.nought) and not
             self.win(board, Marks.cross)
             ):
@@ -12,10 +12,10 @@ class GamePolicy():
         else:
             return False
 
-    def isEmpty(self, board):
+    def isFull(self, board):
         for row in board:
             for cell in row:
-                if cell != Marks.empty:
+                if cell == Marks.empty:
                     return False
 
         return True
