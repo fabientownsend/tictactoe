@@ -12,9 +12,10 @@ class Human(Player):
         while True:
             position = self.console.getPlayerMove()
 
-            if position < self.MIN_RANGE or position > len(board):
+            total = len(board.board) * len(board.board)
+            if position < self.MIN_RANGE or position >= total:
                 self.console.displayCorrectRangeBoard()
-            elif not self.board.isEmpty(position):
+            elif not board.isEmpty(position):
                 self.console.spotNotFree()
             else:
                 break
