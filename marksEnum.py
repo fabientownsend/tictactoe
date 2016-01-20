@@ -2,6 +2,6 @@ from enum import Enum
 
 
 class Marks(Enum):
-    empty = "-"
+    empty = " "
     cross = "x"
     nought = "o"
