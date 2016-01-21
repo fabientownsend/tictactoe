@@ -2,25 +2,22 @@ from marksEnum import Marks
 
 
 class GameBoard():
-    def __init__(self):
+    def __init__(self, boardSize):
+        self.boardSize = boardSize
         self.board = self.createBoard()
 
     def createBoard(self):
-        return [
-            Marks.empty, Marks.empty, Marks.empty,
-            Marks.empty, Marks.empty, Marks.empty,
-            Marks.empty, Marks.empty, Marks.empty
-        ]
-
-    def getBoard(self):
-        return self.board
+        return [[Marks.empty]*self.boardSize for n in range(self.boardSize)]
 
     def setMark(self, position, mark):
-        if self.board[position] != Marks.empty:
-            raise SpotNotEmpty
-        else:
-            self.board[position] = mark
+        row =  position/self.boardSize
+        column = position - row*self.boardSize
+        self.board[row][column] = mark
 
-class SpotNotEmpty(Exception):
-    def __init__(self):
-        self.msg = 'The spot must be free'
+    def getMark(self, position):
+        row =  position/self.boardSize
+        column = position - row*self.boardSize
+        return self.board[row][column]
+
+    def isEmpty(self, position):
+        return self.getMark(position) == Marks.empty

@@ -60,13 +60,16 @@ class ConsoleUI():
         return position
 
     def displayBoard(self, board):
-        print("\n")
-        print " %s | %s | %s " %(board[0].value, board[1].value, board[2].value)
-        print("-----------")
-        print " %s | %s | %s " %(board[3].value, board[4].value, board[5].value)
-        print("-----------")
-        print " %s | %s | %s " %(board[6].value, board[7].value, board[8].value)
-        print("\n")
+        for row in range(len(board)):
+            for column in range(len(board)):
+                sys.stdout.write("  " + board[row][column].value + "  ")
+                if column < len(board) - 1:
+                    sys.stdout.write("|")
+            print("\n")
+            if row < len(board) - 1:
+                for column in range(len(board)):
+                        sys.stdout.write("-"*6)
+                print("\n")
 
     def displayWinner(self, winner):
         print("Player " + str(winner) + " won the party")

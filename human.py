@@ -6,16 +6,16 @@ class Human(Player):
     def __init__(self, mark, console):
         Player.__init__(self, mark)
         self.console = console
-        self.MAX_RANGE = 8
         self.MIN_RANGE = 0
 
     def getMove(self, board):
         while True:
             position = self.console.getPlayerMove()
 
-            if position < self.MIN_RANGE or position > self.MAX_RANGE:
+            total = len(board.board) * len(board.board)
+            if position < self.MIN_RANGE or position >= total:
                 self.console.displayCorrectRangeBoard()
-            elif not self.gamePolicy.isFree(board, position):
+            elif not board.isEmpty(position):
                 self.console.spotNotFree()
             else:
                 break

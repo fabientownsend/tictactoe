@@ -5,7 +5,7 @@ from gamePolicy import GamePolicy
 
 console = ConsoleUI()
 gamePolicy = GamePolicy()
-board = GameBoard()
+board = GameBoard(3)
 gameEngine = GameEngine(console, gamePolicy, board)
 
 gameEngine.createTypeGame()

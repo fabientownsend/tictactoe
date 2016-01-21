@@ -77,21 +77,21 @@ class GameEngine:
 
     def play(self):
         while not self.gameOver:
-            board = self.board.getBoard()
+            board = self.board
             mark = self.currentPlayer.mark
 
             self.console.displayPlayerTurn(mark.value)
             position = self.currentPlayer.getMove(board)
             self.board.setMark(position, mark)
-            self.console.displayBoard(board)
+            self.console.displayBoard(board.board)
 
-            if self.isGameOver(board):
+            if self.isGameOver(board.board):
                 self.displayResult()
             else:
                 self.switchCurrentPlayer()
 
     def isGameOver(self, board):
-        if self.gamePolicy.win(self.currentPlayer.mark, board):
+        if self.gamePolicy.win(board, self.currentPlayer.mark):
             self.winner = self.currentPlayer
             self.gameOver = True
 

@@ -4,42 +4,54 @@ from marksEnum import Marks
 class GamePolicy():
     def checkTie(self, board):
         if (
-            self.allMarksEmpty(board) and not
-            self.win(Marks.nought, board) and not
-            self.win(Marks.cross, board)
+            self.isFull(board) and not
+            self.win(board, Marks.nought) and not
+            self.win(board, Marks.cross)
             ):
             return True
         else:
             return False
 
-    def allMarksEmpty(self, board):
-        for i in board:
-            if i == Marks.empty:
-                return False
+    def isFull(self, board):
+        for row in board:
+            for cell in row:
+                if cell == Marks.empty:
+                    return False
 
         return True
 
-    def isEmpty(self, board):
-        for i in board:
-            if i != Marks.empty:
-                return False
-
-        return True
-
-    def win(self, mark, board):
-        if (
-            (board[0] == mark and board[1] == mark and board[2] == mark) or
-            (board[3] == mark and board[4] == mark and board[5] == mark) or
-            (board[6] == mark and board[7] == mark and board[8] == mark) or
-            (board[0] == mark and board[3] == mark and board[6] == mark) or
-            (board[1] == mark and board[4] == mark and board[7] == mark) or
-            (board[2] == mark and board[5] == mark and board[8] == mark) or
-            (board[0] == mark and board[4] == mark and board[8] == mark) or
-            (board[2] == mark and board[4] == mark and board[6] == mark)
-            ):
+    def win(self, board, mark):
+        for num in range(len(board)):
+            if self.rowMarked(num, board, mark):
+                return True
+            if self.columnMarked(num, board, mark):
+                return True
+        if self.diagonalMarked(0, board, mark):
             return True
-        else:
-            return False
+        if self.diagonalMarked(1, board, mark):
+            return True
+        return False
 
-    def isFree(self, board, i):
-        return board[i] == Marks.empty
+    def rowMarked(self, num, board, mark):
+        for row in board[num]:
+            if not row == mark:
+                return False
+        return True
+
+    def columnMarked(self, num, board, mark):
+        for row in range(len(board[num])):
+            if not board[row][num] == mark:
+                return False
+        return True
+
+    def diagonalMarked(self, num, board, mark):
+        if num == 0:
+            for position in range(len(board)):
+                if not board[position][position] == mark:
+                    return False
+        if num == 1:
+            for position in range(len(board)):
+                if not board[position][len(board) - position - 1] == mark:
+                    return False
+
+        return True

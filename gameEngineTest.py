@@ -15,7 +15,7 @@ class GameEngineTest(unittest.TestCase):
     def setUp(self):
         self.fakeConsole = FakeConsoleUI()
         self.fakeGamePolicy = FakeGamePolicy()
-        self.fakeBoard = GameBoard()
+        self.fakeBoard = GameBoard(3)
         self.gameEngine = GameEngine(self.fakeConsole, self.fakeGamePolicy, self.fakeBoard)
         self.gameEngine.createTypeGame()
 
@@ -125,11 +125,16 @@ class GameEngineTest(unittest.TestCase):
     def testPlay_whenPlayerCrossWinTheParty(self):
         fakePlayer = FakePlayer(Marks.cross)
         self.gameEngine.currentPlayer = fakePlayer
-        self.fakeBoard.board  = [
-            Marks.empty, Marks.cross, Marks.cross,
-            Marks.nought, Marks.nought, Marks.cross,
-            Marks.nought, Marks.cross, Marks.nought
-        ]
+        self.fakeBoard.board[0][0] = Marks.empty
+        self.fakeBoard.board[0][1] = Marks.cross
+        self.fakeBoard.board[0][2] = Marks.cross
+        self.fakeBoard.board[1][0] = Marks.nought
+        self.fakeBoard.board[1][1] = Marks.nought
+        self.fakeBoard.board[1][2] = Marks.cross
+        self.fakeBoard.board[2][0] = Marks.nought
+        self.fakeBoard.board[2][1] = Marks.cross
+        self.fakeBoard.board[2][2] = Marks.nought
+
         self.fakeGamePolicy.responseWin = True
 
         self.gameEngine.play()
@@ -141,11 +146,16 @@ class GameEngineTest(unittest.TestCase):
     def testPlay_whenPlayerNoughtWinTheParty(self):
         fakePlayer = FakePlayer(Marks.nought)
         self.gameEngine.currentPlayer = fakePlayer
-        self.fakeBoard.board  = [
-            Marks.empty, Marks.cross, Marks.cross,
-            Marks.nought, Marks.nought, Marks.cross,
-            Marks.nought, Marks.cross, Marks.nought
-        ]
+        self.fakeBoard.board[0][0] = Marks.empty
+        self.fakeBoard.board[0][1] = Marks.cross
+        self.fakeBoard.board[0][2] = Marks.cross
+        self.fakeBoard.board[1][0] = Marks.nought
+        self.fakeBoard.board[1][1] = Marks.nought
+        self.fakeBoard.board[1][2] = Marks.cross
+        self.fakeBoard.board[2][0] = Marks.nought
+        self.fakeBoard.board[2][1] = Marks.cross
+        self.fakeBoard.board[2][2] = Marks.nought
+
         self.fakeGamePolicy.responseWin = True
 
         self.gameEngine.play()
@@ -157,11 +167,16 @@ class GameEngineTest(unittest.TestCase):
     def testPlay_whenPartyIsATie(self):
         fakePlayer = FakePlayer(Marks.cross)
         self.gameEngine.currentPlayer = fakePlayer
-        self.fakeBoard.board  = [
-            Marks.empty, Marks.nought, Marks.cross,
-            Marks.nought, Marks.nought, Marks.cross,
-            Marks.nought, Marks.cross, Marks.nought
-        ]
+        self.fakeBoard.board[0][0] = Marks.cross
+        self.fakeBoard.board[0][1] = Marks.nought
+        self.fakeBoard.board[0][2] = Marks.cross
+        self.fakeBoard.board[1][0] = Marks.nought
+        self.fakeBoard.board[1][1] = Marks.nought
+        self.fakeBoard.board[1][2] = Marks.cross
+        self.fakeBoard.board[2][0] = Marks.nought
+        self.fakeBoard.board[2][1] = Marks.cross
+        self.fakeBoard.board[2][2] = Marks.nought
+
         self.fakeGamePolicy.responseWin = False
         self.fakeGamePolicy.responseCheckTie = True
 

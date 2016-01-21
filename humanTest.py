@@ -1,6 +1,7 @@
 import unittest
 
 from fakeConsoleUI import FakeConsoleUI
+from gameBoard import GameBoard
 from human import Human
 from marksEnum import Marks
 
@@ -19,14 +20,11 @@ class TestHuman(unittest.TestCase):
 
     def testGetMove_whenCorrectValue(self):
         self.fakeConsoleUI.move = 4
+        self.boardSize = 3
         self.human = Human(Marks.nought, self.fakeConsoleUI)
-        board = [
-            Marks.empty, Marks.empty, Marks.empty,
-            Marks.empty, Marks.empty, Marks.empty,
-            Marks.empty, Marks.empty, Marks.empty
-        ]
+        self.gameBoard = GameBoard(3)
 
-        result = self.human.getMove(board)
+        result = self.human.getMove(self.gameBoard)
         self.assertEqual(result, 4)
 
 if __name__ == '__main__':
