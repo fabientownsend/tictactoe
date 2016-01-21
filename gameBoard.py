@@ -21,7 +21,3 @@ class GameBoard():
 
     def isEmpty(self, position):
         return self.getMark(position) == Marks.empty
-
-class SpotNotEmpty(Exception):
-    def __init__(self):
-        self.msg = 'The spot must be free'
