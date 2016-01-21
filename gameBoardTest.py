@@ -1,7 +1,6 @@
 import unittest
 
 from gameBoard import GameBoard
-from gameBoard import SpotNotEmpty
 from marksEnum import Marks
 
 
