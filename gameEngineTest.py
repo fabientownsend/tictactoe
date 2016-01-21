@@ -186,5 +186,18 @@ class GameEngineTest(unittest.TestCase):
         self.assertTrue(self.gameEngine.gameOver)
         self.assertEqual(self.gameEngine.winner, None)
 
+    def testPlay_whenPlayerSwitch(self):
+        self.fakeGamePolicy.responseWin = False
+        self.fakeGamePolicy.responseCheckTie = False
+        fakePlayerOne = FakePlayer(Marks.cross)
+        fakePlayerTwo = FakePlayer(Marks.nought)
+        self.gameEngine.player1 = fakePlayerOne
+        self.gameEngine.player2 = fakePlayerTwo
+        self.gameEngine.currentPlayer = fakePlayerOne
+
+        self.gameEngine.play()
+        self.assertEqual(self.gameEngine.currentPlayer, fakePlayerTwo)
+
+
 if __name__ == '__main__':
     unittest.main()
