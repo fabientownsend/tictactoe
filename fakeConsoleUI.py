@@ -12,6 +12,9 @@ class FakeConsoleUI:
     def getFirstPlayer(self):
         return 1
 
+    def spotNotFree(self):
+        return None
+
     def displayTypeGame(self):
         return None
 
