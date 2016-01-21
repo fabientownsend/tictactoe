@@ -9,9 +9,6 @@ class ComputerTest(unittest.TestCase):
     def setUp(self):
         self.computer = Computer(Marks.cross)
 
-    def getEmptyBoard(self, boardSize):
-        return [[Marks.empty]*boardSize for n in range(boardSize)]
-
     def testSetMark_whenMarkIsCrossse(self):
         self.computer = Computer(Marks.cross)
         self.assertEqual(self.computer.mark, Marks.cross)
