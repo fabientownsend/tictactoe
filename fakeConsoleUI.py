@@ -2,9 +2,26 @@ class FakeConsoleUI:
     def __init__(self):
         self.passedIntoDisplayTie = False
         self.passedIntoDisplayWinner = False
+        self.playerMovePosition = 0
+        self.VALIDEPLAYERMOVEPOSITION = 0
+        self.passedInThisMethod = False
+        self.passedInDisplayCorrectRangeBoardMethod = False
+        self.passedInSpotNotFreeMethod = False
 
     def getPlayerMove(self):
-        return 4
+        if self.passedInThisMethod:
+            return self.VALIDEPLAYERMOVEPOSITION
+
+        self.passedInThisMethod = True
+        return self.playerMovePosition
+
+    def displayCorrectRangeBoard(self):
+        self.passedInDisplayCorrectRangeBoardMethod = True
+        return None
+
+    def spotNotFree(self):
+        self.passedInSpotNotFreeMethod = True
+        return None
 
     def typeGameSelected(self):
         return 2
