@@ -19,26 +19,25 @@ class TestGameBoard(unittest.TestCase):
 
     def testCreateBoardTest_whenBoardFourByFour(self):
         boardSize = 4
+        emptyGameBoard = self.getEmptyBoard(boardSize)
         gameBoard = GameBoard(boardSize)
         newGameBoard = gameBoard.createBoard()
-        emptyGameBoard = self.getEmptyBoard(boardSize)
         self.assertEqual(newGameBoard, emptyGameBoard)
 
     def testSetMark_whenSpotIsEmpty(self):
-        mark = Marks.cross
-        self.gameBoard.setMark(0, mark)
-        markSetOnBoard = self.gameBoard.getMark(0)
-        self.assertEqual(mark, markSetOnBoard)
+        position = 0
+        self.gameBoard.setMark(position, Marks.cross)
+        markSetOnBoard = self.gameBoard.getMark(position)
+        self.assertEqual(Marks.cross, markSetOnBoard)
 
     def testSetMark_whenOutOfBoard(self):
-        mark = Marks.cross
+        position = 10
         with self.assertRaises(IndexError):
-            self.gameBoard.setMark(10, Marks.cross)
+            self.gameBoard.setMark(position, Marks.cross)
 
     def testIsEmpty_whenSpotIsEmpty(self):
-        mark = Marks.cross
         position = 0
-        self.gameBoard.setMark(position, mark)
+        self.gameBoard.setMark(position, Marks.cross)
         self.assertFalse(self.gameBoard.isEmpty(position))
 
 if __name__ == '__main__':
