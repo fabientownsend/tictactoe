@@ -16,7 +16,10 @@ class GameEngineTest(unittest.TestCase):
         self.fakeConsole = FakeConsoleUI()
         self.fakeGamePolicy = FakeGamePolicy()
         self.fakeBoard = GameBoard(3)
-        self.gameEngine = GameEngine(self.fakeConsole, self.fakeGamePolicy, self.fakeBoard)
+        self.gameEngine = GameEngine(
+            self.fakeConsole,
+            self.fakeGamePolicy,
+            self.fakeBoard)
         self.gameEngine.createTypeGame()
 
     def testCreatePlayer_whenTwoHuman(self):
@@ -60,12 +63,12 @@ class GameEngineTest(unittest.TestCase):
         self.assertFalse(self.gameEngine.gameOver)
 
     def testGetTypeGameSelected_whenSelect2(self):
-        response = self.gameEngine.getTypeGameSelected()
-        self.assertEqual(response, 2)
+        typePartySelected = self.gameEngine.getTypeGameSelected()
+        self.assertEqual(typePartySelected, 2)
 
     def testGetFirstPlayersSelected_whenFirstPlayerPlayer1(self):
-        response = self.gameEngine.getFirstPlayerSlected()
-        self.assertEqual(response, 1)
+        firstPlayerSelected = self.gameEngine.getFirstPlayerSlected()
+        self.assertEqual(firstPlayerSelected, 1)
 
     def testIsGameOver_whenAPlayerWin(self):
         fakeBoard = None
@@ -74,8 +77,7 @@ class GameEngineTest(unittest.TestCase):
         self.fakeGamePolicy.responseWin = True
         self.fakeGamePolicy.responseCheckTie = False
 
-        response = self.gameEngine.isGameOver(fakeBoard)
-        self.assertTrue(response)
+        self.assertTrue(self.gameEngine.isGameOver(fakeBoard))
         self.assertTrue(self.gameEngine.gameOver)
         self.assertFalse(self.gameEngine.tie)
 
@@ -86,8 +88,7 @@ class GameEngineTest(unittest.TestCase):
         self.fakeGamePolicy.responseWin = False
         self.fakeGamePolicy.responseCheckTie = True
 
-        response = self.gameEngine.isGameOver(fakeBoard)
-        self.assertTrue(response)
+        self.assertTrue(self.gameEngine.isGameOver(fakeBoard))
         self.assertTrue(self.gameEngine.tie)
         self.assertTrue(self.gameEngine.gameOver)
 
@@ -98,8 +99,7 @@ class GameEngineTest(unittest.TestCase):
         self.fakeGamePolicy.responseWin = False
         self.fakeGamePolicy.responseCheckTie = False
 
-        response = self.gameEngine.isGameOver(fakeBoard)
-        self.assertFalse(response)
+        self.assertFalse(self.gameEngine.isGameOver(fakeBoard))
         self.assertFalse(self.gameEngine.tie)
         self.assertFalse(self.gameEngine.gameOver)
 
@@ -134,7 +134,6 @@ class GameEngineTest(unittest.TestCase):
         self.fakeBoard.board[2][0] = Marks.nought
         self.fakeBoard.board[2][1] = Marks.cross
         self.fakeBoard.board[2][2] = Marks.nought
-
         self.fakeGamePolicy.responseWin = True
 
         self.gameEngine.play()
@@ -155,7 +154,6 @@ class GameEngineTest(unittest.TestCase):
         self.fakeBoard.board[2][0] = Marks.nought
         self.fakeBoard.board[2][1] = Marks.cross
         self.fakeBoard.board[2][2] = Marks.nought
-
         self.fakeGamePolicy.responseWin = True
 
         self.gameEngine.play()
@@ -176,7 +174,6 @@ class GameEngineTest(unittest.TestCase):
         self.fakeBoard.board[2][0] = Marks.nought
         self.fakeBoard.board[2][1] = Marks.cross
         self.fakeBoard.board[2][2] = Marks.nought
-
         self.fakeGamePolicy.responseWin = False
         self.fakeGamePolicy.responseCheckTie = True
 
@@ -196,8 +193,8 @@ class GameEngineTest(unittest.TestCase):
         self.gameEngine.currentPlayer = fakePlayerOne
 
         self.gameEngine.play()
-        self.assertEqual(self.gameEngine.currentPlayer, fakePlayerTwo)
 
+        self.assertEqual(self.gameEngine.currentPlayer, fakePlayerTwo)
 
 if __name__ == '__main__':
     unittest.main()
