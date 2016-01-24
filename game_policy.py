@@ -1,4 +1,4 @@
-from marksEnum import Marks
+from marks_enum import Marks
 
 
 class GamePolicy():

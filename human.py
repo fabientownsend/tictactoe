@@ -1,4 +1,4 @@
-from consoleUI import InputNotInt
+from console_ui import InputNotInt
 from player import Player
 
 

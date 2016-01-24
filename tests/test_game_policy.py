@@ -1,7 +1,7 @@
 import unittest
 
-from gamePolicy import GamePolicy
-from marksEnum import Marks
+from game_policy import GamePolicy
+from marks_enum import Marks
 
 
 class GamePolicyTest(unittest.TestCase):

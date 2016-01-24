@@ -1,7 +1,7 @@
 from copy import copy
 import random
 
-from marksEnum import Marks
+from marks_enum import Marks
 from player import Player
 
 

@@ -1,7 +1,7 @@
-from consoleUI import ConsoleUI
-from gameBoard import GameBoard
-from gameEngine import GameEngine
-from gamePolicy import GamePolicy
+from console_ui import ConsoleUI
+from game_board import GameBoard
+from game_engine import GameEngine
+from game_policy import GamePolicy
 
 console = ConsoleUI()
 gamePolicy = GamePolicy()

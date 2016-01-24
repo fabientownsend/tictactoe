@@ -1,4 +1,4 @@
-from gamePolicy import GamePolicy
+from game_policy import GamePolicy
 
 
 class Player:

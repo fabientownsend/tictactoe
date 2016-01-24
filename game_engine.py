@@ -1,10 +1,10 @@
 from enum import Enum
 
 from computer import Computer
-from consoleUI import InputNotInt
-from gameBoard import GameBoard
+from console_ui import InputNotInt
+from game_board import GameBoard
 from human import Human
-from marksEnum import Marks
+from marks_enum import Marks
 
 
 class GameType(Enum):

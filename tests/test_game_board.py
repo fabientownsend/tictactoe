@@ -1,7 +1,7 @@
 import unittest
 
-from gameBoard import GameBoard
-from marksEnum import Marks
+from game_board import GameBoard
+from marks_enum import Marks
 
 
 class TestGameBoard(unittest.TestCase):

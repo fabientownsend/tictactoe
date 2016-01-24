@@ -1,14 +1,14 @@
 import unittest
 
 from computer import Computer
-from fakeConsoleUI import FakeConsoleUI
-from fakeGamePolicy import FakeGamePolicy
-from fakePlayer import FakePlayer
-from gameBoard import GameBoard
-from gameEngine import GameEngine
-from gameEngine import PlayersEnum
+from fake_console_ui import FakeConsoleUI
+from fake_game_policy import FakeGamePolicy
+from fake_player import FakePlayer
+from game_board import GameBoard
+from game_engine import GameEngine
+from game_engine import PlayersEnum
 from human import Human
-from marksEnum import Marks
+from marks_enum import Marks
 
 
 class GameEngineTest(unittest.TestCase):

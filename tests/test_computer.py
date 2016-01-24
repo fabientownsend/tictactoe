@@ -1,8 +1,8 @@
 import unittest
 
 from computer import Computer
-from gameBoard import GameBoard
-from marksEnum import Marks
+from game_board import GameBoard
+from marks_enum import Marks
 
 
 class ComputerTest(unittest.TestCase):
