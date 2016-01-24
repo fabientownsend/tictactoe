@@ -2,7 +2,7 @@ import sys
 
 
 class ConsoleUI():
-    def displayTypeGame(self):
+    def display_type_game(self):
         print(
             "Type of game:\n\n"
             "1 - Human v. Human\n"
@@ -10,56 +10,56 @@ class ConsoleUI():
             "3 - Computer v. Computer\n"
         )
 
-    def spotNotFree(self):
+    def spot_not_free(self):
         print("it must be a free spot")
 
-    def displayCorrectRangeBoard(self):
+    def display_correct_range_board(self):
         print("position between 0 and 8")
 
-    def typeGameSelected(self):
+    def type_game_selected(self):
         try:
-            self.typeGame = input("Select your type of game: ")
+            self.type_game = input("Select your type of game: ")
         except KeyboardInterrupt:
             sys.exit()
         except:
-            self.expectedNumber()
-            self.typeGameSelected()
+            self.expected_number()
+            self.type_game_selected()
 
-        return self.typeGame
+        return self.type_game
 
-    def displayWhichStart(self):
+    def display_which_start(self):
         print(
             "Which player start:\n\n"
             "1 - Player 1\n"
             "2 - Player 2\n"
         )
 
-    def getFirstPlayer(self):
+    def get_first_player(self):
         try:
-            self.firstPlayer = input("Which player should start? ")
+            self.first_player = input("Which player should start? ")
         except KeyboardInterrupt:
             sys.exit()
         except:
-            self.expectedNumber()
-            self.getFirstPlayer()
+            self.expected_number()
+            self.get_first_player()
 
-        return self.firstPlayer
+        return self.first_player
 
-    def displayPlayerTurn(self, idPlayer):
-        print("Player " + str(idPlayer) + " turn")
+    def display_player_turn(self, id_player):
+        print("Player " + str(id_player) + " turn")
 
-    def getPlayerMove(self):
+    def get_player_move(self):
         try:
             position = input("Which position: ")
         except KeyboardInterrupt:
             sys.exit()
         except:
-            self.expectedNumber()
-            self.getPlayerMove()
+            self.expected_number()
+            self.get_player_move()
 
         return position
 
-    def displayBoard(self, board):
+    def display_board(self, board):
         for row in range(len(board)):
             for column in range(len(board)):
                 sys.stdout.write("  " + board[row][column].value + "  ")
@@ -71,15 +71,11 @@ class ConsoleUI():
                         sys.stdout.write("-"*6)
                 print("\n")
 
-    def displayWinner(self, winner):
+    def display_winner(self, winner):
         print("Player " + str(winner) + " won the party")
 
-    def displayTie(self):
+    def display_tie(self):
         print("It's a tie, no one won!")
 
-    def expectedNumber(self):
+    def expected_number(self):
         print("A number is expected")
-
-class InputNotInt(Exception):
-    def __init__(self):
-        self.msg = "Input from console must be only int"

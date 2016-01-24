@@ -19,32 +19,32 @@ class TestHuman(unittest.TestCase):
         self.assertEqual(self.human.mark, Marks.nought)
 
     def testGetMove_whenCorrectValue(self):
-        self.fakeConsoleUI.playerMovePosition = 5
+        self.fakeConsoleUI.player_move_position = 5
         self.human = Human(Marks.nought, self.fakeConsoleUI)
         self.gameBoard = GameBoard(3)
 
-        humanPlayerMove = self.human.getMove(self.gameBoard)
+        humanPlayerMove = self.human.get_move(self.gameBoard)
 
         self.assertEqual(humanPlayerMove, 5)
 
     def testGetMove_whenGetMoveTooLow(self):
-        self.fakeConsoleUI.playerMovePosition = -10
+        self.fakeConsoleUI.player_move_position = -10
         self.human = Human(Marks.nought, self.fakeConsoleUI)
         self.gameBoard = GameBoard(3)
 
-        self.human.getMove(self.gameBoard)
+        self.human.get_move(self.gameBoard)
 
-        self.assertTrue(self.fakeConsoleUI.passedDisplayRangeBoardMethod)
+        self.assertTrue(self.fakeConsoleUI.passed_in_wrong_range)
 
     def testGetMove_whenItsAnUsedSpot(self):
-        self.fakeConsoleUI.playerMovePosition = 1
+        self.fakeConsoleUI.player_move_position = 1
         self.human = Human(Marks.nought, self.fakeConsoleUI)
         self.gameBoard = GameBoard(3)
-        self.gameBoard.setMark(1, Marks.cross)
+        self.gameBoard.set_mark(1, Marks.cross)
 
-        self.human.getMove(self.gameBoard)
+        self.human.get_move(self.gameBoard)
 
-        self.assertTrue(self.fakeConsoleUI.passedInSpotNotFreeMethod)
+        self.assertTrue(self.fakeConsoleUI.passed_in_spot_not_free)
 
 if __name__ == '__main__':
     unittest.main()

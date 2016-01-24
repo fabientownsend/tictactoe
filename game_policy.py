@@ -2,9 +2,9 @@ from marks_enum import Marks
 
 
 class GamePolicy():
-    def checkTie(self, board):
+    def check_tie(self, board):
         if (
-            self.isFull(board) and not
+            self.is_full(board) and not
             self.win(board, Marks.nought) and not
             self.win(board, Marks.cross)
             ):
@@ -12,7 +12,7 @@ class GamePolicy():
         else:
             return False
 
-    def isFull(self, board):
+    def is_full(self, board):
         for row in board:
             for cell in row:
                 if cell == Marks.empty:
@@ -22,29 +22,29 @@ class GamePolicy():
 
     def win(self, board, mark):
         for num in range(len(board)):
-            if self.rowMarked(num, board, mark):
+            if self.row_win(num, board, mark):
                 return True
-            if self.columnMarked(num, board, mark):
+            if self.column_win(num, board, mark):
                 return True
-        if self.diagonalMarked(0, board, mark):
+        if self.diagonal_win(0, board, mark):
             return True
-        if self.diagonalMarked(1, board, mark):
+        if self.diagonal_win(1, board, mark):
             return True
         return False
 
-    def rowMarked(self, num, board, mark):
+    def row_win(self, num, board, mark):
         for row in board[num]:
             if not row == mark:
                 return False
         return True
 
-    def columnMarked(self, num, board, mark):
+    def column_win(self, num, board, mark):
         for row in range(len(board[num])):
             if not board[row][num] == mark:
                 return False
         return True
 
-    def diagonalMarked(self, num, board, mark):
+    def diagonal_win(self, num, board, mark):
         if num == 0:
             for position in range(len(board)):
                 if not board[position][position] == mark:

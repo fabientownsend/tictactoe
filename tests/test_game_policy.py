@@ -13,12 +13,12 @@ class GamePolicyTest(unittest.TestCase):
 
     def testIsFull_whenItsEmpty(self):
         emptyBoard = self.getEmptyBoardSize(3)
-        self.assertFalse(self.gamePolicy.isFull(emptyBoard))
+        self.assertFalse(self.gamePolicy.is_full(emptyBoard))
 
     def testIsFull_whenItsNotEmpty(self):
         board = self.getEmptyBoardSize(3)
         board[0][0] = Marks.cross
-        self.assertFalse(self.gamePolicy.isFull(board))
+        self.assertFalse(self.gamePolicy.is_full(board))
 
     def testWin_whenRowsAreWin(self):
         mark = Marks.cross
@@ -27,7 +27,7 @@ class GamePolicyTest(unittest.TestCase):
         for row in range(len(board)):
             board = self.setMarkRow(board, mark, row)
 
-            self.assertTrue(self.gamePolicy.rowMarked(row, board, mark))
+            self.assertTrue(self.gamePolicy.row_win(row, board, mark))
             self.assertTrue(self.gamePolicy.win(board, Marks.cross))
 
     def setMarkRow(self, board, mark, row):
@@ -43,7 +43,7 @@ class GamePolicyTest(unittest.TestCase):
         for column in range(len(board)):
             board = self.setMarkColumn(board, mark, column)
 
-            self.assertTrue(self.gamePolicy.columnMarked(column, board, mark))
+            self.assertTrue(self.gamePolicy.column_win(column, board, mark))
             self.assertTrue(self.gamePolicy.win(board, Marks.cross))
 
     def setMarkColumn(self, board, mark, column):
@@ -61,7 +61,7 @@ class GamePolicyTest(unittest.TestCase):
         for position in range(boardSize):
             board[position][position] = mark
 
-        self.assertTrue(self.gamePolicy.diagonalMarked(diagonal, board, mark))
+        self.assertTrue(self.gamePolicy.diagonal_win(diagonal, board, mark))
         self.assertTrue(self.gamePolicy.win(board, mark))
 
     def testWin_whenDialTwoWin(self):
@@ -73,7 +73,7 @@ class GamePolicyTest(unittest.TestCase):
         for position in range(boardSize):
             board[position][boardSize - position - 1] = mark
 
-        self.assertTrue(self.gamePolicy.diagonalMarked(diagonal, board, mark))
+        self.assertTrue(self.gamePolicy.diagonal_win(diagonal, board, mark))
         self.assertTrue(self.gamePolicy.win(board, mark))
 
     def testCheckTie_whenItsTie(self):
@@ -88,7 +88,7 @@ class GamePolicyTest(unittest.TestCase):
         board[2][1] = Marks.cross
         board[2][2] = Marks.nought
 
-        self.assertTrue(self.gamePolicy.checkTie(board))
+        self.assertTrue(self.gamePolicy.check_tie(board))
 
     def testCheckTie_whenBoardIsNotFull(self):
         board = self.getEmptyBoardSize(3)
@@ -102,7 +102,7 @@ class GamePolicyTest(unittest.TestCase):
         board[2][1] = Marks.cross
         board[2][2] = Marks.nought
 
-        self.assertFalse(self.gamePolicy.checkTie(board))
+        self.assertFalse(self.gamePolicy.check_tie(board))
 
     def testCheckTie_whenItsNotTieButWin(self):
         board = self.getEmptyBoardSize(3)
@@ -116,7 +116,7 @@ class GamePolicyTest(unittest.TestCase):
         board[2][1] = Marks.cross
         board[2][2] = Marks.cross
 
-        self.assertFalse(self.gamePolicy.checkTie(board))
+        self.assertFalse(self.gamePolicy.check_tie(board))
 
 if __name__ == '__main__':
     unittest.main()

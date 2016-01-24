@@ -6,5 +6,5 @@ class Player:
         self.gamePolicy = GamePolicy()
         self.mark = mark
 
-    def getMove(self, board):
+    def get_move(self, board):
         raise NotImplementedError()

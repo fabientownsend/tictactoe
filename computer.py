@@ -6,55 +6,55 @@ from player import Player
 
 
 class Computer(Player):
-    def getMove(self, board):
-        bestMove = 0
-        bestValue = -100
+    def get_move(self, board):
+        best_move = 0
+        best_value = -100
 
         total = len(board.board) * len(board.board)
         for i in range(total):
-            if board.isEmpty(i):
-                board.setMark(i, self.mark)
+            if board.is_empty(i):
+                board.set_mark(i, self.mark)
                 value = self.minimax(self.switch(self.mark), board)
-                board.setMark(i, Marks.empty)
+                board.set_mark(i, Marks.empty)
 
-                if value > bestValue:
-                    bestMove = i
-                    bestValue = value
+                if value > best_value:
+                    best_move = i
+                    best_value = value
 
-        return bestMove
+        return best_move
 
     def minimax(self, mark, board):
         if self.gamePolicy.win(board.board, self.mark):
             return 1
         elif self.gamePolicy.win(board.board, self.switch(self.mark)):
             return -1
-        elif self.gamePolicy.checkTie(board.board):
+        elif self.gamePolicy.check_tie(board.board):
             return 0
 
         if mark == self.mark:
-            bestValue = -100
+            best_value = -100
 
             total = len(board.board) * len(board.board)
             for i in range(total):
-                if board.isEmpty(i):
-                    board.setMark(i, mark)
+                if board.is_empty(i):
+                    board.set_mark(i, mark)
                     val = self.minimax(self.switch(mark), board)
-                    board.setMark(i, Marks.empty)
-                    bestValue = max(val, bestValue)
+                    board.set_mark(i, Marks.empty)
+                    best_value = max(val, best_value)
 
-            return bestValue
+            return best_value
         else:
-            bestValue = 100
+            best_value = 100
 
             total = len(board.board) * len(board.board)
             for i in range(total):
-                if board.isEmpty(i):
-                    board.setMark(i, mark)
+                if board.is_empty(i):
+                    board.set_mark(i, mark)
                     val = self.minimax(self.switch(mark), board)
-                    board.setMark(i, Marks.empty)
-                    bestValue = min(val, bestValue)
+                    board.set_mark(i, Marks.empty)
+                    best_value = min(val, best_value)
 
-            return bestValue
+            return best_value
 
     def switch(self, mark):
         if mark == Marks.cross:

@@ -13,188 +13,188 @@ from marks_enum import Marks
 
 class GameEngineTest(unittest.TestCase):
     def setUp(self):
-        self.fakeConsole = FakeConsoleUI()
-        self.fakeGamePolicy = FakeGamePolicy()
-        self.fakeBoard = GameBoard(3)
-        self.gameEngine = GameEngine(
-            self.fakeConsole,
-            self.fakeGamePolicy,
-            self.fakeBoard)
-        self.gameEngine.createTypeGame()
+        self.fake_console = FakeConsoleUI()
+        self.fake_game_policy = FakeGamePolicy()
+        self.fake_board = GameBoard(3)
+        self.game_engine = GameEngine(
+            self.fake_console,
+            self.fake_game_policy,
+            self.fake_board)
+        self.game_engine.create_type_game()
 
     def testCreatePlayer_whenTwoHuman(self):
-        self.gameEngine.createPlayersTypeGame(1)
-        self.assertTrue(isinstance(self.gameEngine.player1, Human))
-        self.assertTrue(isinstance(self.gameEngine.player2, Human))
+        self.game_engine.create_players_type_game(1)
+        self.assertTrue(isinstance(self.game_engine.player_1, Human))
+        self.assertTrue(isinstance(self.game_engine.player_2, Human))
 
     def testCreatePlayer_whenHumanAndComputer(self):
-        self.gameEngine.createPlayersTypeGame(2)
-        self.assertTrue(isinstance(self.gameEngine.player1, Human))
-        self.assertTrue(isinstance(self.gameEngine.player2, Computer))
+        self.game_engine.create_players_type_game(2)
+        self.assertTrue(isinstance(self.game_engine.player_1, Human))
+        self.assertTrue(isinstance(self.game_engine.player_2, Computer))
 
     def testCreatePlayer_whenTwoComputer(self):
-        self.gameEngine.createPlayersTypeGame(3)
-        self.assertTrue(isinstance(self.gameEngine.player1, Computer))
-        self.assertTrue(isinstance(self.gameEngine.player2, Computer))
+        self.game_engine.create_players_type_game(3)
+        self.assertTrue(isinstance(self.game_engine.player_1, Computer))
+        self.assertTrue(isinstance(self.game_engine.player_2, Computer))
 
     def testSetFirstPlayer_whenFirstPlayerIsPlayer1(self):
-        self.gameEngine.createPlayersTypeGame(1)
-        self.gameEngine.setFirstPlayer(1)
-        self.assertEqual(self.gameEngine.currentPlayer, self.gameEngine.player1)
+        self.game_engine.create_players_type_game(1)
+        self.game_engine.set_first_player(1)
+        self.assertEqual(self.game_engine.current_player, self.game_engine.player_1)
 
     def testSetFirstPlayer_whenFirstPlayerIsPlayer2(self):
-        self.gameEngine.createPlayersTypeGame(2)
-        self.gameEngine.setFirstPlayer(2)
-        self.assertEqual(self.gameEngine.currentPlayer, self.gameEngine.player2)
+        self.game_engine.create_players_type_game(2)
+        self.game_engine.set_first_player(2)
+        self.assertEqual(self.game_engine.current_player, self.game_engine.player_2)
 
     def testSwitchPlayer_whenCurrentPlayerWasPlayer1(self):
-        self.gameEngine.createPlayersTypeGame(2)
-        self.gameEngine.currentPlayer = self.gameEngine.player1
-        self.gameEngine.switchCurrentPlayer()
-        self.assertEqual(self.gameEngine.currentPlayer, self.gameEngine.player2)
+        self.game_engine.create_players_type_game(2)
+        self.game_engine.current_player = self.game_engine.player_1
+        self.game_engine.switch_current_player()
+        self.assertEqual(self.game_engine.current_player, self.game_engine.player_2)
 
     def testSwitchPlayer_whenCurrentPlayerWasPlayer2(self):
-        self.gameEngine.createPlayersTypeGame(2)
-        self.gameEngine.currentPlayer = self.gameEngine.player2
-        self.gameEngine.switchCurrentPlayer()
-        self.assertEqual(self.gameEngine.currentPlayer, self.gameEngine.player1)
+        self.game_engine.create_players_type_game(2)
+        self.game_engine.current_player = self.game_engine.player_2
+        self.game_engine.switch_current_player()
+        self.assertEqual(self.game_engine.current_player, self.game_engine.player_1)
 
     def testWin_whenItsNotWin(self):
-        self.assertFalse(self.gameEngine.gameOver)
+        self.assertFalse(self.game_engine.game_over)
 
     def testGetTypeGameSelected_whenSelect2(self):
-        typePartySelected = self.gameEngine.getTypeGameSelected()
+        typePartySelected = self.game_engine.get_type_game_selected()
         self.assertEqual(typePartySelected, 2)
 
     def testGetFirstPlayersSelected_whenFirstPlayerPlayer1(self):
-        firstPlayerSelected = self.gameEngine.getFirstPlayerSlected()
-        self.assertEqual(firstPlayerSelected, 1)
+        first_player_selected = self.game_engine.get_first_player_selected()
+        self.assertEqual(first_player_selected, 1)
 
     def testIsGameOver_whenAPlayerWin(self):
-        fakeBoard = None
-        self.gameEngine.createPlayersTypeGame(2)
-        self.gameEngine.setFirstPlayer(2)
-        self.fakeGamePolicy.responseWin = True
-        self.fakeGamePolicy.responseCheckTie = False
+        fake_board = None
+        self.game_engine.create_players_type_game(2)
+        self.game_engine.set_first_player(2)
+        self.fake_game_policy.response_win = True
+        self.fake_game_policy.response_check_tie = False
 
-        self.assertTrue(self.gameEngine.isGameOver(fakeBoard))
-        self.assertTrue(self.gameEngine.gameOver)
-        self.assertFalse(self.gameEngine.tie)
+        self.assertTrue(self.game_engine.is_game_over(fake_board))
+        self.assertTrue(self.game_engine.game_over)
+        self.assertFalse(self.game_engine.tie)
 
     def testIsGameOver_whenItsATie(self):
-        fakeBoard = None
-        self.gameEngine.createPlayersTypeGame(2)
-        self.gameEngine.setFirstPlayer(2)
-        self.fakeGamePolicy.responseWin = False
-        self.fakeGamePolicy.responseCheckTie = True
+        fake_board = None
+        self.game_engine.create_players_type_game(2)
+        self.game_engine.set_first_player(2)
+        self.fake_game_policy.response_win = False
+        self.fake_game_policy.response_check_tie = True
 
-        self.assertTrue(self.gameEngine.isGameOver(fakeBoard))
-        self.assertTrue(self.gameEngine.tie)
-        self.assertTrue(self.gameEngine.gameOver)
+        self.assertTrue(self.game_engine.is_game_over(fake_board))
+        self.assertTrue(self.game_engine.tie)
+        self.assertTrue(self.game_engine.game_over)
 
     def testIsGameOver_whenItsNotGameOverNeitherTie(self):
-        fakeBoard = None
-        self.gameEngine.createPlayersTypeGame(2)
-        self.gameEngine.setFirstPlayer(2)
-        self.fakeGamePolicy.responseWin = False
-        self.fakeGamePolicy.responseCheckTie = False
+        fake_board = None
+        self.game_engine.create_players_type_game(2)
+        self.game_engine.set_first_player(2)
+        self.fake_game_policy.response_win = False
+        self.fake_game_policy.response_check_tie = False
 
-        self.assertFalse(self.gameEngine.isGameOver(fakeBoard))
-        self.assertFalse(self.gameEngine.tie)
-        self.assertFalse(self.gameEngine.gameOver)
+        self.assertFalse(self.game_engine.is_game_over(fake_board))
+        self.assertFalse(self.game_engine.tie)
+        self.assertFalse(self.game_engine.game_over)
 
     def testCreateTypeGame_whenCreateGameHumanVsComputer(self):
-        self.assertTrue(isinstance(self.gameEngine.player1, Human))
-        self.assertTrue(isinstance(self.gameEngine.player2, Computer))
+        self.assertTrue(isinstance(self.game_engine.player_1, Human))
+        self.assertTrue(isinstance(self.game_engine.player_2, Computer))
 
     def testDefineFirstPlayer(self):
-        self.gameEngine.defineFirstPlayer()
-        self.assertEqual(self.gameEngine.currentPlayer, self.gameEngine.player1)
+        self.game_engine.define_first_player()
+        self.assertEqual(self.game_engine.current_player, self.game_engine.player_1)
 
     def testDisplayResult_whenItsATie(self):
-        self.gameEngine.tie = True
-        self.gameEngine.displayResult()
-        self.assertTrue(self.fakeConsole.passedIntoDisplayTie)
+        self.game_engine.tie = True
+        self.game_engine.display_result()
+        self.assertTrue(self.fake_console.passed_in_display_tie)
 
     def testDisplayResult_whenAPlayerWin(self):
-        self.gameEngine.tie = False
-        self.gameEngine.winner = self.gameEngine.player1
-        self.gameEngine.displayResult()
-        self.assertTrue(self.fakeConsole.passedIntoDisplayWinner)
+        self.game_engine.tie = False
+        self.game_engine.winner = self.game_engine.player_1
+        self.game_engine.display_result()
+        self.assertTrue(self.fake_console.passed_in_display_winner)
 
     def testPlay_whenPlayerCrossWinTheParty(self):
         fakePlayer = FakePlayer(Marks.cross)
-        self.gameEngine.currentPlayer = fakePlayer
-        self.fakeBoard.board[0][0] = Marks.empty
-        self.fakeBoard.board[0][1] = Marks.cross
-        self.fakeBoard.board[0][2] = Marks.cross
-        self.fakeBoard.board[1][0] = Marks.nought
-        self.fakeBoard.board[1][1] = Marks.nought
-        self.fakeBoard.board[1][2] = Marks.cross
-        self.fakeBoard.board[2][0] = Marks.nought
-        self.fakeBoard.board[2][1] = Marks.cross
-        self.fakeBoard.board[2][2] = Marks.nought
-        self.fakeGamePolicy.responseWin = True
+        self.game_engine.current_player = fakePlayer
+        self.fake_board.board[0][0] = Marks.empty
+        self.fake_board.board[0][1] = Marks.cross
+        self.fake_board.board[0][2] = Marks.cross
+        self.fake_board.board[1][0] = Marks.nought
+        self.fake_board.board[1][1] = Marks.nought
+        self.fake_board.board[1][2] = Marks.cross
+        self.fake_board.board[2][0] = Marks.nought
+        self.fake_board.board[2][1] = Marks.cross
+        self.fake_board.board[2][2] = Marks.nought
+        self.fake_game_policy.response_win = True
 
-        self.gameEngine.play()
+        self.game_engine.play()
 
-        self.assertFalse(self.gameEngine.tie)
-        self.assertTrue(self.gameEngine.gameOver)
-        self.assertEqual(self.gameEngine.winner, fakePlayer)
+        self.assertFalse(self.game_engine.tie)
+        self.assertTrue(self.game_engine.game_over)
+        self.assertEqual(self.game_engine.winner, fakePlayer)
 
     def testPlay_whenPlayerNoughtWinTheParty(self):
         fakePlayer = FakePlayer(Marks.nought)
-        self.gameEngine.currentPlayer = fakePlayer
-        self.fakeBoard.board[0][0] = Marks.empty
-        self.fakeBoard.board[0][1] = Marks.cross
-        self.fakeBoard.board[0][2] = Marks.cross
-        self.fakeBoard.board[1][0] = Marks.nought
-        self.fakeBoard.board[1][1] = Marks.nought
-        self.fakeBoard.board[1][2] = Marks.cross
-        self.fakeBoard.board[2][0] = Marks.nought
-        self.fakeBoard.board[2][1] = Marks.cross
-        self.fakeBoard.board[2][2] = Marks.nought
-        self.fakeGamePolicy.responseWin = True
+        self.game_engine.current_player = fakePlayer
+        self.fake_board.board[0][0] = Marks.empty
+        self.fake_board.board[0][1] = Marks.cross
+        self.fake_board.board[0][2] = Marks.cross
+        self.fake_board.board[1][0] = Marks.nought
+        self.fake_board.board[1][1] = Marks.nought
+        self.fake_board.board[1][2] = Marks.cross
+        self.fake_board.board[2][0] = Marks.nought
+        self.fake_board.board[2][1] = Marks.cross
+        self.fake_board.board[2][2] = Marks.nought
+        self.fake_game_policy.response_win = True
 
-        self.gameEngine.play()
+        self.game_engine.play()
 
-        self.assertFalse(self.gameEngine.tie)
-        self.assertTrue(self.gameEngine.gameOver)
-        self.assertEqual(self.gameEngine.winner, fakePlayer)
+        self.assertFalse(self.game_engine.tie)
+        self.assertTrue(self.game_engine.game_over)
+        self.assertEqual(self.game_engine.winner, fakePlayer)
 
     def testPlay_whenPartyIsATie(self):
         fakePlayer = FakePlayer(Marks.cross)
-        self.gameEngine.currentPlayer = fakePlayer
-        self.fakeBoard.board[0][0] = Marks.cross
-        self.fakeBoard.board[0][1] = Marks.nought
-        self.fakeBoard.board[0][2] = Marks.cross
-        self.fakeBoard.board[1][0] = Marks.nought
-        self.fakeBoard.board[1][1] = Marks.nought
-        self.fakeBoard.board[1][2] = Marks.cross
-        self.fakeBoard.board[2][0] = Marks.nought
-        self.fakeBoard.board[2][1] = Marks.cross
-        self.fakeBoard.board[2][2] = Marks.nought
-        self.fakeGamePolicy.responseWin = False
-        self.fakeGamePolicy.responseCheckTie = True
+        self.game_engine.current_player = fakePlayer
+        self.fake_board.board[0][0] = Marks.cross
+        self.fake_board.board[0][1] = Marks.nought
+        self.fake_board.board[0][2] = Marks.cross
+        self.fake_board.board[1][0] = Marks.nought
+        self.fake_board.board[1][1] = Marks.nought
+        self.fake_board.board[1][2] = Marks.cross
+        self.fake_board.board[2][0] = Marks.nought
+        self.fake_board.board[2][1] = Marks.cross
+        self.fake_board.board[2][2] = Marks.nought
+        self.fake_game_policy.response_win = False
+        self.fake_game_policy.response_check_tie = True
 
-        self.gameEngine.play()
+        self.game_engine.play()
 
-        self.assertTrue(self.gameEngine.tie)
-        self.assertTrue(self.gameEngine.gameOver)
-        self.assertEqual(self.gameEngine.winner, None)
+        self.assertTrue(self.game_engine.tie)
+        self.assertTrue(self.game_engine.game_over)
+        self.assertEqual(self.game_engine.winner, None)
 
     def testPlay_whenPlayerSwitch(self):
-        self.fakeGamePolicy.responseWin = False
-        self.fakeGamePolicy.responseCheckTie = False
+        self.fake_game_policy.response_win = False
+        self.fake_game_policy.response_check_tie = False
         fakePlayerOne = FakePlayer(Marks.cross)
         fakePlayerTwo = FakePlayer(Marks.nought)
-        self.gameEngine.player1 = fakePlayerOne
-        self.gameEngine.player2 = fakePlayerTwo
-        self.gameEngine.currentPlayer = fakePlayerOne
+        self.game_engine.player_1 = fakePlayerOne
+        self.game_engine.player_2 = fakePlayerTwo
+        self.game_engine.current_player = fakePlayerOne
 
-        self.gameEngine.play()
+        self.game_engine.play()
 
-        self.assertEqual(self.gameEngine.currentPlayer, fakePlayerTwo)
+        self.assertEqual(self.game_engine.current_player, fakePlayerTwo)
 
 if __name__ == '__main__':
     unittest.main()

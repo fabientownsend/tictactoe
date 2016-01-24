@@ -8,6 +8,6 @@ gamePolicy = GamePolicy()
 board = GameBoard(3)
 gameEngine = GameEngine(console, gamePolicy, board)
 
-gameEngine.createTypeGame()
-gameEngine.defineFirstPlayer()
+gameEngine.create_type_game()
+gameEngine.define_first_player()
 gameEngine.play()

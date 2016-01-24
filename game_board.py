@@ -2,22 +2,22 @@ from marks_enum import Marks
 
 
 class GameBoard():
-    def __init__(self, boardSize):
-        self.boardSize = boardSize
-        self.board = self.createBoard()
+    def __init__(self, board_size):
+        self.board_size = board_size
+        self.board = self.create_board()
 
-    def createBoard(self):
-        return [[Marks.empty]*self.boardSize for n in range(self.boardSize)]
+    def create_board(self):
+        return [[Marks.empty]*self.board_size for n in range(self.board_size)]
 
-    def setMark(self, position, mark):
-        row =  position/self.boardSize
-        column = position - row*self.boardSize
+    def set_mark(self, position, mark):
+        row =  position/self.board_size
+        column = position - row*self.board_size
         self.board[row][column] = mark
 
-    def getMark(self, position):
-        row =  position/self.boardSize
-        column = position - row*self.boardSize
+    def get_mark(self, position):
+        row =  position/self.board_size
+        column = position - row*self.board_size
         return self.board[row][column]
 
-    def isEmpty(self, position):
-        return self.getMark(position) == Marks.empty
+    def is_empty(self, position):
+        return self.get_mark(position) == Marks.empty

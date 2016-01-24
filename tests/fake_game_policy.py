@@ -2,16 +2,16 @@ import itertools
 
 class FakeGamePolicy:
     def __init__(self):
-        self.responseWin = False
-        self.responseCheckTie = False
-        self.passedInThisMethod = False
+        self.response_win = False
+        self.response_check_tie = False
+        self.passed_in_this_method = False
 
     def win(self, mark, board):
-        if self.passedInThisMethod:
+        if self.passed_in_this_method:
             return True
 
-        self.passedInThisMethod = True
-        return self.responseWin
+        self.passed_in_this_method = True
+        return self.response_win
 
-    def checkTie(self, board):
-        return self.responseCheckTie
+    def check_tie(self, board):
+        return self.response_check_tie

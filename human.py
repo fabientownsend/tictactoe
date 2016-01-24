@@ -1,4 +1,3 @@
-from console_ui import InputNotInt
 from player import Player
 
 
@@ -8,17 +7,17 @@ class Human(Player):
         self.console = console
         self.MIN_RANGE = 0
 
-    def getMove(self, board):
+    def get_move(self, board):
         requestMove = True
 
         while requestMove:
-            position = self.console.getPlayerMove()
+            position = self.console.get_player_move()
 
             total = len(board.board) * len(board.board)
             if position < self.MIN_RANGE or position >= total:
-                self.console.displayCorrectRangeBoard()
-            elif not board.isEmpty(position):
-                self.console.spotNotFree()
+                self.console.display_correct_range_board()
+            elif not board.is_empty(position):
+                self.console.spot_not_free()
             else:
                 requestMove = False
 
