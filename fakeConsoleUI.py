@@ -5,7 +5,7 @@ class FakeConsoleUI:
         self.playerMovePosition = 0
         self.VALIDEPLAYERMOVEPOSITION = 0
         self.passedInThisMethod = False
-        self.passedInDisplayCorrectRangeBoardMethod = False
+        self.passedDisplayRangeBoardMethod = False
         self.passedInSpotNotFreeMethod = False
 
     def getPlayerMove(self):
@@ -16,7 +16,7 @@ class FakeConsoleUI:
         return self.playerMovePosition
 
     def displayCorrectRangeBoard(self):
-        self.passedInDisplayCorrectRangeBoardMethod = True
+        self.passedDisplayRangeBoardMethod = True
         return None
 
     def spotNotFree(self):
