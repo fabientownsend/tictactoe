@@ -33,8 +33,19 @@ $ python main.py
 ```
 
 ## Test the application
+**Running all tests:**
 ```bash
-$ python -m unittest discover --pattern=*Test.py
+$ python -m unittest discover
+```
+
+**Running a single test class:**
+```bash
+$ python -m unittest tests.test_comuter
+```
+
+**Running a single test method:**
+```bash
+$ python -m unittest tests.test_comuter.ComputerTest.testSetMark_whenMarkIsCross
 ```
 
 ## Usage
