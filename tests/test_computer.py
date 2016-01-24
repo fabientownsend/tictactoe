@@ -9,7 +9,7 @@ class ComputerTest(unittest.TestCase):
     def setUp(self):
         self.computer = Computer(Marks.cross)
 
-    def testSetMark_whenMarkIsCrossse(self):
+    def testSetMark_whenMarkIsCross(self):
         self.computer = Computer(Marks.cross)
         self.assertEqual(self.computer.mark, Marks.cross)
 
