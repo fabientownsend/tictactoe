@@ -8,117 +8,76 @@ class GamePolicyTest(unittest.TestCase):
     def setUp(self):
         self.gamePolicy = GamePolicy()
 
-    def getEmptyBoard(self, boardSize):
+    def getEmptyBoardSize(self, boardSize):
         return [[Marks.empty]*boardSize for n in range(boardSize)]
 
     def testIsFull_whenItsEmpty(self):
-        emptyBoard = self.getEmptyBoard(3)
+        emptyBoard = self.getEmptyBoardSize(3)
         self.assertFalse(self.gamePolicy.isFull(emptyBoard))
 
     def testIsFull_whenItsNotEmpty(self):
-        board = self.getEmptyBoard(3)
+        board = self.getEmptyBoardSize(3)
         board[0][0] = Marks.cross
         self.assertFalse(self.gamePolicy.isFull(board))
 
-    def testWin_whenLineOneWin(self):
-        boardSize = 3
-        rowOne = 0
-        board = self.getEmptyBoard(boardSize)
-        for column in range(boardSize):
-            board[rowOne][column] = Marks.cross
+    def testWin_whenRowsAreWin(self):
+        mark = Marks.cross
+        board = self.getEmptyBoardSize(3)
 
-        isWinningRow = self.gamePolicy.rowMarked(rowOne, board, Marks.cross)
-        isWinningBoard = self.gamePolicy.win(board, Marks.cross)
-        self.assertTrue(isWinningRow)
-        self.assertTrue(isWinningBoard)
+        for row in range(len(board)):
+            board = self.setMarkRow(board, mark, row)
 
-    def testWin_whenLineTwoWin(self):
-        boardSize = 3
-        rowTwo = 1
-        board = self.getEmptyBoard(boardSize)
-        for column in range(boardSize):
-            board[rowTwo][column] = Marks.cross
+            self.assertTrue(self.gamePolicy.rowMarked(row, board, mark))
+            self.assertTrue(self.gamePolicy.win(board, Marks.cross))
 
-        isWinningRow = self.gamePolicy.rowMarked(rowTwo, board, Marks.cross)
-        isWinningBoard = self.gamePolicy.win(board, Marks.cross)
-        self.assertTrue(isWinningRow)
-        self.assertTrue(isWinningBoard)
+    def setMarkRow(self, board, mark, row):
+        for column in range(len(board)):
+            board[row][column] = mark
 
-    def testWin_whenLineThreeWin(self):
-        boardSize = 3
-        rowThree = 2
-        board = self.getEmptyBoard(boardSize)
-        for column in range(boardSize):
-            board[rowThree][column] = Marks.cross
+        return board
 
-        isWinningRow = self.gamePolicy.rowMarked(rowThree, board, Marks.cross)
-        isWinningBoard = self.gamePolicy.win(board, Marks.cross)
-        self.assertTrue(isWinningRow)
-        self.assertTrue(isWinningBoard)
+    def testWin_whenColumnsAreWin(self):
+        mark = Marks.cross
+        board = self.getEmptyBoardSize(3)
 
-    def testWin_whenColumnsOneWin(self):
-        boardSize = 3
-        columnOne = 0
-        board = self.getEmptyBoard(boardSize)
-        for row in range(boardSize):
-            board[row][columnOne] = Marks.cross
+        for column in range(len(board)):
+            board = self.setMarkColumn(board, mark, column)
 
-        isWinningColumn = self.gamePolicy.columnMarked(columnOne, board, Marks.cross)
-        isWinningBoard = self.gamePolicy.win(board, Marks.cross)
-        self.assertTrue(isWinningColumn)
-        self.assertTrue(isWinningBoard)
+            self.assertTrue(self.gamePolicy.columnMarked(column, board, mark))
+            self.assertTrue(self.gamePolicy.win(board, Marks.cross))
 
-    def testWin_whenColumnsTwoWin(self):
-        boardSize = 3
-        columnTwo = 1
-        board = self.getEmptyBoard(boardSize)
-        for row in range(boardSize):
-            board[row][columnTwo] = Marks.cross
+    def setMarkColumn(self, board, mark, column):
+        for row in range(len(board)):
+            board[row][column] = mark
 
-        isWinningColumn = self.gamePolicy.columnMarked(columnTwo, board, Marks.cross)
-        isWinningBoard = self.gamePolicy.win(board, Marks.cross)
-        self.assertTrue(isWinningColumn)
-        self.assertTrue(isWinningBoard)
-
-    def testWin_whenColumnsThreeWin(self):
-        boardSize = 3
-        columnThree = 2
-        board = self.getEmptyBoard(boardSize)
-        for row in range(boardSize):
-            board[row][columnThree] = Marks.cross
-
-        isWinningColumn = self.gamePolicy.columnMarked(columnThree, board, Marks.cross)
-        isWinningBoard = self.gamePolicy.win(board, Marks.cross)
-        self.assertTrue(isWinningColumn)
-        self.assertTrue(isWinningBoard)
+        return board
 
     def testWin_whenDialOneWin(self):
-        boardSize = 3
         diagonal = 0
-        board = self.getEmptyBoard(boardSize)
-        for position in range(boardSize):
-            board[position][position] = Marks.cross
+        boardSize = 3
+        mark = Marks.cross
+        board = self.getEmptyBoardSize(boardSize)
 
-        isWinningDiagonal = self.gamePolicy.diagonalMarked(diagonal, board, Marks.cross)
-        isWinningBoard = self.gamePolicy.win(board, Marks.cross)
-        self.assertTrue(isWinningDiagonal)
-        self.assertTrue(isWinningBoard)
+        for position in range(boardSize):
+            board[position][position] = mark
+
+        self.assertTrue(self.gamePolicy.diagonalMarked(diagonal, board, mark))
+        self.assertTrue(self.gamePolicy.win(board, mark))
 
     def testWin_whenDialTwoWin(self):
-        boardSize = 3
         diagonal = 1
-        board = self.getEmptyBoard(boardSize)
-        for position in range(boardSize):
-            board[position][boardSize - position - 1] = Marks.cross
+        boardSize = 3
+        mark = Marks.cross
+        board = self.getEmptyBoardSize(boardSize)
 
-        isWinningDiagonal = self.gamePolicy.diagonalMarked(diagonal, board, Marks.cross)
-        isWinningBoard = self.gamePolicy.win(board, Marks.cross)
-        self.assertTrue(isWinningDiagonal)
-        self.assertTrue(isWinningBoard)
+        for position in range(boardSize):
+            board[position][boardSize - position - 1] = mark
+
+        self.assertTrue(self.gamePolicy.diagonalMarked(diagonal, board, mark))
+        self.assertTrue(self.gamePolicy.win(board, mark))
 
     def testCheckTie_whenItsTie(self):
-        boardSize = 3
-        board = self.getEmptyBoard(boardSize)
+        board = self.getEmptyBoardSize(3)
         board[0][0] = Marks.cross
         board[0][1] = Marks.nought
         board[0][2] = Marks.cross
@@ -129,12 +88,10 @@ class GamePolicyTest(unittest.TestCase):
         board[2][1] = Marks.cross
         board[2][2] = Marks.nought
 
-        response = self.gamePolicy.checkTie(board)
-        self.assertTrue(response)
+        self.assertTrue(self.gamePolicy.checkTie(board))
 
-    def testCheckTie_whenItsNotTieYet(self):
-        boardSize = 3
-        board = self.getEmptyBoard(boardSize)
+    def testCheckTie_whenBoardIsNotFull(self):
+        board = self.getEmptyBoardSize(3)
         board[0][0] = Marks.cross
         board[0][1] = Marks.nought
         board[0][2] = Marks.cross
@@ -145,12 +102,10 @@ class GamePolicyTest(unittest.TestCase):
         board[2][1] = Marks.cross
         board[2][2] = Marks.nought
 
-        response = self.gamePolicy.checkTie(board)
-        self.assertFalse(response)
+        self.assertFalse(self.gamePolicy.checkTie(board))
 
     def testCheckTie_whenItsNotTieButWin(self):
-        boardSize = 3
-        board = self.getEmptyBoard(boardSize)
+        board = self.getEmptyBoardSize(3)
         board[0][0] = Marks.cross
         board[0][1] = Marks.cross
         board[0][2] = Marks.cross
@@ -161,8 +116,7 @@ class GamePolicyTest(unittest.TestCase):
         board[2][1] = Marks.cross
         board[2][2] = Marks.cross
 
-        response = self.gamePolicy.checkTie(board)
-        self.assertFalse(response)
+        self.assertFalse(self.gamePolicy.checkTie(board))
 
 if __name__ == '__main__':
     unittest.main()
