@@ -6,39 +6,39 @@ from marks_enum import Marks
 
 class TestGameBoard(unittest.TestCase):
     def setUp(self):
-        self.boardSize = 3
-        self.gameBoard = GameBoard(self.boardSize)
-        self.newGameBoard = self.gameBoard.create_board()
+        self.board_size = 3
+        self.game_board = GameBoard(self.board_size)
+        self.new_game_board = self.game_board.create_board()
 
-    def getEmptyBoard(self, boardSize):
-        return [[Marks.empty]*boardSize for n in range(boardSize)]
+    def get_empty_board(self, board_size):
+        return [[Marks.empty]*board_size for n in range(board_size)]
 
-    def testCreateBoardTest_whenBoardThreeByThree(self):
-        emptyGameBoard = self.getEmptyBoard(self.boardSize)
-        self.assertEqual(self.newGameBoard, emptyGameBoard)
+    def test_create_baord_when_board_size_three(self):
+        empty_game_board = self.get_empty_board(self.board_size)
+        self.assertEqual(self.new_game_board, empty_game_board)
 
-    def testCreateBoardTest_whenBoardFourByFour(self):
-        boardSize = 4
-        emptyGameBoard = self.getEmptyBoard(boardSize)
-        gameBoard = GameBoard(boardSize)
-        newGameBoard = gameBoard.create_board()
-        self.assertEqual(newGameBoard, emptyGameBoard)
+    def test_create_baord_when_board_size_four(self):
+        board_size = 4
+        empty_game_board = self.get_empty_board(board_size)
+        game_board = GameBoard(board_size)
+        new_game_board = game_board.create_board()
+        self.assertEqual(new_game_board, empty_game_board)
 
-    def testSetMark_whenSpotIsEmpty(self):
+    def test_set_mark_when_spot_empty(self):
         position = 0
-        self.gameBoard.set_mark(position, Marks.cross)
-        markSetOnBoard = self.gameBoard.get_mark(position)
-        self.assertEqual(Marks.cross, markSetOnBoard)
+        self.game_board.set_mark(position, Marks.cross)
+        mark_set_on_board = self.game_board.get_mark(position)
+        self.assertEqual(Marks.cross, mark_set_on_board)
 
-    def testSetMark_whenOutOfBoard(self):
+    def test_is_empty_when_spot_is_empty(self):
+        position = 0
+        self.game_board.set_mark(position, Marks.cross)
+        self.assertFalse(self.game_board.is_empty(position))
+
+    def test_set_mark_when_out_of_the_board(self):
         position = 10
         with self.assertRaises(IndexError):
-            self.gameBoard.set_mark(position, Marks.cross)
-
-    def testIsEmpty_whenSpotIsEmpty(self):
-        position = 0
-        self.gameBoard.set_mark(position, Marks.cross)
-        self.assertFalse(self.gameBoard.is_empty(position))
+            self.game_board.set_mark(position, Marks.cross)
 
 if __name__ == '__main__':
     unittest.main()

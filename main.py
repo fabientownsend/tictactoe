@@ -4,9 +4,9 @@ from game_engine import GameEngine
 from game_policy import GamePolicy
 
 console = ConsoleUI()
-gamePolicy = GamePolicy()
+game_policy = GamePolicy()
 board = GameBoard(3)
-gameEngine = GameEngine(console, gamePolicy, board)
+gameEngine = GameEngine(console, game_policy, board)
 
 gameEngine.create_type_game()
 gameEngine.define_first_player()

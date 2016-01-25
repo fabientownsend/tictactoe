@@ -24,11 +24,11 @@ class Computer(Player):
         return best_move
 
     def minimax(self, mark, board):
-        if self.gamePolicy.win(board.board, self.mark):
+        if self.game_policy.win(board.board, self.mark):
             return 1
-        elif self.gamePolicy.win(board.board, self.switch(self.mark)):
+        elif self.game_policy.win(board.board, self.switch(self.mark)):
             return -1
-        elif self.gamePolicy.check_tie(board.board):
+        elif self.game_policy.check_tie(board.board):
             return 0
 
         if mark == self.mark:

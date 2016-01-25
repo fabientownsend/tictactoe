@@ -8,9 +8,9 @@ class Human(Player):
         self.MIN_RANGE = 0
 
     def get_move(self, board):
-        requestMove = True
+        request_move = True
 
-        while requestMove:
+        while request_move:
             position = self.console.get_player_move()
 
             total = len(board.board) * len(board.board)
@@ -19,6 +19,6 @@ class Human(Player):
             elif not board.is_empty(position):
                 self.console.spot_not_free()
             else:
-                requestMove = False
+                request_move = False
 
         return position

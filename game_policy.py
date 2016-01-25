@@ -8,7 +8,7 @@ class GamePolicy():
             self.win(board, Marks.nought) and not
             self.win(board, Marks.cross)
             ):
-            return True
+                return True
         else:
             return False
 
