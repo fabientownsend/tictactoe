@@ -10,8 +10,7 @@ class Computer(Player):
         best_move = 0
         best_value = -100
 
-        total = len(gameBoard.board)*len(gameBoard.board)
-        for i in range(total):
+        for i in range(gameBoard.get_size()):
             if gameBoard.is_empty(i):
                 gameBoard.set_mark(i, self.mark)
                 value = self.minimax(self.switch(self.mark), gameBoard)
@@ -24,8 +23,6 @@ class Computer(Player):
         return best_move
 
     def minimax(self, mark, gameBoard):
-        total = len(gameBoard.board)*len(gameBoard.board)
-
         if self.game_policy.win(gameBoard.board, self.mark):
             return 1
         elif self.game_policy.win(gameBoard.board, self.switch(self.mark)):
@@ -36,7 +33,7 @@ class Computer(Player):
         if mark == self.mark:
             best_value = -100
 
-            for i in range(total):
+            for i in range(gameBoard.get_size()):
                 if gameBoard.is_empty(i):
                     gameBoard.set_mark(i, mark)
                     val = self.minimax(self.switch(mark), gameBoard)
@@ -47,7 +44,7 @@ class Computer(Player):
         else:
             best_value = 100
 
-            for i in range(total):
+            for i in range(gameBoard.get_size()):
                 if gameBoard.is_empty(i):
                     gameBoard.set_mark(i, mark)
                     val = self.minimax(self.switch(mark), gameBoard)

@@ -8,8 +8,8 @@ class GamePolicyTest(unittest.TestCase):
     def setUp(self):
         self.game_policy = GamePolicy()
 
-    def get_empty_board(self, board_size):
-        return [[Marks.empty]*board_size for n in range(board_size)]
+    def get_empty_board(self, board_width):
+        return [[Marks.empty]*board_width for n in range(board_width)]
 
     def test_is_full_when_its_empty(self):
         empty_board = self.get_empty_board(3)
@@ -54,11 +54,11 @@ class GamePolicyTest(unittest.TestCase):
 
     def test_win_when_dial_one_win(self):
         diagonal = 0
-        board_size = 3
+        board_width = 3
         mark = Marks.cross
-        board = self.get_empty_board(board_size)
+        board = self.get_empty_board(board_width)
 
-        for position in range(board_size):
+        for position in range(board_width):
             board[position][position] = mark
 
         self.assertTrue(self.game_policy.diagonal_win(diagonal, board, mark))
@@ -66,12 +66,12 @@ class GamePolicyTest(unittest.TestCase):
 
     def test_win_when_dial_two_win(self):
         diagonal = 1
-        board_size = 3
+        board_width = 3
         mark = Marks.cross
-        board = self.get_empty_board(board_size)
+        board = self.get_empty_board(board_width)
 
-        for position in range(board_size):
-            board[position][board_size - position - 1] = mark
+        for position in range(board_width):
+            board[position][board_width - position - 1] = mark
 
         self.assertTrue(self.game_policy.diagonal_win(diagonal, board, mark))
         self.assertTrue(self.game_policy.win(board, mark))

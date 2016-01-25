@@ -6,21 +6,27 @@ from marks_enum import Marks
 
 class TestGameBoard(unittest.TestCase):
     def setUp(self):
-        self.board_size = 3
-        self.game_board = GameBoard(self.board_size)
+        self.board_width = 3
+        self.game_board = GameBoard(self.board_width)
         self.new_game_board = self.game_board.create_board()
 
-    def get_empty_board(self, board_size):
-        return [[Marks.empty]*board_size for n in range(board_size)]
+    def get_empty_board(self, board_width):
+        return [[Marks.empty]*board_width for n in range(board_width)]
 
-    def test_create_baord_when_board_size_three(self):
-        empty_game_board = self.get_empty_board(self.board_size)
+    def test_create_baord_when_board_width_three(self):
+        empty_game_board = self.get_empty_board(self.board_width)
         self.assertEqual(self.new_game_board, empty_game_board)
 
-    def test_create_baord_when_board_size_four(self):
-        board_size = 4
-        empty_game_board = self.get_empty_board(board_size)
-        game_board = GameBoard(board_size)
+    def test_get_size_when_board_width_three(self):
+        board_width = 3
+        game_board = GameBoard(board_width)
+        game_board.create_board()
+        self.assertEqual(game_board.get_size(), board_width*board_width)
+
+    def test_create_baord_when_board_width_four(self):
+        board_width = 4
+        empty_game_board = self.get_empty_board(board_width)
+        game_board = GameBoard(board_width)
         new_game_board = game_board.create_board()
         self.assertEqual(new_game_board, empty_game_board)
 
