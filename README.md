@@ -40,12 +40,12 @@ $ python -m unittest discover
 
 **Running a single test class:**
 ```bash
-$ python -m unittest tests.test_comuter
+$ python -m unittest tests.test_computer
 ```
 
 **Running a single test method:**
 ```bash
-$ python -m unittest tests.test_comuter.ComputerTest.testSetMark_whenMarkIsCross
+$ python -m unittest tests.test_comuter.test_computer.test_set_mark_with_cross
 ```
 
 ## Usage
