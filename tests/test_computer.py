@@ -25,7 +25,7 @@ class ComputerTest(unittest.TestCase):
         crassMark = self.computer.switch(Marks.nought)
         self.assertEqual(crassMark, Marks.cross)
 
-    def test_minimax_when_maximizing_player_win(self):
+    def test_minimax_when_maximizing_player_win_score_positive(self):
         maximizing_player = Marks.cross
         self.game_board = GameBoard(3)
         self.game_board.set_mark(0, Marks.cross)
@@ -35,7 +35,7 @@ class ComputerTest(unittest.TestCase):
         win_move = self.computer.minimax(maximizing_player, self.game_board)
         self.assertEqual(win_move, 1)
 
-    def test_minimax_when_maximizing_player_lose(self):
+    def test_minimax_when_minimizing_player_win_score_negative(self):
         maximizing_player = Marks.cross
         self.game_board = GameBoard(3)
         self.game_board.set_mark(0, Marks.nought)
@@ -45,7 +45,7 @@ class ComputerTest(unittest.TestCase):
         lose_move = self.computer.minimax(maximizing_player, self.game_board)
         self.assertEqual(lose_move, -1)
 
-    def test_minimax_when_maximizing_player_tie(self):
+    def test_minimax_when_its_a_tie_score_null(self):
         maximizing_player = Marks.cross
         self.game_board = GameBoard(3)
         self.game_board.set_mark(0, Marks.nought)
