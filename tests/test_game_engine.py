@@ -79,8 +79,6 @@ class GameEngineTest(unittest.TestCase):
         self.fake_game_policy.response_check_tie = False
 
         self.assertTrue(self.game_engine.is_game_over(fake_board))
-        self.assertTrue(self.game_engine.game_over)
-        self.assertFalse(self.game_engine.tie)
 
     def test_is_game_over_when_its_a_tie(self):
         fake_board = None
@@ -90,8 +88,6 @@ class GameEngineTest(unittest.TestCase):
         self.fake_game_policy.response_check_tie = True
 
         self.assertTrue(self.game_engine.is_game_over(fake_board))
-        self.assertTrue(self.game_engine.tie)
-        self.assertTrue(self.game_engine.game_over)
 
     def test_is_game_over_when_its_not_game_over_either_tie(self):
         fake_board = None
@@ -101,8 +97,28 @@ class GameEngineTest(unittest.TestCase):
         self.fake_game_policy.response_check_tie = False
 
         self.assertFalse(self.game_engine.is_game_over(fake_board))
+
+    def test_set_game_result_when_a_player_win(self):
+        fake_board = None
+        self.game_engine.create_players_type_game(2)
+        self.game_engine.set_first_player(2)
+        self.fake_game_policy.response_win = True
+        self.fake_game_policy.response_check_tie = False
+
+        self.game_engine.set_game_result(fake_board)
+        self.assertTrue(self.game_engine.game_over)
         self.assertFalse(self.game_engine.tie)
-        self.assertFalse(self.game_engine.game_over)
+
+    def test_set_game_result_when_its_a_tie(self):
+        fake_board = None
+        self.game_engine.create_players_type_game(2)
+        self.game_engine.set_first_player(2)
+        self.fake_game_policy.response_win = False
+        self.fake_game_policy.response_check_tie = True
+
+        self.game_engine.set_game_result(fake_board)
+        self.assertTrue(self.game_engine.tie)
+        self.assertTrue(self.game_engine.game_over)
 
     def test_create_type_game_when_create_game_human_vs_computer(self):
         self.assertTrue(isinstance(self.game_engine.player_1, Human))
@@ -126,15 +142,6 @@ class GameEngineTest(unittest.TestCase):
     def test_play_when_player_cross_win(self):
         fake_player = FakePlayer(Marks.cross)
         self.game_engine.current_player = fake_player
-        self.fake_board.board[0][0] = Marks.empty
-        self.fake_board.board[0][1] = Marks.cross
-        self.fake_board.board[0][2] = Marks.cross
-        self.fake_board.board[1][0] = Marks.nought
-        self.fake_board.board[1][1] = Marks.nought
-        self.fake_board.board[1][2] = Marks.cross
-        self.fake_board.board[2][0] = Marks.nought
-        self.fake_board.board[2][1] = Marks.cross
-        self.fake_board.board[2][2] = Marks.nought
         self.fake_game_policy.response_win = True
 
         self.game_engine.play()
@@ -146,15 +153,6 @@ class GameEngineTest(unittest.TestCase):
     def test_play_when_player_nought_win(self):
         fake_player = FakePlayer(Marks.nought)
         self.game_engine.current_player = fake_player
-        self.fake_board.board[0][0] = Marks.empty
-        self.fake_board.board[0][1] = Marks.cross
-        self.fake_board.board[0][2] = Marks.cross
-        self.fake_board.board[1][0] = Marks.nought
-        self.fake_board.board[1][1] = Marks.nought
-        self.fake_board.board[1][2] = Marks.cross
-        self.fake_board.board[2][0] = Marks.nought
-        self.fake_board.board[2][1] = Marks.cross
-        self.fake_board.board[2][2] = Marks.nought
         self.fake_game_policy.response_win = True
 
         self.game_engine.play()
@@ -166,15 +164,6 @@ class GameEngineTest(unittest.TestCase):
     def test_play_when_party_is_a_tie(self):
         fake_player = FakePlayer(Marks.cross)
         self.game_engine.current_player = fake_player
-        self.fake_board.board[0][0] = Marks.cross
-        self.fake_board.board[0][1] = Marks.nought
-        self.fake_board.board[0][2] = Marks.cross
-        self.fake_board.board[1][0] = Marks.nought
-        self.fake_board.board[1][1] = Marks.nought
-        self.fake_board.board[1][2] = Marks.cross
-        self.fake_board.board[2][0] = Marks.nought
-        self.fake_board.board[2][1] = Marks.cross
-        self.fake_board.board[2][2] = Marks.nought
         self.fake_game_policy.response_win = False
         self.fake_game_policy.response_check_tie = True
 
