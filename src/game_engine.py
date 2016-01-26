@@ -22,7 +22,6 @@ class GameEngine:
         self.console = console
         self.game_policy = game_policy
         self.board = board
-
         self.game_over = False
         self.tie = False
         self.winner = None
@@ -34,13 +33,12 @@ class GameEngine:
         self.create_players_type_game(type_game)
 
     def get_type_game_selected(self):
-        while True:
-            type_game = self.console.type_game_selected()
+        type_game = self.console.type_game_selected()
 
-            if type_game > 0 and type_game < 4:
-                break
-
-        return type_game
+        if type_game > 0 and type_game < 4:
+            return type_game
+        else:
+            self.get_type_game_selected()
 
     def create_players_type_game(self, type_game):
         if type_game == GameType.human_vs_human.value:
@@ -59,13 +57,12 @@ class GameEngine:
         self.set_first_player(first_player_selected)
 
     def get_first_player_selected(self):
-        while True:
-            first_player_selected = self.console.get_first_player()
+        first_player_selected = self.console.get_first_player()
 
-            if first_player_selected > 0 and first_player_selected < 3:
-                break
-
-        return first_player_selected
+        if first_player_selected > 0 and first_player_selected < 3:
+            return first_player_selected
+        else:
+            self.get_first_player_selected()
 
     def set_first_player(self, first_player_selected):
         if first_player_selected == PlayersEnum.player_1.value:
