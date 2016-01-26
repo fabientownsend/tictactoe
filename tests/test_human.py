@@ -1,9 +1,10 @@
 import unittest
 
 from fake_console_ui import FakeConsoleUI
-from game_board import GameBoard
-from human import Human
-from marks_enum import Marks
+
+from src.game_board import GameBoard
+from src.human import Human
+from src.marks_enum import Marks
 
 
 class TestHuman(unittest.TestCase):
