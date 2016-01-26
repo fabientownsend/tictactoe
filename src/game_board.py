@@ -5,12 +5,16 @@ class GameBoard():
     def __init__(self, board_width):
         self.board_width = board_width
         self.board = self.create_board()
+        self.MIN_RANGE = 0
 
     def create_board(self):
         return [[Marks.empty]*self.board_width for n in range(self.board_width)]
 
-    def get_size(self):
+    def get_max_range(self):
         return self.board_width*self.board_width
+
+    def get_min_range(self):
+        return self.MIN_RANGE
 
     def set_mark(self, position, mark):
         row =  position/self.board_width

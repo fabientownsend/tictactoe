@@ -13,8 +13,11 @@ class ConsoleUI():
     def spot_not_free(self):
         print("it must be a free spot")
 
-    def display_correct_range_board(self):
-        print("position between 0 and 8")
+    def display_correct_range_board(self, min_range, max_range):
+        print("position between " +
+        str(min_range) +
+        " and " +
+        str(max_range))
 
     def type_game_selected(self):
         try:

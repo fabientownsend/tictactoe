@@ -15,7 +15,7 @@ class FakeConsoleUI:
         self.passed_in_spot_not_free = True
         return None
 
-    def display_correct_range_board(self):
+    def display_correct_range_board(self, fakeMin, fakeMax):
         self.passed_in_wrong_range = True
         return None
 

@@ -67,7 +67,6 @@ class GameEngine:
 
         return first_player_selected
 
-
     def set_first_player(self, first_player_selected):
         if first_player_selected == PlayersEnum.player_1.value:
             self.current_player = self.player_1
@@ -104,7 +103,6 @@ class GameEngine:
             self.tie = True
         elif self.game_policy.win(board, self.current_player.mark):
             self.winner = self.current_player
-
 
     def display_result(self):
         if self.tie:
