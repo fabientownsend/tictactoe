@@ -28,7 +28,7 @@ You have to add the pip.exe which is install into you python/scripts folder to y
 ```bash
 $ git clone https://github.com/fabientownsend/tictactoe
 $ pip install enum34
-$ cd tictactoe
+$ cd tictactoe/src
 $ python main.py
 ```
 
