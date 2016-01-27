@@ -19,14 +19,14 @@ class ConsoleUI():
         " and " +
         str(max_range))
 
-    def type_game_selected(self):
+    def get_type_game_selected(self):
         try:
             self.type_game = input("Select your type of game: ")
         except KeyboardInterrupt:
             sys.exit()
         except:
             self.expected_number()
-            self.type_game_selected()
+            self.get_type_game_selected()
 
         return self.type_game
 

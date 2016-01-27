@@ -23,7 +23,7 @@ class FakeConsoleUI:
         self.passed_in_wrong_range = True
         return None
 
-    def type_game_selected(self):
+    def get_type_game_selected(self):
         self.get_type_game_selected_counter += 1
         if self.get_type_game_selected_counter > 1:
             return 1

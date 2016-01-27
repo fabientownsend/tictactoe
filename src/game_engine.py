@@ -1,7 +1,6 @@
 from enum import Enum
 
 from computer import Computer
-from game_board import GameBoard
 from human import Human
 from marks_enum import Marks
 
@@ -18,10 +17,10 @@ class PlayersEnum(Enum):
 
 
 class GameEngine:
-    def __init__(self, console, game_policy, board):
+    def __init__(self, console, game_policy, game_board):
         self.console = console
         self.game_policy = game_policy
-        self.board = board
+        self.game_board = game_board
         self.game_over = False
         self.tie = False
         self.winner = None
@@ -33,7 +32,7 @@ class GameEngine:
         self.create_players_type_game(type_game)
 
     def get_type_game_selected(self):
-        type_game = self.console.type_game_selected()
+        type_game = self.console.get_type_game_selected()
 
         if type_game > 0 and type_game < 4:
             return type_game
@@ -72,16 +71,16 @@ class GameEngine:
 
     def play(self):
         while not self.game_over:
-            board = self.board
+            game_board = self.game_board
             mark = self.current_player.mark
 
             self.console.display_player_turn(mark.value)
-            position = self.current_player.get_move(board)
-            self.board.set_mark(position, mark)
-            self.console.display_board(board.board)
+            position = self.current_player.get_move(game_board)
+            self.game_board.set_mark(position, mark)
+            self.console.display_board(game_board.board)
 
-            if self.is_game_over(board.board):
-                self.set_game_result(board.board)
+            if self.is_game_over(game_board.board):
+                self.set_game_result(game_board.board)
                 self.display_result()
             else:
                 self.switch_current_player()
