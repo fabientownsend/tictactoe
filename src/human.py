@@ -20,4 +20,3 @@ class Human(Player):
             return self.get_move(gameBoard)
         else:
             return position
-
