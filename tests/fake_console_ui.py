@@ -7,6 +7,10 @@ class FakeConsoleUI:
         self.passed_in_player_move = False
         self.passed_in_wrong_range = False
         self.passed_in_spot_not_free = False
+        self.get_first_player_counter = 0
+        self.get_type_game_selected_counter = 0
+        self.first_player = 1
+        self.gameSelected = 1
 
     def display_type_game(self):
         return None
@@ -20,13 +24,22 @@ class FakeConsoleUI:
         return None
 
     def type_game_selected(self):
-        return 2
+        self.get_type_game_selected_counter += 1
+        if self.get_type_game_selected_counter > 1:
+            return 1
+        else:
+            self.gameSelected
+
 
     def display_which_start(self):
         return None
 
     def get_first_player(self):
-        return 1
+        self.get_first_player_counter += 1
+        if self.get_first_player_counter > 1:
+            return 1
+        else:
+            return self.first_player
 
     def display_player_turn(self, mark):
         return None

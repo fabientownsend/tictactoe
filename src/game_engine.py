@@ -38,7 +38,7 @@ class GameEngine:
         if type_game > 0 and type_game < 4:
             return type_game
         else:
-            self.get_type_game_selected()
+            return self.get_type_game_selected()
 
     def create_players_type_game(self, type_game):
         if type_game == GameType.human_vs_human.value:
@@ -62,7 +62,7 @@ class GameEngine:
         if first_player_selected > 0 and first_player_selected < 3:
             return first_player_selected
         else:
-            self.get_first_player_selected()
+            return self.get_first_player_selected()
 
     def set_first_player(self, first_player_selected):
         if first_player_selected == PlayersEnum.player_1.value:
@@ -89,7 +89,7 @@ class GameEngine:
     def is_game_over(self, board):
         if (self.game_policy.win(board, self.current_player.mark) or
             self.game_policy.check_tie(board)):
-                return True
+            return True
         else:
             return False
 

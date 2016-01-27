@@ -65,11 +65,22 @@ class GameEngineTest(unittest.TestCase):
         self.assertFalse(self.game_engine.game_over)
 
     def test_get_type_game_selected_when_select_two(self):
+        self.fake_console.gameSelected = 1
         typePartySelected = self.game_engine.get_type_game_selected()
-        self.assertEqual(typePartySelected, 2)
+        self.assertEqual(typePartySelected, 1)
 
     def test_get_first_player_selected_when_first_was_player_one(self):
+        self.fake_console.first_player = 1
         first_player_selected = self.game_engine.get_first_player_selected()
+        self.assertEqual(first_player_selected, 1)
+
+    def test_get_first_player_selected_when_pass_twice_in_the_method(self):
+        self.fake_console.first_player = 15
+        self.fake_console.get_first_player_counter = 0
+
+        first_player_selected = self.game_engine.get_first_player_selected()
+
+        self.assertEqual(self.fake_console.get_first_player_counter, 2)
         self.assertEqual(first_player_selected, 1)
 
     def test_is_game_over_when_a_player_win(self):
@@ -122,6 +133,8 @@ class GameEngineTest(unittest.TestCase):
         self.assertTrue(self.game_engine.game_over)
 
     def test_create_type_game_when_create_game_human_vs_computer(self):
+        self.game_engine.create_type_game()
+        self.game_engine.create_players_type_game(2)
         self.assertTrue(isinstance(self.game_engine.player_1, Human))
         self.assertTrue(isinstance(self.game_engine.player_2, Computer))
 
