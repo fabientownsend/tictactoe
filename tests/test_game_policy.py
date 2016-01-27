@@ -13,11 +13,13 @@ class GamePolicyTest(unittest.TestCase):
 
     def test_is_full_when_its_empty(self):
         empty_board = self.get_empty_board(3)
+
         self.assertFalse(self.game_policy.is_full(empty_board))
 
     def test_is_full_when_its_not_empty(self):
         board = self.get_empty_board(3)
         board[0][0] = Marks.cross
+
         self.assertFalse(self.game_policy.is_full(board))
 
     def test_win_when_rows_are_win(self):

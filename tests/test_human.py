@@ -13,10 +13,12 @@ class TestHuman(unittest.TestCase):
 
     def test_set_mark_when_mark_is_cross(self):
         self.human = Human(Marks.cross, self.fake_console_ui)
+
         self.assertEqual(self.human.mark, Marks.cross)
 
     def test_set_mark_when_mark_is_nought(self):
         self.human = Human(Marks.nought, self.fake_console_ui)
+
         self.assertEqual(self.human.mark, Marks.nought)
 
     def test_get_move_when_value_valide(self):

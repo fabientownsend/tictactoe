@@ -9,21 +9,25 @@ class ComputerTest(unittest.TestCase):
     def setUp(self):
         self.computer = Computer(Marks.cross)
 
-    def test_set_mark_with_cross(self):
+    def test_set_mark_when_cross(self):
         self.computer = Computer(Marks.cross)
+
         self.assertEqual(self.computer.mark, Marks.cross)
 
-    def test_set_mark_with_nought(self):
+    def test_set_mark_when_nought(self):
         self.computer = Computer(Marks.nought)
+
         self.assertEqual(self.computer.mark, Marks.nought)
 
     def test_switch_when_mark_was_cross(self):
         noughtMark = self.computer.switch(Marks.cross)
+
         self.assertEqual(noughtMark, Marks.nought)
 
     def test_switch_when_mark_was_nought(self):
-        crassMark = self.computer.switch(Marks.nought)
-        self.assertEqual(crassMark, Marks.cross)
+        crossMark = self.computer.switch(Marks.nought)
+
+        self.assertEqual(crossMark, Marks.cross)
 
     def test_minimax_when_maximizing_player_win_score_positive(self):
         maximizing_player = Marks.cross
@@ -32,8 +36,9 @@ class ComputerTest(unittest.TestCase):
         self.game_board.set_mark(1, Marks.cross)
         self.game_board.set_mark(2, Marks.cross)
 
-        win_move = self.computer.minimax(maximizing_player, self.game_board)
-        self.assertEqual(win_move, 1)
+        positive_score = self.computer.minimax(maximizing_player,
+                                               self.game_board)
+        self.assertEqual(positive_score, 1)
 
     def test_minimax_when_minimizing_player_win_score_negative(self):
         maximizing_player = Marks.cross
@@ -42,10 +47,11 @@ class ComputerTest(unittest.TestCase):
         self.game_board.set_mark(1, Marks.nought)
         self.game_board.set_mark(2, Marks.nought)
 
-        lose_move = self.computer.minimax(maximizing_player, self.game_board)
-        self.assertEqual(lose_move, -1)
+        negative_score = self.computer.minimax(maximizing_player,
+                                               self.game_board)
+        self.assertEqual(negative_score, -1)
 
-    def test_minimax_when_its_a_tie_score_null(self):
+    def test_minimax_when_its_a_tie_score_neutral(self):
         maximizing_player = Marks.cross
         self.game_board = GameBoard(3)
         self.game_board.set_mark(0, Marks.nought)
@@ -58,10 +64,11 @@ class ComputerTest(unittest.TestCase):
         self.game_board.set_mark(7, Marks.nought)
         self.game_board.set_mark(8, Marks.cross)
 
-        tie_move = self.computer.minimax(maximizing_player, self.game_board)
-        self.assertEqual(tie_move, 0)
+        neutral_score = self.computer.minimax(maximizing_player,
+                                              self.game_board)
+        self.assertEqual(neutral_score, 0)
 
-    def test_minimax_when_maximizing_player_win_in_both_cases(self):
+    def test_minimax_when_maximizing_player_win_in_both_different_move(self):
         maximizing_player = Marks.nought
         self.game_board = GameBoard(3)
         self.game_board.set_mark(0, Marks.empty)
@@ -74,11 +81,11 @@ class ComputerTest(unittest.TestCase):
         self.game_board.set_mark(7, Marks.nought)
         self.game_board.set_mark(8, Marks.cross)
 
-        ultimate_win_move = self.computer.minimax(maximizing_player,
+        opportunity_move = self.computer.minimax(maximizing_player,
                                                   self.game_board)
-        self.assertEqual(ultimate_win_move, 1)
+        self.assertEqual(opportunity_move, 1)
 
-    def test_minimax_when_opposant_win_in_both_cases(self):
+    def test_minimax_when_opposant_win_in_both_different_move(self):
         maximizing_player = Marks.cross
         self.game_board = GameBoard(3)
         self.game_board.set_mark(0, Marks.empty)
@@ -102,6 +109,7 @@ class ComputerTest(unittest.TestCase):
         self.game_board.set_mark(1, Marks.cross)
 
         win_move = self.computer.get_move(self.game_board)
+
         self.assertEqual(win_move, 2)
 
     def test_get_move_when_maximizing_should_block_opposant(self):
@@ -111,6 +119,7 @@ class ComputerTest(unittest.TestCase):
         self.game_board.set_mark(1, Marks.nought)
 
         blocking_move = self.computer.get_move(self.game_board)
+
         self.assertEqual(blocking_move, 2)
 
     def test_get_move_when_maximizing_playe_create_opportunity_to_win(self):
@@ -126,8 +135,9 @@ class ComputerTest(unittest.TestCase):
         self.game_board.set_mark(7, Marks.empty)
         self.game_board.set_mark(8, Marks.empty)
 
-        ultimate_win_move = self.computer.get_move(self.game_board)
-        self.assertEqual(ultimate_win_move, 4)
+        opportunity_move = self.computer.get_move(self.game_board)
+
+        self.assertEqual(opportunity_move, 4)
 
 if __name__ == '__main__':
     unittest.main()
