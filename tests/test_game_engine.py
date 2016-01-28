@@ -1,6 +1,6 @@
 import unittest
 
-from fake_console_ui import FakeConsoleUI
+from fake_game_interface import FakeGameInterface
 from fake_game_policy import FakeGamePolicy
 from fake_player import FakePlayer
 
@@ -14,10 +14,10 @@ from src.marks_enum import Marks
 
 class GameEngineTest(unittest.TestCase):
     def setUp(self):
-        self.fake_console = FakeConsoleUI()
+        self.fake_game_interface = FakeGameInterface()
         self.fake_game_policy = FakeGamePolicy()
         self.fake_board = GameBoard(3)
-        self.game_engine = GameEngine(self.fake_console, self.fake_game_policy,
+        self.game_engine = GameEngine(self.fake_game_interface, self.fake_game_policy,
                                       self.fake_board)
         self.game_engine.create_type_game()
 
@@ -73,24 +73,24 @@ class GameEngineTest(unittest.TestCase):
         self.assertFalse(self.game_engine.game_over)
 
     def test_get_type_game_selected_when_select_two(self):
-        self.fake_console.gameSelected = 1
+        self.fake_game_interface.gameSelected = 1
         typePartySelected = self.game_engine.get_type_game_selected()
 
         self.assertEqual(typePartySelected, 1)
 
     def test_get_first_player_selected_when_first_was_player_one(self):
-        self.fake_console.first_player = 1
+        self.fake_game_interface.first_player = 1
         first_player_selected = self.game_engine.get_first_player_selected()
 
         self.assertEqual(first_player_selected, 1)
 
     def test_get_first_player_selected_when_pass_twice_in_the_method(self):
-        self.fake_console.first_player = 15
-        self.fake_console.get_first_player_counter = 0
+        self.fake_game_interface.first_player = 15
+        self.fake_game_interface.get_first_player_counter = 0
 
         first_player_selected = self.game_engine.get_first_player_selected()
 
-        self.assertEqual(self.fake_console.get_first_player_counter, 2)
+        self.assertEqual(self.fake_game_interface.get_first_player_counter, 2)
         self.assertEqual(first_player_selected, 1)
 
     def test_is_game_over_when_a_player_win(self):
@@ -161,14 +161,14 @@ class GameEngineTest(unittest.TestCase):
         self.game_engine.tie = True
         self.game_engine.display_result()
 
-        self.assertTrue(self.fake_console.passed_in_display_tie)
+        self.assertTrue(self.fake_game_interface.passed_in_display_tie)
 
     def test_display_result_when_a_player_win(self):
         self.game_engine.tie = False
         self.game_engine.winner = self.game_engine.player_1
         self.game_engine.display_result()
 
-        self.assertTrue(self.fake_console.passed_in_display_winner)
+        self.assertTrue(self.fake_game_interface.passed_in_display_winner)
 
     def test_play_when_player_cross_win(self):
         fake_player = FakePlayer(Marks.cross)

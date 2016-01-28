@@ -17,8 +17,8 @@ class PlayersEnum(Enum):
 
 
 class GameEngine:
-    def __init__(self, console, game_policy, game_board):
-        self.console = console
+    def __init__(self, game_interface, game_policy, game_board):
+        self.game_interface = game_interface
         self.game_policy = game_policy
         self.game_board = game_board
         self.game_over = False
@@ -27,12 +27,12 @@ class GameEngine:
         self.current_player = None
 
     def create_type_game(self):
-        self.console.display_type_game()
+        self.game_interface.display_type_game()
         type_game = self.get_type_game_selected()
         self.create_players_type_game(type_game)
 
     def get_type_game_selected(self):
-        type_game = self.console.get_type_game_selected()
+        type_game = self.game_interface.get_type_game_selected()
 
         if type_game > 0 and type_game < 4:
             return type_game
@@ -41,22 +41,22 @@ class GameEngine:
 
     def create_players_type_game(self, type_game):
         if type_game == GameType.human_vs_human.value:
-            self.player_1 = Human(Marks.cross, self.console)
-            self.player_2 = Human(Marks.nought, self.console)
+            self.player_1 = Human(Marks.cross, self.game_interface)
+            self.player_2 = Human(Marks.nought, self.game_interface)
         elif type_game == GameType.human_vs_computer.value:
-            self.player_1 = Human(Marks.cross, self.console)
+            self.player_1 = Human(Marks.cross, self.game_interface)
             self.player_2 = Computer(Marks.nought)
         elif type_game == GameType.computer_vs_computer.value:
             self.player_1 = Computer(Marks.cross)
             self.player_2 = Computer(Marks.nought)
 
     def define_first_player(self):
-        self.console.display_which_start()
+        self.game_interface.display_which_start()
         first_player_selected = self.get_first_player_selected()
         self.set_first_player(first_player_selected)
 
     def get_first_player_selected(self):
-        first_player_selected = self.console.get_first_player()
+        first_player_selected = self.game_interface.get_first_player()
 
         if first_player_selected > 0 and first_player_selected < 3:
             return first_player_selected
@@ -74,10 +74,10 @@ class GameEngine:
             game_board = self.game_board
             mark = self.current_player.mark
 
-            self.console.display_player_turn(mark.value)
+            self.game_interface.display_player_turn(mark.value)
             position = self.current_player.get_move(game_board)
             self.game_board.set_mark(position, mark)
-            self.console.display_board(game_board.board)
+            self.game_interface.display_board(game_board.board)
 
             if self.is_game_over(game_board.board):
                 self.set_game_result(game_board.board)
@@ -102,9 +102,9 @@ class GameEngine:
 
     def display_result(self):
         if self.tie:
-            self.console.display_tie()
+            self.game_interface.display_tie()
         else:
-            self.console.display_winner(self.winner.mark.value)
+            self.game_interface.display_winner(self.winner.mark.value)
 
     def switch_current_player(self):
         if self.current_player == self.player_1:
