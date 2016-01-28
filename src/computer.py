@@ -1,6 +1,3 @@
-from copy import copy
-import random
-
 from marks_enum import Marks
 from player import Player
 
