@@ -2,6 +2,7 @@
 [![codecov.io](https://codecov.io/github/fabientownsend/tictactoe/coverage.svg?branch=master)](https://codecov.io/github/fabientownsend/tictactoe?branch=master)
 
 #Unbeatable Tic-Tac-Toe
+![tictactoe](https://lh3.googleusercontent.com/-a9v5dd-AVfc/VqzalVGTb6I/AAAAAAAAF5A/rIYiW0SVVfU/w1406-h794-no/tictactoe.png)
 
 Here you can find [documentation](https://github.com/fabientownsend/tictactoe/wiki) that I wrote about the project, I tried to cover subject like architecture and algorithm.
 
