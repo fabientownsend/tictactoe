@@ -19,7 +19,7 @@ class FakeGameInterface:
         self.passed_in_spot_not_free = True
         return None
 
-    def display_correct_range_board(self, fakeMin, fakeMax):
+    def display_range_board(self, fakeMin, fakeMax):
         self.passed_in_wrong_range = True
         return None
 
@@ -29,7 +29,6 @@ class FakeGameInterface:
             return 1
         else:
             self.gameSelected
-
 
     def display_which_start(self):
         return None

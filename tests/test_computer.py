@@ -82,7 +82,7 @@ class ComputerTest(unittest.TestCase):
         self.game_board.set_mark(8, Marks.cross)
 
         opportunity_move = self.computer.minimax(maximizing_player,
-                                                  self.game_board)
+                                                 self.game_board)
         self.assertEqual(opportunity_move, 1)
 
     def test_minimax_when_opposant_win_in_both_different_move(self):
@@ -135,9 +135,9 @@ class ComputerTest(unittest.TestCase):
         self.game_board.set_mark(7, Marks.empty)
         self.game_board.set_mark(8, Marks.empty)
 
-        opportunity_move = self.computer.get_move(self.game_board)
+        best_move_possible = self.computer.get_move(self.game_board)
 
-        self.assertEqual(opportunity_move, 4)
+        self.assertEqual(best_move_possible, 4)
 
 if __name__ == '__main__':
     unittest.main()

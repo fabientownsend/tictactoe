@@ -18,7 +18,7 @@ class TestGameInterface(unittest.TestCase):
         self.assertTrue(self.fakeConsoleIO.spy_passed_into_method)
 
     def test_display_correct_range_board(self):
-        self.gameInterface.display_correct_range_board(0, 8)
+        self.gameInterface.display_range_board(0, 8)
         self.assertTrue(self.fakeConsoleIO.spy_passed_into_method)
 
     def test_get_type_game_selected(self):
@@ -50,8 +50,4 @@ class TestGameInterface(unittest.TestCase):
 
     def test_display_tie(self):
         self.gameInterface.display_tie()
-        self.assertTrue(self.fakeConsoleIO.spy_passed_into_method)
-
-    def test_expected_number(self):
-        self.gameInterface.expected_number()
         self.assertTrue(self.fakeConsoleIO.spy_passed_into_method)

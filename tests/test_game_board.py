@@ -20,13 +20,15 @@ class TestGameBoard(unittest.TestCase):
 
     def test_get_max_range_when_board_width_three(self):
         board_width = 3
+        range_max = board_width*board_width
         game_board = GameBoard(board_width)
         game_board.create_board()
 
-        self.assertEqual(game_board.get_max_range(), board_width*board_width)
+        self.assertEqual(game_board.get_max_range(), range_max)
 
     def test_get_min_range(self):
-        self.assertEqual(self.game_board.get_min_range(), 0)
+        range_min = 0
+        self.assertEqual(self.game_board.get_min_range(), range_min)
 
     def test_create_baord_when_board_width_four(self):
         board_width = 4

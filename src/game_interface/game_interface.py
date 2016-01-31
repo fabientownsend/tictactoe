@@ -13,7 +13,7 @@ class GameInterface():
     def spot_not_free(self):
         self.io.display_text("it must be a free spot")
 
-    def display_correct_range_board(self, min_range, max_range):
+    def display_range_board(self, min_range, max_range):
         self.io.display_text("position between " +
         str(min_range) +
         " and " +
@@ -32,8 +32,8 @@ class GameInterface():
     def get_first_player(self):
         return self.io.user_input("Which player should start? ")
 
-    def display_player_turn(self, id_player):
-        self.io.display_text("Player " + str(id_player) + " turn")
+    def display_player_turn(self, player_mark):
+        self.io.display_text("Player " + str(player_mark) + " turn")
 
     def get_player_move(self):
         return self.io.user_input("Which position: ")
@@ -41,11 +41,8 @@ class GameInterface():
     def display_board(self, board):
         self.io.display_board(board)
 
-    def display_winner(self, winner):
-        self.io.display_text("Player " + str(winner) + " won the party")
+    def display_winner(self, winne_mark):
+        self.io.display_text("Player " + str(winne_mark) + " won the party")
 
     def display_tie(self):
         self.io.display_text("It's a tie, no one won!")
-
-    def expected_number(self):
-        self.io.display_text("A number is expected")

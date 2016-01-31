@@ -8,6 +8,7 @@ class ConsoleIO():
         except KeyboardInterrupt:
             sys.exit()
         except:
+            print("A number is expected")
             self.user_input(text)
 
     def display_text(self, text):
