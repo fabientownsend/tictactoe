@@ -17,7 +17,8 @@ class GameEngineTest(unittest.TestCase):
         self.fake_game_interface = FakeGameInterface()
         self.fake_game_policy = FakeGamePolicy()
         self.fake_board = GameBoard(3)
-        self.game_engine = GameEngine(self.fake_game_interface, self.fake_game_policy,
+        self.game_engine = GameEngine(self.fake_game_interface,
+                                      self.fake_game_policy,
                                       self.fake_board)
         self.game_engine.create_type_game()
 
