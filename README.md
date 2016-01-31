@@ -5,7 +5,7 @@
 
 Here you can find [documentation](https://github.com/fabientownsend/tictactoe/wiki) that I wrote about the project, I tried to cover subject like architecture and algorithm.
 
-## First in first you need to have `python 2.7` to be installed
+## Firstly if you don't use Vagrant  you need to have `python 2.7` to be installed
 [python 2.7.11](https://www.python.org/downloads/release/python-2711/)
 
 You also need to install `pip` the Python's package manager:
@@ -13,23 +13,31 @@ You also need to install `pip` the Python's package manager:
 ### On Mac
 ```bash
 $ sudo easy_install pip
+$ pip install enum34
 ```
 
 ### On Debian and Ubuntu
 ```bash
 $ sudo apt-get install python-pip
+$ pip install enum34
 ```
 
 ### On Windows
 You have to add the pip.exe which is install into you python/scripts folder to your environment variable
+```bash
+$ pip install enum34
+```
 
-## Installation & Launch
-
+## Installation
 ```bash
 $ git clone https://github.com/fabientownsend/tictactoe
-$ pip install enum34
-$ cd tictactoe/src
-$ python main.py
+```
+
+## Run  with Vagrant
+```bash
+$ cd /tictactoe
+$ vagrant up
+$ vagrant ssh
 ```
 
 ## Test the application
@@ -49,6 +57,11 @@ $ python -m unittest tests.test_comuter.test_computer.test_set_mark_with_cross
 ```
 
 ## Usage
+Runn the game
+```bash
+$ cd /src
+$ python python main.py
+```
 
 1. First menu you can choose the game mode between 1, 2 and 3
 2. You have to pick up which player start between 1 and 2
