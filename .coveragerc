@@ -1,4 +1,2 @@
 [report]
 exclude_lines: if __name__ == '__main__':
-exclude_lines: raise NotImplementedError()
-
