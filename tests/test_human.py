@@ -2,9 +2,9 @@ import unittest
 
 from fake_game_interface import FakeGameInterface
 
-from src.game_board import GameBoard
-from src.human import Human
-from src.marks_enum import Marks
+from src.game_play.game_board import GameBoard
+from src.game_play.human import Human
+from src.game_play.marks_enum import Marks
 
 
 class TestHuman(unittest.TestCase):

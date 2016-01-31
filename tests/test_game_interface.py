@@ -1,7 +1,7 @@
 import unittest
 
 from fake_console_io import FakeConsoleIO
-from src.game_interface import GameInterface
+from src.game_interface.game_interface import GameInterface
 
 class TestGameInterface(unittest.TestCase):
     def setUp(self):
