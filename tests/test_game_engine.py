@@ -4,12 +4,12 @@ from fake_game_interface import FakeGameInterface
 from fake_game_policy import FakeGamePolicy
 from fake_player import FakePlayer
 
-from src.computer import Computer
-from src.game_board import GameBoard
-from src.game_engine import GameEngine
-from src.game_engine import PlayersEnum
-from src.human import Human
-from src.marks_enum import Marks
+from src.game_play.computer import Computer
+from src.game_play.game_board import GameBoard
+from src.game_play.game_engine import GameEngine
+from src.game_play.game_engine import PlayersEnum
+from src.game_play.human import Human
+from src.game_play.marks_enum import Marks
 
 
 class GameEngineTest(unittest.TestCase):
@@ -17,7 +17,8 @@ class GameEngineTest(unittest.TestCase):
         self.fake_game_interface = FakeGameInterface()
         self.fake_game_policy = FakeGamePolicy()
         self.fake_board = GameBoard(3)
-        self.game_engine = GameEngine(self.fake_game_interface, self.fake_game_policy,
+        self.game_engine = GameEngine(self.fake_game_interface,
+                                      self.fake_game_policy,
                                       self.fake_board)
         self.game_engine.create_type_game()
 
