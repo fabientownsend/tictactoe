@@ -1,4 +1,4 @@
-class FakeConsoleUI:
+class FakeGameInterface:
     def __init__(self):
         self.passed_in_display_tie = False
         self.passed_in_display_winner = False
