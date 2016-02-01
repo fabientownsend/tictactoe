@@ -17,7 +17,7 @@ class GameInterface():
         self.io.display_text("position between " +
         str(min_range) +
         " and " +
-        str(max_range))
+        str(max_range - 1))
 
     def get_type_game_selected(self):
         return self.io.user_input("Select your type of game: ")
