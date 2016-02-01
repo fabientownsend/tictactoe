@@ -15,6 +15,7 @@ class ConsoleIO():
         print(text)
 
     def display_board(self, board):
+        sys.stdout.write("\n")
         for row in range(len(board)):
             for column in range(len(board)):
                 sys.stdout.write("  " + board[row][column].value + "  ")
@@ -29,3 +30,5 @@ class ConsoleIO():
                         sys.stdout.write("-"*6)
 
                 print("\n")
+
+        sys.stdout.write("\n")
