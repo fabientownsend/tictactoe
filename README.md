@@ -6,10 +6,10 @@
 
 Here you can find [documentation](https://github.com/fabientownsend/tictactoe/wiki) that I wrote about the project, I tried to cover subject like architecture and algorithm.
 
-## Firstly if you don't use Vagrant  you need to have `python 2.7` to be installed
+## Firstly you need to have `python 2.7` to be installed
 [python 2.7.11](https://www.python.org/downloads/release/python-2711/)
 
-You also need to install `pip` the Python's package manager:
+If you don't use Vagrant you will also need to install `pip` the Python's package manager and the package enum34.
 
 ### On Mac
 ```bash
