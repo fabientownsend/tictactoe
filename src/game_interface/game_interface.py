@@ -3,31 +3,29 @@ class GameInterface():
         self.io = io
 
     def display_type_game(self):
-        self.io.display_text(
-            "Type of game:\n\n"
-            "1 - Human v. Human\n"
-            "2 - Human v. Computer\n"
-            "3 - Computer v. Computer\n"
-        )
+        self.io.display_text("Type of game:\n\n"
+                             "1 - Human v. Human\n"
+                             "2 - Human v. Computer\n"
+                             "3 - Computer v. Computer\n"
+                            )
 
     def spot_not_free(self):
         self.io.display_text("it must be a free spot")
 
     def display_range_board(self, min_range, max_range):
         self.io.display_text("position between " +
-        str(min_range) +
-        " and " +
-        str(max_range - 1))
+                             str(min_range) +
+                             " and " +
+                             str(max_range - 1))
 
     def get_type_game_selected(self):
         return self.io.user_input("Select your type of game: ")
 
     def display_which_start(self):
-        self.io.display_text(
-            "Which player start:\n\n"
-            "1 - Player 1\n"
-            "2 - Player 2\n"
-        )
+        self.io.display_text("Which player start:\n\n"
+                             "1 - Player 1\n"
+                             "2 - Player 2\n"
+                            )
 
     def get_first_player(self):
         return self.io.user_input("Which player should start? ")
