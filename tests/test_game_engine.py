@@ -21,41 +21,46 @@ class GameEngineTest(unittest.TestCase):
                                       self.fake_game_policy,
                                       self.fake_board)
         self.game_engine.create_type_game()
+        self.human_vs_human = 1
+        self.human_vs_computer = 2
+        self.computer_vs_computer = 3
+        self.player_1 = 1
+        self.player_2 = 2
 
     def test_create_player_when_two_human(self):
-        self.game_engine.create_players_type_game(1)
+        self.game_engine.create_players_type_game(self.human_vs_human)
 
         self.assertTrue(isinstance(self.game_engine.player_1, Human))
         self.assertTrue(isinstance(self.game_engine.player_2, Human))
 
     def test_create_player_when_human_vs_computer(self):
-        self.game_engine.create_players_type_game(2)
+        self.game_engine.create_players_type_game(self.human_vs_computer)
 
         self.assertTrue(isinstance(self.game_engine.player_1, Human))
         self.assertTrue(isinstance(self.game_engine.player_2, Computer))
 
     def test_create_player_when_computer_vs_computer(self):
-        self.game_engine.create_players_type_game(3)
+        self.game_engine.create_players_type_game(self.computer_vs_computer)
         self.assertTrue(isinstance(self.game_engine.player_1, Computer))
 
         self.assertTrue(isinstance(self.game_engine.player_2, Computer))
 
     def test_test_first_player_when_first_player_is_player_one(self):
-        self.game_engine.create_players_type_game(1)
-        self.game_engine.set_first_player(1)
+        self.game_engine.create_players_type_game(self.human_vs_human)
+        self.game_engine.set_first_player(self.player_1)
 
         self.assertEqual(self.game_engine.current_player,
                          self.game_engine.player_1)
 
     def test_test_first_player_when_first_player_is_player_two(self):
-        self.game_engine.create_players_type_game(2)
-        self.game_engine.set_first_player(2)
+        self.game_engine.create_players_type_game(self.human_vs_computer)
+        self.game_engine.set_first_player(self.player_2)
 
         self.assertEqual(self.game_engine.current_player,
                          self.game_engine.player_2)
 
     def test_switch_player_when_current_player_was_player_one(self):
-        self.game_engine.create_players_type_game(2)
+        self.game_engine.create_players_type_game(self.human_vs_computer)
         self.game_engine.current_player = self.game_engine.player_1
         self.game_engine.switch_current_player()
 
@@ -63,7 +68,7 @@ class GameEngineTest(unittest.TestCase):
                          self.game_engine.player_2)
 
     def test_switch_player_when_current_player_was_player_two(self):
-        self.game_engine.create_players_type_game(2)
+        self.game_engine.create_players_type_game(self.human_vs_computer)
         self.game_engine.current_player = self.game_engine.player_2
         self.game_engine.switch_current_player()
 
@@ -95,59 +100,54 @@ class GameEngineTest(unittest.TestCase):
         self.assertEqual(first_player_selected, 1)
 
     def test_is_game_over_when_a_player_win(self):
-        fake_board = None
-        self.game_engine.create_players_type_game(2)
-        self.game_engine.set_first_player(2)
+        self.game_engine.create_players_type_game(self.human_vs_computer)
+        self.game_engine.set_first_player(self.player_2)
         self.fake_game_policy.response_win = True
         self.fake_game_policy.response_check_tie = False
 
-        self.assertTrue(self.game_engine.is_game_over(fake_board))
+        self.assertTrue(self.game_engine.is_game_over(self.fake_board))
 
     def test_is_game_over_when_its_a_tie(self):
-        fake_board = None
-        self.game_engine.create_players_type_game(2)
-        self.game_engine.set_first_player(2)
+        self.game_engine.create_players_type_game(self.human_vs_computer)
+        self.game_engine.set_first_player(self.player_2)
         self.fake_game_policy.response_win = False
         self.fake_game_policy.response_check_tie = True
 
-        self.assertTrue(self.game_engine.is_game_over(fake_board))
+        self.assertTrue(self.game_engine.is_game_over(self.fake_board))
 
     def test_is_game_over_when_its_not_game_over_either_tie(self):
-        fake_board = None
-        self.game_engine.create_players_type_game(2)
-        self.game_engine.set_first_player(2)
+        self.game_engine.create_players_type_game(self.human_vs_computer)
+        self.game_engine.set_first_player(self.player_2)
         self.fake_game_policy.response_win = False
         self.fake_game_policy.response_check_tie = False
 
-        self.assertFalse(self.game_engine.is_game_over(fake_board))
+        self.assertFalse(self.game_engine.is_game_over(self.fake_board))
 
     def test_set_game_result_when_a_player_win(self):
-        fake_board = None
-        self.game_engine.create_players_type_game(2)
-        self.game_engine.set_first_player(2)
+        self.game_engine.create_players_type_game(self.human_vs_computer)
+        self.game_engine.set_first_player(self.player_2)
         self.fake_game_policy.response_win = True
         self.fake_game_policy.response_check_tie = False
 
-        self.game_engine.set_game_result(fake_board)
+        self.game_engine.set_game_result(self.fake_board)
 
         self.assertTrue(self.game_engine.game_over)
         self.assertFalse(self.game_engine.tie)
 
     def test_set_game_result_when_its_a_tie(self):
-        fake_board = None
-        self.game_engine.create_players_type_game(2)
-        self.game_engine.set_first_player(2)
+        self.game_engine.create_players_type_game(self.human_vs_computer)
+        self.game_engine.set_first_player(self.player_2)
         self.fake_game_policy.response_win = False
         self.fake_game_policy.response_check_tie = True
 
-        self.game_engine.set_game_result(fake_board)
+        self.game_engine.set_game_result(self.fake_board)
 
         self.assertTrue(self.game_engine.tie)
         self.assertTrue(self.game_engine.game_over)
 
     def test_create_type_game_when_create_game_human_vs_computer(self):
         self.game_engine.create_type_game()
-        self.game_engine.create_players_type_game(2)
+        self.game_engine.create_players_type_game(self.human_vs_computer)
 
         self.assertTrue(isinstance(self.game_engine.player_1, Human))
         self.assertTrue(isinstance(self.game_engine.player_2, Computer))

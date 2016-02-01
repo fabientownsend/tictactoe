@@ -22,7 +22,6 @@ class TestGameBoard(unittest.TestCase):
         board_width = 3
         range_max = board_width*board_width
         game_board = GameBoard(board_width)
-        game_board.create_board()
 
         self.assertEqual(game_board.get_max_range(), range_max)
 
@@ -34,9 +33,8 @@ class TestGameBoard(unittest.TestCase):
         board_width = 4
         empty_game_board = self.get_empty_board(board_width)
         game_board = GameBoard(board_width)
-        new_game_board = game_board.create_board()
 
-        self.assertEqual(new_game_board, empty_game_board)
+        self.assertEqual(game_board.board, empty_game_board)
 
     def test_set_mark_when_spot_empty(self):
         position = 0

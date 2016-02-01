@@ -18,10 +18,14 @@ class ConsoleIO():
         for row in range(len(board)):
             for column in range(len(board)):
                 sys.stdout.write("  " + board[row][column].value + "  ")
+
                 if column < len(board) - 1:
                     sys.stdout.write("|")
+
             print("\n")
+
             if row < len(board) - 1:
                 for column in range(len(board)):
                         sys.stdout.write("-"*6)
+
                 print("\n")
