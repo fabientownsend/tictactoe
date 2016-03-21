@@ -1,13 +1,13 @@
 import unittest
 
 from fake_console_io import FakeConsoleIO
-from src.game_interface.game_interface import GameInterface
+from src.game_interface.english_messenger import EnglishMessenger
 
 
 class TestGameInterface(unittest.TestCase):
     def setUp(self):
         self.fake_console_IO = FakeConsoleIO()
-        self.game_interface = GameInterface(self.fake_console_IO)
+        self.game_interface = EnglishMessenger(self.fake_console_IO)
         self.fake_console_IO.spy_passed_into_method = False
 
     def test_display_type_game(self):

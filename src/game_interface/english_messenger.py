@@ -1,4 +1,4 @@
-class GameInterface():
+class EnglishMessenger():
     def __init__(self, io):
         self.io = io
 
