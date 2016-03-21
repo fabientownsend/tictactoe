@@ -89,3 +89,6 @@ $ python main.py
 $ 2 # Computer v. Computer game
 $ 2 # Player2 will start
 ```
+### TODO
+- [x] add French language
+- [ ] implement language selction
