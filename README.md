@@ -91,4 +91,4 @@ $ 2 # Player2 will start
 ```
 ### TODO
 - [x] add French language
-- [ ] implement language selction
+- [x] implement language selction
