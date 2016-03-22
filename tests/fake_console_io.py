@@ -7,7 +7,6 @@ class FakeConsoleIO:
         self.spy_passed_into_method = True
         self.displayed_value = text
 
-
     def user_input(self, text):
         return 1
 
