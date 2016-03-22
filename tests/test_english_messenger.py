@@ -4,11 +4,25 @@ from fake_console_io import FakeConsoleIO
 from src.game_interface.english_messenger import EnglishMessenger
 
 
-class TestGameInterface(unittest.TestCase):
+class TestEngishMessenger(unittest.TestCase):
     def setUp(self):
         self.fake_console_IO = FakeConsoleIO()
         self.game_interface = EnglishMessenger(self.fake_console_IO)
         self.fake_console_IO.spy_passed_into_method = False
+
+    def test_display_languages(self):
+        type_game_message = ("Language:\n\n"
+                             "1 - English\n"
+                             "2 - French\n"
+                            )
+        self.game_interface.display_languages()
+        self.assertTrue(self.fake_console_IO.spy_passed_into_method)
+        self.assertEqual(self.fake_console_IO.displayed_value,
+                         type_game_message)
+
+    def test_get_language_selected(self):
+        game_selected = self.game_interface.get_language_selected()
+        self.assertEqual(game_selected, 1)
 
     def test_display_type_game(self):
         type_game_message = ("Type of game:\n\n"
