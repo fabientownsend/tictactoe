@@ -2,6 +2,15 @@ class EnglishMessenger():
     def __init__(self, io):
         self.io = io
 
+    def display_languages(self):
+        self.io.display_text("Language:\n\n"
+                             "1 - English\n"
+                             "2 - French\n"
+                            )
+
+    def get_language_selected(self):
+        return self.io.user_input("Select your language")
+
     def display_type_game(self):
         self.io.display_text("Type of game:\n\n"
                              "1 - Human v. Human\n"
