@@ -18,7 +18,8 @@ class ConsoleIO():
         sys.stdout.write("\n")
         for row in range(len(board)):
             for column in range(len(board)):
-                sys.stdout.write("  " + board[row][column].value + "  ")
+                sys.stdout.write("  {mark}  ".format(
+                    mark=board[row][column].value))
 
                 if column < len(board) - 1:
                     sys.stdout.write("|")
