@@ -28,8 +28,7 @@ class GameEngine:
 
     def create_type_game(self):
         self.game_interface.display_type_game()
-        type_game = self.get_type_game_selected()
-        self.create_players_type_game(type_game)
+        self.create_players_type_game(self.get_type_game_selected())
 
     def get_type_game_selected(self):
         type_game = self.game_interface.get_type_game_selected()
@@ -52,8 +51,7 @@ class GameEngine:
 
     def define_first_player(self):
         self.game_interface.display_which_start()
-        first_player_selected = self.get_first_player_selected()
-        self.set_first_player(first_player_selected)
+        self.set_first_player(self.get_first_player_selected())
 
     def get_first_player_selected(self):
         first_player_selected = self.game_interface.get_first_player()
