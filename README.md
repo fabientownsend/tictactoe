@@ -92,5 +92,7 @@ $ 2 # Player2 will start
 ### TODO
 - [x] add French language
 - [x] implement language selction
-- [ ] improve performance
+- [ ] improve performance with alpha-beta algorithm
+- [ ] record performence about minimax vs alpha-beta
+- [ ] Choose the library for the GUI interface
 - [ ] implement GUI
