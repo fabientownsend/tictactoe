@@ -94,5 +94,5 @@ $ 2 # Player2 will start
 - [x] implement language selction
 - [ ] improve performance with alpha-beta algorithm
 - [ ] record performence about minimax vs alpha-beta
-- [ ] Choose the library for the GUI interface
+- [ ] Choose the library for the GUI interface https://pythonspot.com/gui/
 - [ ] implement GUI
