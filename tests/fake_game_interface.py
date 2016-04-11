@@ -30,9 +30,6 @@ class FakeGameInterface:
         else:
             self.gameSelected
 
-    def display_which_start(self):
-        return None
-
     def get_first_player(self):
         self.get_first_player_counter += 1
         if self.get_first_player_counter > 1:
