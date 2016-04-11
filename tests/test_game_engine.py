@@ -51,6 +51,12 @@ class GameEngineTest(unittest.TestCase):
         self.assertEqual(self.fake_game_interface.get_first_player_counter, 2)
         self.assertEqual(first_player_selected, 1)
 
+    def test_define_first_player(self):
+        self.game_engine.define_first_player()
+
+        self.assertEqual(self.game_engine.player.current_player,
+                         self.game_engine.player.player_1)
+
     def test_is_game_over_when_a_player_win(self):
         self.game_engine.player.create_players_type_game(self.human_vs_computer)
         self.game_engine.player.set_first_player(self.player_2)
