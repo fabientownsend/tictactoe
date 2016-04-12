@@ -92,7 +92,7 @@ $ 2 # Player2 will start
 ### TODO
 - [x] add French language
 - [x] implement language selction
-- [ ] implement factory method for players creation [branch](https://github.com/fabientownsend/tictactoe/tree/factory_method)
+- [x] implement factory method for players creation
 - [ ] improve performance with [alpha-beta algorithm](https://en.wikipedia.org/wiki/Alpha%E2%80%93beta_pruning)
 - [ ] record performence about minimax vs alpha-beta
 - [ ] Choose the library for the GUI interface https://pythonspot.com/gui/
