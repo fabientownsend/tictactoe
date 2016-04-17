@@ -1,4 +1,5 @@
 import sys
+import os
 
 
 class ConsoleIO():
@@ -15,6 +16,7 @@ class ConsoleIO():
         print(text)
 
     def display_board(self, board):
+        os.system('clear')
         sys.stdout.write("\n")
         for row in range(len(board)):
             for column in range(len(board)):
