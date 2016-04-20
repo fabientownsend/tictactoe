@@ -94,6 +94,6 @@ $ 2 # Player2 will start
 - [x] implement language selction
 - [x] implement factory method for players creation
 - [ ] improve performance with [alpha-beta algorithm](https://en.wikipedia.org/wiki/Alpha%E2%80%93beta_pruning)
-- [ ] record performence about minimax vs alpha-beta
+- [ ] record performence about minimax vs alpha-beta [cProfile] (https://docs.google.com/spreadsheets/d/142hNoJTuchdR1oXtfKp71UrI2NxouC0Ekcp1wtYfZY0/edit?usp=sharing)
 - [ ] Choose the library for the GUI interface https://pythonspot.com/gui/
 - [ ] implement GUI
