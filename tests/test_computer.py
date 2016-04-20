@@ -29,29 +29,29 @@ class ComputerTest(unittest.TestCase):
 
         self.assertEqual(crossMark, Marks.cross)
 
-    def test_minimax_when_maximizing_player_win_score_positive(self):
+    def test_alphabeta_when_maximizing_player_win_score_positive(self):
         maximizing_player = Marks.cross
         self.game_board = GameBoard(3)
         self.game_board.set_mark(0, Marks.cross)
         self.game_board.set_mark(1, Marks.cross)
         self.game_board.set_mark(2, Marks.cross)
 
-        positive_score = self.computer.minimax(maximizing_player,
-                                               self.game_board)
+        positive_score = self.computer.alphabeta(maximizing_player,
+                                               self.game_board, -100, 100)
         self.assertEqual(positive_score, 1)
 
-    def test_minimax_when_minimizing_player_win_score_negative(self):
+    def test_alphabeta_when_minimizing_player_win_score_negative(self):
         maximizing_player = Marks.cross
         self.game_board = GameBoard(3)
         self.game_board.set_mark(0, Marks.nought)
         self.game_board.set_mark(1, Marks.nought)
         self.game_board.set_mark(2, Marks.nought)
 
-        negative_score = self.computer.minimax(maximizing_player,
-                                               self.game_board)
+        negative_score = self.computer.alphabeta(maximizing_player,
+                                               self.game_board, -100, 100)
         self.assertEqual(negative_score, -1)
 
-    def test_minimax_when_its_a_tie_score_neutral(self):
+    def test_alphabeta_when_its_a_tie_score_neutral(self):
         maximizing_player = Marks.cross
         self.game_board = GameBoard(3)
         self.game_board.set_mark(0, Marks.nought)
@@ -64,11 +64,11 @@ class ComputerTest(unittest.TestCase):
         self.game_board.set_mark(7, Marks.nought)
         self.game_board.set_mark(8, Marks.cross)
 
-        neutral_score = self.computer.minimax(maximizing_player,
-                                              self.game_board)
+        neutral_score = self.computer.alphabeta(maximizing_player,
+                                              self.game_board, -100, 100)
         self.assertEqual(neutral_score, 0)
 
-    def test_minimax_when_maximizing_player_win_in_both_different_move(self):
+    def test_alphabeta_when_maximizing_player_win_in_both_different_move(self):
         maximizing_player = Marks.nought
         self.game_board = GameBoard(3)
         self.game_board.set_mark(0, Marks.empty)
@@ -81,11 +81,11 @@ class ComputerTest(unittest.TestCase):
         self.game_board.set_mark(7, Marks.nought)
         self.game_board.set_mark(8, Marks.cross)
 
-        positive_score = self.computer.minimax(maximizing_player,
-                                                 self.game_board)
+        positive_score = self.computer.alphabeta(maximizing_player,
+                                                 self.game_board, -100, 100)
         self.assertEqual(positive_score, 1)
 
-    def test_minimax_when_opposant_win_in_both_different_move(self):
+    def test_alphabeta_when_opposant_win_in_both_different_move(self):
         maximizing_player = Marks.cross
         self.game_board = GameBoard(3)
         self.game_board.set_mark(0, Marks.empty)
@@ -98,8 +98,8 @@ class ComputerTest(unittest.TestCase):
         self.game_board.set_mark(7, Marks.cross)
         self.game_board.set_mark(8, Marks.nought)
 
-        negative_score = self.computer.minimax(maximizing_player,
-                                                        self.game_board)
+        negative_score = self.computer.alphabeta(maximizing_player,
+                                                        self.game_board, -100, 100)
         self.assertEqual(negative_score, -1)
 
     def test_get_move_when_maximizing_can_win(self):
