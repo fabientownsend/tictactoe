@@ -10,7 +10,7 @@ class Computer(Player):
         for i in range(game_board.get_max_range()):
             if game_board.is_empty(i):
                 game_board.set_mark(i, self.mark)
-                value = self.minimax(self.switch(self.mark), game_board)
+                value = self.alphabeta(self.switch(self.mark), game_board, -100, 100)
                 game_board.set_mark(i, Marks.empty)
 
                 if value > best_value:
@@ -19,7 +19,7 @@ class Computer(Player):
 
         return best_move
 
-    def minimax(self, mark, game_board):
+    def alphabeta(self, mark, game_board, alpha, beta):
         if self.game_policy.win(game_board.board, self.mark):
             return 1
         elif self.game_policy.win(game_board.board, self.switch(self.mark)):
@@ -33,9 +33,13 @@ class Computer(Player):
             for i in range(game_board.get_max_range()):
                 if game_board.is_empty(i):
                     game_board.set_mark(i, mark)
-                    val = self.minimax(self.switch(mark), game_board)
+                    val = self.alphabeta(self.switch(mark), game_board, alpha, beta)
                     game_board.set_mark(i, Marks.empty)
                     best_value = max(val, best_value)
+
+                    alpha = max(alpha, best_value)
+                    if beta <= alpha:
+                        break
 
             return best_value
         else:
@@ -44,9 +48,13 @@ class Computer(Player):
             for i in range(game_board.get_max_range()):
                 if game_board.is_empty(i):
                     game_board.set_mark(i, mark)
-                    val = self.minimax(self.switch(mark), game_board)
+                    val = self.alphabeta(self.switch(mark), game_board, alpha, beta)
                     game_board.set_mark(i, Marks.empty)
                     best_value = min(val, best_value)
+
+                    beta = min(beta, best_value)
+                    if beta <= alpha:
+                        break
 
             return best_value
 
