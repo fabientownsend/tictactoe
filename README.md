@@ -94,6 +94,6 @@ $ 2 # Player2 will start
 - [x] implement language selction
 - [x] implement factory method for players creation
 - [x] improve performance with [alpha-beta algorithm](https://en.wikipedia.org/wiki/Alpha%E2%80%93beta_pruning) - [branch](https://github.com/fabientownsend/tictactoe/tree/alphabeta)
-- [x] record performence about minimax vs alpha-beta [cProfile minimax] (https://docs.google.com/spreadsheets/d/142hNoJTuchdR1oXtfKp71UrI2NxouC0Ekcp1wtYfZY0/edit?usp=sharing) - [cProfile alphabeta](https://docs.google.com/spreadsheets/d/18xmI5Ml5UHv4H8bwSKY4kKYKZGEvn5HRRG01psGpQxk/edit?usp=sharing)
+- [x] record performence about minimax vs alpha-beta [cProfile minimax] (https://docs.google.com/spreadsheets/d/142hNoJTuchdR1oXtfKp71UrI2NxouC0Ekcp1wtYfZY0/edit?usp=sharing) - [cProfile alphabeta](https://docs.google.com/spreadsheets/d/18xmI5Ml5UHv4H8bwSKY4kKYKZGEvn5HRRG01psGpQxk/edit?usp=sharing) minimax: 25.34sec / alpha-beta: 1.47 sec
 - [ ] Choose the library for the GUI interface https://pythonspot.com/gui/
 - [ ] implement GUI
