@@ -6,17 +6,6 @@ from marks_enum import Marks
 from players_application import PlayersApplicationImp
 
 
-class GameType(Enum):
-    human_vs_human = 1
-    human_vs_computer = 2
-    computer_vs_computer = 3
-
-
-class PlayersEnum(Enum):
-    player_1 = 1
-    player_2 = 2
-
-
 class GameEngine:
     def __init__(self, game_interface, game_policy, game_board):
         self.player = PlayersApplicationImp(game_interface)

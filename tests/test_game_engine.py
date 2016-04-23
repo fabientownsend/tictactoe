@@ -7,7 +7,6 @@ from fake_player import FakePlayer
 from src.game_play.computer import Computer
 from src.game_play.game_board import GameBoard
 from src.game_play.game_engine import GameEngine
-from src.game_play.game_engine import PlayersEnum
 from src.game_play.human import Human
 from src.game_play.marks_enum import Marks
 

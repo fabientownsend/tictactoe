@@ -5,11 +5,6 @@ from human import Human
 from marks_enum import Marks
 
 
-class PlayersEnum(Enum):
-    player_1 = 1
-    player_2 = 2
-
-
 class GameType(Enum):
     human_vs_human = 1
     human_vs_computer = 2
@@ -18,6 +13,7 @@ class GameType(Enum):
 
 class PlayersApplication():
     def __init__(self, game_interface):
+        self.FIRST_PLAYER = 1
         self.game_interface = game_interface
 
     def create_players_type_game(self, type_game):
@@ -44,9 +40,9 @@ class PlayersApplication():
             self.current_player = self.player_1
 
     def set_first_player(self, first_player_selected):
-        if first_player_selected == PlayersEnum.player_1.value:
+        if first_player_selected == self.FIRST_PLAYER:
             self.current_player = self.player_1
-        elif first_player_selected == PlayersEnum.player_2.value:
+        else:
             self.current_player = self.player_2
 
 
@@ -56,4 +52,3 @@ class PlayersApplicationImp(PlayersApplication):
 
     def makeComputer(self, mark):
         return Computer(mark)
-
