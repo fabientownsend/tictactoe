@@ -1,5 +1,6 @@
 [![Build Status](https://api.travis-ci.org/fabientownsend/tictactoe.svg?branch=master)](https://travis-ci.org/fabientownsend/tictactoe) 
-[![codecov.io](https://codecov.io/github/fabientownsend/tictactoe/coverage.svg?branch=master)](https://codecov.io/github/fabientownsend/tictactoe?branch=master)
+[![codecov](https://codecov.io/gh/fabientownsend/tictactoe/branch/master/graph/badge.svg)](https://codecov.io/gh/fabientownsend/tictactoe)
+
 
 #Unbeatable Tic-Tac-Toe
 ![tictactoe](https://lh3.googleusercontent.com/-a9v5dd-AVfc/VqzalVGTb6I/AAAAAAAAF5A/rIYiW0SVVfU/w1406-h794-no/tictactoe.png)
